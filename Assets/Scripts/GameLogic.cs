@@ -5,9 +5,16 @@ using UnityEngine;
 public class GameLogic : MonoBehaviour {
     [HideInInspector]
     public static GameLogic instance;
-
-    public Enemy enemy;
+    
     public Location curLoc;
+
+    [Header("Player")]
+    public Player player;
+    public float plHealth;
+
+    [Header("Enemy")]
+    public Enemy enemy;
+    public float enHealth;
 
     private void Awake()
     {
@@ -29,6 +36,7 @@ public class GameLogic : MonoBehaviour {
         SetLocationUI(curLoc.locations[id]);
     }
 
+
     private void SetLocationUI(Location loc)
     {
         curLoc = loc;
@@ -40,4 +48,13 @@ public class GameLogic : MonoBehaviour {
             UIManager.instance.AddLocationButton(_loc.locationName, i);
         }
     }
+
+    private void StartFight()
+    {
+        UIManager.instance.SetFightUI(enemy, player);
+        enHealth = enemy.maxHealth;
+    }
+
+
+
 }

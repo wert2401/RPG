@@ -9,10 +9,20 @@ public class Enemy : ScriptableObject {
 	public TypeOfEnemy type;
     public float maxHealth;
     public float damage;
+
+    [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
     public float airDmg;
-    public float earthDmg;
+    public float lightDmg;
+    public float darkDmg;
+
+    [Header("Elements Resist/Vulnerability ")]
+    public float fireRes;
+    public float waterRes;
+    public float airRes;
+    public float lightRes;
+    public float darkRes;
 
     virtual public void Interact()
     {
