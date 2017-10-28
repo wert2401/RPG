@@ -8,6 +8,6 @@ public class Location : ScriptableObject {
     public string description;
 
     public List<Location> locations;
-
+    public List<Dungeon> dungeons;
 
 }

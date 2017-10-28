@@ -43,9 +43,29 @@ public class UIManager : MonoBehaviour {
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToLocation(id));
     }
 
+    public void AddDungeonButton(string name, int id)
+    {
+
+        GameObject go = Instantiate(button, buttonHolder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
+    }
+
+    public void SetLocationScreenOn(bool stage)
+    {
+        locationScreen.SetActive(stage);
+    }
+
+    public void SetFightScreenOn(bool stage)
+    {
+        fightScreen.SetActive(stage);
+    }
+
     public void SetFightUI(Enemy en, Player pl)
     {
         RemoveAllButtons();
+        locationScreen.SetActive(false);
         fightScreen.SetActive(true);
         UpdateHealth(en.maxHealth, pl.maxHealth);
         UpdateNames(en.name, pl.name);

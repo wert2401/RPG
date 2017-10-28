@@ -11,4 +11,6 @@ public class Player : MonoBehaviour {
     public float airDmg;
     public float earthDmg;
 
+
+
 }
