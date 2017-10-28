@@ -28,8 +28,6 @@ public class GameLogic : MonoBehaviour {
             SetLocationUI(curLoc);
         else
             Debug.Log("Set start location!");
-
-        plHealth = player.maxHealth;
     }
 
     private void SetLocationUI(Location loc)
@@ -63,12 +61,13 @@ public class GameLogic : MonoBehaviour {
 
         UIManager.instance.SetFightUI(enemy, player);
         enHealth = enemy.maxHealth;
+        plHealth = player.maxHealth;
     }
 
     private void StopFight()
     {
         SetLocationUI(startLocation);
-        UIManager.instance.SetFightScreenOn(true);
+        UIManager.instance.SetFightScreenOn(false);
     }
 
     public void MoveToLocation(int id)
@@ -94,6 +93,11 @@ public class GameLogic : MonoBehaviour {
         plHealth -= enemy.damage;
         enHealth -= player.damage;
         UIManager.instance.UpdateHealth(enHealth, plHealth);
+
+        if (plHealth <= 0 || enHealth <= 0)
+        {
+            StopFight();
+        }
     }
 
     public void Block()

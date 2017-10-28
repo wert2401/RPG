@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a807a164671fe40b9d069c9e505bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLocation: {fileID: 11400000, guid: 0b20f90257664504f89dadf1da5eb470, type: 2}
   curLoc: {fileID: 11400000, guid: 0b20f90257664504f89dadf1da5eb470, type: 2}
   player: {fileID: 521289389}
   plHealth: 0
