@@ -6,6 +6,7 @@ public class GameLogic : MonoBehaviour {
     [HideInInspector]
     public static GameLogic instance;
 
+    public Enemy enemy;
     public Location curLoc;
 
     private void Awake()
