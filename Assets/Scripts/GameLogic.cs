@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour {
     [Header("Enemy")]
     public Enemy enemy;
     public float enHealth;
+    public bool canRun = true;
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class GameLogic : MonoBehaviour {
         plHealth -= enemy.damage;
         enHealth -= player.damage;
         UIManager.instance.UpdateHealth(enHealth, plHealth);
+        canRun = true;
 
         if (plHealth <= 0 || enHealth <= 0)
         {
@@ -116,8 +118,31 @@ public class GameLogic : MonoBehaviour {
     }
 
     public void Run()
-    {
+    { 
+        if (!canRun)
+        {
+            Debug.Log("You can`t run now!");
+            return;
+        }
+
         Debug.Log("Try to run");
+        int a = Random.Range(0, 2);
+        switch (a)
+        {
+            case 0:
+                {
+                    StopFight();
+                    Debug.Log("Lucky!");
+                    break;
+                }
+            case 1:
+                {
+                    Attack();
+                    Debug.Log("May be in another time");
+                    canRun = false;
+                    break;
+                }
+        }
     }
 
     public void Interact()
