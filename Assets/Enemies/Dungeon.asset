@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonName: Dung
   enemies:
-  - {fileID: 11400000, guid: e4e3fa22fae364f419fa0f1d18de0e9a, type: 2}
+  - {fileID: 11400000, guid: 9ef29a1651728f04ba7a95793ef161ee, type: 2}

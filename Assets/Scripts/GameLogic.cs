@@ -65,7 +65,7 @@ public class GameLogic : MonoBehaviour {
         plHealth = player.maxHealth;
     }
 
-    private void StopFight()
+    public void StopFight()
     {
         SetLocationUI(startLocation);
         UIManager.instance.SetFightScreenOn(false);
@@ -89,7 +89,7 @@ public class GameLogic : MonoBehaviour {
 
     public void Attack()
     {
-        Debug.Log("Attack");
+        UIManager.instance.Print("Вы атаковали монстра, а он атаковал в ответ.");
 
         plHealth -= enemy.damage;
         enHealth -= player.damage;
@@ -132,13 +132,13 @@ public class GameLogic : MonoBehaviour {
             case 0:
                 {
                     StopFight();
-                    Debug.Log("Lucky!");
+                    UIManager.instance.Print("Вы убежали.");
                     break;
                 }
             case 1:
                 {
+                    UIManager.instance.Print("Убежать не удалось, поэтому пришлось атаковать еще один раз.");
                     Attack();
-                    Debug.Log("May be in another time");
                     canRun = false;
                     break;
                 }
@@ -148,6 +148,7 @@ public class GameLogic : MonoBehaviour {
     public void Interact()
     {
         Debug.Log("Interact");
+        enemy.Interact();
     }
 
 

@@ -8,26 +8,35 @@ public class UIManager : MonoBehaviour {
     public static UIManager instance;
 
     public GameObject button;
-    public GameObject buttonHolder;
 
     [Header("Location Screen")]
     public GameObject locationScreen;
+    public GameObject locButtonsHolder;
     public Text locationName;
 
     [Header("Fight Screen")]
     public GameObject fightScreen;
-    [Header("Enemy")] 
+    public GameObject fightButtonsHolder;
+    public GameObject dynButtonsHolder;
+    public GameObject extrDynButtonsHolder;
+    [Header("Enemy")]
     public Text enName;
     public Text enHealth;
     [Header("Player")]
     public Text plName;
     public Text plHealth;
 
+    [Header("Log")]
+    public Text log;
+
+    public delegate void met();
+
     private void Awake()
     {
         instance = this;
     }
 
+#region Locations
     public void SetLocationName(string name)
     {
         locationName.text = name;
@@ -35,9 +44,9 @@ public class UIManager : MonoBehaviour {
 
     public void AddLocationButton(string name, int id)
     {
-        RemoveAllButtons();
+        RemoveAllButtons(locButtonsHolder.transform);
 
-        GameObject go = Instantiate(button, buttonHolder.transform);
+        GameObject go = Instantiate(button, locButtonsHolder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToLocation(id));
@@ -45,8 +54,7 @@ public class UIManager : MonoBehaviour {
 
     public void AddDungeonButton(string name, int id)
     {
-
-        GameObject go = Instantiate(button, buttonHolder.transform);
+        GameObject go = Instantiate(button, locButtonsHolder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
@@ -56,7 +64,9 @@ public class UIManager : MonoBehaviour {
     {
         locationScreen.SetActive(stage);
     }
+    #endregion
 
+#region Fight
     public void SetFightScreenOn(bool stage)
     {
         fightScreen.SetActive(stage);
@@ -64,9 +74,15 @@ public class UIManager : MonoBehaviour {
 
     public void SetFightUI(Enemy en, Player pl)
     {
-        RemoveAllButtons();
+        RemoveAllButtons(dynButtonsHolder.transform);
+        RemoveAllButtons(extrDynButtonsHolder.transform);
+        ClearLog();
+
         locationScreen.SetActive(false);
         fightScreen.SetActive(true);
+
+        en.SetEnemyUI();
+
         UpdateHealth(en.maxHealth, pl.maxHealth);
         UpdateNames(en.name, pl.name);
     }
@@ -83,13 +99,57 @@ public class UIManager : MonoBehaviour {
         enName.text = _enName;
     }
 
-    private void RemoveAllButtons()
+    public void SetDynButtonsOn(bool stage)
     {
-        if (buttonHolder.transform.childCount <= 0) return;
+        dynButtonsHolder.SetActive(stage);
+    }
 
-        for (int i = 0; i < buttonHolder.transform.childCount; i++)
+    public void SetExtrDynButtonsOn(bool stage)
+    {
+        extrDynButtonsHolder.SetActive(stage);
+    }
+
+    public void SetFightButtonsOn(bool stage)
+    {
+        fightButtonsHolder.SetActive(stage);
+    }
+
+    public void AddDynButton(string name, met met)
+    {
+        GameObject go = Instantiate(button, dynButtonsHolder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(met.Invoke);
+    }
+
+    public void AddExtrDynButton(string name, met met)
+    {
+        GameObject go = Instantiate(button, extrDynButtonsHolder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(met.Invoke);
+    }
+    #endregion
+
+#region Fight Log
+    public void Print(string text)
+    {
+        log.text += text + "\r\n" + "**************" + "\r\n";
+    }
+
+    public void ClearLog()
+    {
+        log.text = "";
+    }
+#endregion
+
+    private void RemoveAllButtons(Transform tr)
+    {
+        if (tr.childCount <= 0) return;
+
+        for (int i = 0; i < tr.childCount; i++)
         {
-            Destroy(buttonHolder.transform.GetChild(i).gameObject);
+            Destroy(tr.GetChild(i).gameObject);
         }
     }
 
