@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonName: "\u041F\u043E\u043B\u0435(1-10)"
   enemies:
-  - {fileID: 11400000, guid: 3853c683314259841a57d7c34722e000, type: 2}
-  - {fileID: 11400000, guid: 0e346abab84bfd94fa785dd1abddddcf, type: 2}
   - {fileID: 11400000, guid: de053c7cd7975e14da53f1334d863f42, type: 2}
+  - {fileID: 11400000, guid: 3853c683314259841a57d7c34722e000, type: 2}
+  - {fileID: 11400000, guid: bf712d2a518a2d448b07e8cb22f67c95, type: 2}
   - {fileID: 11400000, guid: c3ea7942dccf5e141b950f892fa9025c, type: 2}

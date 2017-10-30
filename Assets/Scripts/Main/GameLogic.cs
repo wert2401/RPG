@@ -114,7 +114,21 @@ public class GameLogic : MonoBehaviour {
 
     public void Block()
     {
-        Debug.Log("Block");
+        int a = Random.Range(0, 100);
+        if (a > 25 && a < 75)
+        {
+            UIManager.instance.Print("Вам удалось заблокировать удар");
+        }
+        if (a < 25)
+        {
+            UIManager.instance.Print("Вам удалось заблокировать удар и вы контратаковали");
+            PlayerAttack();
+        }
+        if (a > 75 && a < 99)
+        {
+            UIManager.instance.Print("Вам не удалось заблокировать удар");
+            EnemyAttack();
+        }
     }
 
     public void Spell()
@@ -124,7 +138,26 @@ public class GameLogic : MonoBehaviour {
 
     public void UseHeal()
     {
-        Debug.Log("Heal;");
+        float a = player.maxHealth - plHealth;
+        float b = 36;
+        if (player.healPotion <= 0)
+        {
+            UIManager.instance.Print("У вас нет зелий лечения");
+            return;
+        }
+        if (plHealth > player.maxHealth)
+        {
+            UIManager.instance.Print("Здоров как бык");
+            return;
+        }
+        if (a < 36)
+        {
+            b = a;
+        }
+        plHealth += b;
+        player.healPotion--;
+        UIManager.instance.UpdateHealth(enHealth,plHealth);
+        UIManager.instance.Print("Вы излечились");
     }
 
     public void Run()
@@ -147,8 +180,8 @@ public class GameLogic : MonoBehaviour {
                 }
             case 1:
                 {
-                    UIManager.instance.Print("Убежать не удалось, поэтому пришлось атаковать еще один раз.");
-                    Attack();
+                    UIManager.instance.Print("Убежать не удалось.");
+                    EnemyAttack();
                     canRun = false;
                     break;
                 }
@@ -166,7 +199,7 @@ public class GameLogic : MonoBehaviour {
     public void PlayerAttack()
     {
         enHealth -= player.damage;
-        UIManager.instance.Print("Вы атакуете монстра.");
+        UIManager.instance.Print("Вы атакуете монстра");
         UIManager.instance.UpdateHealth(enHealth, plHealth);
         canRun = true;
         if (plHealth <= 0 || enHealth <= 0)
@@ -178,7 +211,8 @@ public class GameLogic : MonoBehaviour {
     public void EnemyAttack()
     {
         plHealth -= enemy.damage;
-        UIManager.instance.Print("Монстр атакует вас.");
+        UIManager.instance.Print("Монстр атакует вас");
+        UIManager.instance.UpdateHealth(enHealth, plHealth);
         canRun = true;
         if (plHealth <= 0 || enHealth <= 0)
         {

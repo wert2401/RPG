@@ -9,7 +9,23 @@ public class Dungeon : ScriptableObject {
 
     public Enemy GetRandomEnemy()
     {
-        int a = Random.Range(0, enemies.Count);
-        return enemies[a];
+        int a = Random.Range(0, 100);
+        if ((a >= 0) && (a <= 39)) 
+        {
+            return enemies[0];
+        }
+        if ((a >= 40) && (a <= 79))
+        {
+            return enemies[1];
+        }
+        if ((a >= 80) && (a <= 94))
+        {
+            return enemies[2];
+        }
+        if ((a >= 95) && (a <= 99))
+        {
+            return enemies[3];
+        }
+        return enemies[0];
     }
 }

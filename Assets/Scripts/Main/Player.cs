@@ -11,6 +11,5 @@ public class Player : MonoBehaviour {
     public float airDmg;
     public float earthDmg;
 
-
-
+    public int healPotion = 5;
 }

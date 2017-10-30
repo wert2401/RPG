@@ -36,7 +36,6 @@ public class Enemy : ScriptableObject {
 
     virtual public void Talk()
     {
-        UIManager.instance.Print("Вы говорите с "+ enemyName +".");
         SetDynUI();
         ResetUI();
     }
