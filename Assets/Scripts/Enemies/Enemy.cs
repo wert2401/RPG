@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Types;
 
-[CreateAssetMenu(fileName = "NewEnemy", menuName = "RPG/Enemies/Enemy")]
 public class Enemy : ScriptableObject {
     public string enemyName;
-	public TypeOfEnemy type;
     public float maxHealth;
     public float damage;
 

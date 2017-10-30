@@ -37,6 +37,32 @@ public class UIManager : MonoBehaviour {
     }
 
 #region Locations
+    public void SetLocationUI(Location loc)
+    {
+        SetLocationScreenOn(true);
+        SetLocationName(loc.locationName);
+        RemoveAllButtons(locButtonsHolder.transform);
+
+        if (loc.locations.Count > 0)
+        {
+            for (int i = 0; i < loc.locations.Count; i++)
+            {
+                Location _loc = loc.locations[i];
+                AddLocationButton(_loc.locationName, i);
+            }
+        }
+
+        if (loc.dungeons.Count > 0)
+        {
+            Debug.Log("!!!!!");
+            for (int i = 0; i < loc.dungeons.Count; i++)
+            {
+                Dungeon _dun = loc.dungeons[i];
+                AddDungeonButton(_dun.dungeonName, i);
+            }
+        }
+    }
+
     public void SetLocationName(string name)
     {
         locationName.text = name;
@@ -44,8 +70,6 @@ public class UIManager : MonoBehaviour {
 
     public void AddLocationButton(string name, int id)
     {
-        RemoveAllButtons(locButtonsHolder.transform);
-
         GameObject go = Instantiate(button, locButtonsHolder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
@@ -58,13 +82,14 @@ public class UIManager : MonoBehaviour {
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
+        Debug.Log("Button added" + " " + id);
     }
 
     public void SetLocationScreenOn(bool stage)
     {
         locationScreen.SetActive(stage);
     }
-    #endregion
+#endregion
 
 #region Fight
     public void SetFightScreenOn(bool stage)
@@ -84,7 +109,7 @@ public class UIManager : MonoBehaviour {
         en.SetEnemyUI();
 
         UpdateHealth(en.maxHealth, pl.maxHealth);
-        UpdateNames(en.name, pl.name);
+        UpdateNames(en.enemyName, pl.plName);
     }
 
     public void UpdateHealth(float enemyHp, float playerHp)
@@ -93,7 +118,7 @@ public class UIManager : MonoBehaviour {
         plHealth.text = playerHp.ToString();
     }
 
-    public void UpdateNames(string _enName, string _plName)
+    private void UpdateNames(string _enName, string _plName)
     {
         plName.text = _plName;
         enName.text = _enName;
@@ -114,21 +139,21 @@ public class UIManager : MonoBehaviour {
         fightButtonsHolder.SetActive(stage);
     }
 
-    public void AddDynButton(string name, met met)
+    public void AddDynButton(string name, met met, Transform holder)
     {
-        GameObject go = Instantiate(button, dynButtonsHolder.transform);
+        GameObject go = Instantiate(button, holder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(met.Invoke);
     }
 
-    public void AddExtrDynButton(string name, met met)
-    {
-        GameObject go = Instantiate(button, extrDynButtonsHolder.transform);
-        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
-        btnHelp.SetText(name);
-        btnHelp.btn.onClick.AddListener(met.Invoke);
-    }
+    //public void AddExtrDynButton(string name, met met)
+    //{
+    //    GameObject go = Instantiate(button, extrDynButtonsHolder.transform);
+    //    ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+    //    btnHelp.SetText(name);
+    //    btnHelp.btn.onClick.AddListener(met.Invoke);
+    //}
     #endregion
 
 #region Fight Log

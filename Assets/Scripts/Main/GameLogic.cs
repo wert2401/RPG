@@ -25,37 +25,62 @@ public class GameLogic : MonoBehaviour {
 
     private void Start()
     {
-        if (curLoc != null)
-            SetLocationUI(curLoc);
+        if (startLocation != null)
+        {
+            UIManager.instance.SetLocationUI(startLocation);
+            curLoc = startLocation;
+        }
         else
             Debug.Log("Set start location!");
     }
 
-    private void SetLocationUI(Location loc)
+#region Location
+    //private void SetLocationUI(Location loc)
+    //{
+    //    curLoc = loc;
+    //    UIManager.instance.SetLocationScreenOn(true);
+    //    UIManager.instance.SetLocationName(curLoc.locationName);
+
+    //    if (curLoc.locations.Count > 0)
+    //    {
+    //        for (int i = 0; i < curLoc.locations.Count; i++)
+    //        {
+    //            Location _loc = curLoc.locations[i];
+    //            UIManager.instance.AddLocationButton(_loc.locationName, i);
+    //            Debug.Log(_loc.locationName + " " + i);
+    //        }
+    //    }
+
+    //    if (curLoc.dungeons.Count > 0)
+    //    {
+    //        for (int i = 0; i < curLoc.locations.Count; i++)
+    //        {
+    //            Dungeon _dun = curLoc.dungeons[i];
+    //            UIManager.instance.AddDungeonButton(_dun.dungeonName, i);
+    //        }
+    //    }
+    //}
+
+    public void MoveToLocation(int id)
     {
-        curLoc = loc;
-        UIManager.instance.SetLocationScreenOn(true);
-        UIManager.instance.SetLocationName(curLoc.locationName);
+        if (curLoc == null) return;
 
-        if (curLoc.locations.Count > 0)
-        {
-            for (int i = 0; i < curLoc.locations.Count; i++)
-            {
-                Location _loc = curLoc.locations[i];
-                UIManager.instance.AddLocationButton(_loc.locationName, i);
-            }
-        }
-
-        if (curLoc.dungeons.Count > 0)
-        {
-            for (int i = 0; i < curLoc.locations.Count; i++)
-            {
-                Dungeon _dun = curLoc.dungeons[i];
-                UIManager.instance.AddDungeonButton(_dun.dungeonName, i);
-            }
-        }
+        //curLoc = curLoc.locations[id];
+        UIManager.instance.SetLocationUI(curLoc.locations[id]);
+        curLoc = curLoc.locations[id];
     }
 
+    public void EnterTheDungeon(int id)
+    {
+        if (curLoc == null) return;
+
+        enemy = curLoc.dungeons[id].GetRandomEnemy();
+        UIManager.instance.SetLocationScreenOn(false);
+        StartFight();
+    }
+ #endregion
+
+#region Fight
     private void StartFight()
     {
         if (enemy == null) return;
@@ -67,24 +92,9 @@ public class GameLogic : MonoBehaviour {
 
     public void StopFight()
     {
-        SetLocationUI(startLocation);
+        UIManager.instance.SetLocationUI(startLocation);
+        curLoc = startLocation;
         UIManager.instance.SetFightScreenOn(false);
-    }
-
-    public void MoveToLocation(int id)
-    {
-        if (curLoc == null) return;
-
-        SetLocationUI(curLoc.locations[id]);
-    }
-
-    public void EnterTheDungeon(int id)
-    {
-        if (curLoc == null) return;
-
-        enemy = curLoc.dungeons[id].GetRandomEnemy();
-        UIManager.instance.SetLocationScreenOn(false);
-        StartFight();
     }
 
     public void Attack()
@@ -150,6 +160,32 @@ public class GameLogic : MonoBehaviour {
         Debug.Log("Interact");
         enemy.Interact();
     }
+ #endregion
+
+#region Different attacks
+    public void PlayerAttack()
+    {
+        enHealth -= player.damage;
+        UIManager.instance.Print("Вы атакуете монстра.");
+        UIManager.instance.UpdateHealth(enHealth, plHealth);
+        canRun = true;
+        if (plHealth <= 0 || enHealth <= 0)
+        {
+            StopFight();
+        }
+    }
+
+    public void EnemyAttack()
+    {
+        plHealth -= enemy.damage;
+        UIManager.instance.Print("Монстр атакует вас.");
+        canRun = true;
+        if (plHealth <= 0 || enHealth <= 0)
+        {
+            StopFight();
+        }
+    }
+#endregion
 
 
 

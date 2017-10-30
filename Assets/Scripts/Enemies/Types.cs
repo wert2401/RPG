@@ -8,4 +8,10 @@ namespace Types
         ANIMAL,
         HUMANOID
     }
+
+    public enum TypeOfBeast
+    {
+        HUNGRY,
+        NOT_HUNGRY
+    }
 }

@@ -15,4 +15,9 @@ MonoBehaviour:
   description: "\u0412\u044B \u043D\u0430\u0447\u0430\u043B\u0438 \u0441\u0432\u043E\u0435
     \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435"
   locations:
-  - {fileID: 11400000, guid: 8e47d4e386cb1334bb2881325349694a, type: 2}
+  - {fileID: 11400000, guid: 2f11a240a32a98a419b5044d2ef90cab, type: 2}
+  - {fileID: 11400000, guid: 3aceed51f587b6847b31bed37f2b581a, type: 2}
+  - {fileID: 11400000, guid: 2fca569b58b57804eb352c6d606f1c63, type: 2}
+  - {fileID: 11400000, guid: d61a7f47b03e9b84f9f15066fd6de545, type: 2}
+  - {fileID: 11400000, guid: 584c3fc9a8a0a2b44b2f512cedc48624, type: 2}
+  dungeons: []

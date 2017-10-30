@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLocation: {fileID: 11400000, guid: 0b20f90257664504f89dadf1da5eb470, type: 2}
-  curLoc: {fileID: 11400000, guid: 0b20f90257664504f89dadf1da5eb470, type: 2}
+  curLoc: {fileID: 0}
   player: {fileID: 521289389}
   plHealth: 0
   enemy: {fileID: 0}
@@ -800,7 +800,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player:'
+  m_Text: "\u0418\u0433\u0440\u043E\u043A:"
 --- !u!222 &225396320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Enemy:'
+  m_Text: "\u0412\u0440\u0430\u0433:"
 --- !u!222 &445265758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1829,7 +1829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c46c2ae2ddd7b43b31e58ef87bed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plName: Test
+  plName: PLayer Name
   maxHealth: 100
   damage: 10
   fireDmg: 0
