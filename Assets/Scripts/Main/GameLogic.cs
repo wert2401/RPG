@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour {
     [HideInInspector]
@@ -19,6 +20,10 @@ public class GameLogic : MonoBehaviour {
     public float enHealth;
     float enDmg;
     public bool canRun = true;
+
+    [Header("Magic")]
+    public Text spellText;
+    Spell spell;
 
     private void Awake()
     {
@@ -158,6 +163,7 @@ public class GameLogic : MonoBehaviour {
     public void Spell()
     {
         Debug.Log("Spell");
+        spell = MagicManager.instance.CheckSpell(spellText.text);
     }
 
     public void UseHeal()
