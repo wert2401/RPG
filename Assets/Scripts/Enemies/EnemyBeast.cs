@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBeastEnemy", menuName = "RPG/Enemies/Beast")]
 public class EnemyBeast: Enemy
 {
-    public Types.TypeOfBeast type;
+    public bool eatYou;
 
     public override void SetEnemyUI()
     {
@@ -37,7 +37,7 @@ public class EnemyBeast: Enemy
         {
             case 0:
                 {
-                    if (type == Types.TypeOfBeast.NOT_HUNGRY)
+                    if (!eatYou)
                     {
                         UIManager.instance.Print(enemyName + " отвлекся.");
                         SetExtrDynUI();

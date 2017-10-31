@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: "\u041A\u0440\u044B\u0441\u0430"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0440\u044B\u0441\u0430"
+  expGain: 10
+  enLvl: 1
   maxHealth: 60
   damage: 12
   fireDmg: 0
@@ -24,4 +26,4 @@ MonoBehaviour:
   airRes: 0
   lightRes: 0
   darkRes: 0
-  type: 1
+  eatYou: 0

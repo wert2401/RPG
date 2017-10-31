@@ -12,10 +12,12 @@ public class GameLogic : MonoBehaviour {
     [Header("Player")]
     public Player player;
     public float plHealth;
+    float plDmg;
 
     [Header("Enemy")]
     public Enemy enemy;
     public float enHealth;
+    float enDmg;
     public bool canRun = true;
 
     private void Awake()
@@ -85,9 +87,9 @@ public class GameLogic : MonoBehaviour {
     {
         if (enemy == null) return;
 
-        UIManager.instance.SetFightUI(enemy, player);
         enHealth = enemy.maxHealth;
         plHealth = player.maxHealth;
+        UIManager.instance.SetFightUI(enemy, player);
     }
 
     public void StopFight()
@@ -95,6 +97,19 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.SetLocationUI(startLocation);
         curLoc = startLocation;
         UIManager.instance.SetFightScreenOn(false);
+
+        if (plHealth <= 0)
+        {
+            player.ResetStats();
+            return;
+        }
+
+        int lvlDif = enemy.enLvl - player.lvl;
+        int expG = enemy.expGain;
+        expG = enemy.expGain + (enemy.expGain * (lvlDif * (20 / 100)));
+        if (expG < 0) expG = 0;
+
+        player.AddExp(expG);
     }
 
     public void Attack()

@@ -5,6 +5,8 @@ using Types;
 
 public class Enemy : ScriptableObject {
     public string enemyName;
+    public int expGain;
+    public int enLvl;
     public float maxHealth;
     public float damage;
 

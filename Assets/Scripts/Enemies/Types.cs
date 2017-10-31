@@ -11,7 +11,7 @@ namespace Types
 
     public enum TypeOfBeast
     {
-        HUNGRY,
-        NOT_HUNGRY
+        EATYOU,
+        NOT_EATYOU
     }
 }

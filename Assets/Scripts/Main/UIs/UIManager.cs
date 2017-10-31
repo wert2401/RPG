@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour {
     [Header("Log")]
     public Text log;
 
+    [Header("Level system")]
+    public GameObject charScreen;
+
     public delegate void met();
 
     private void Awake()
@@ -166,6 +169,13 @@ public class UIManager : MonoBehaviour {
     {
         log.text = "";
     }
+    #endregion
+
+#region LevelSystem
+    public void SetCharScreenOn()
+    {
+        charScreen.SetActive(!charScreen.activeSelf);
+    }
 #endregion
 
     private void RemoveAllButtons(Transform tr)
@@ -177,6 +187,4 @@ public class UIManager : MonoBehaviour {
             Destroy(tr.GetChild(i).gameObject);
         }
     }
-
-
 }
