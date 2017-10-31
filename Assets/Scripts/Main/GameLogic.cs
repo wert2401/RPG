@@ -164,6 +164,12 @@ public class GameLogic : MonoBehaviour {
     {
         Debug.Log("Spell");
         spell = MagicManager.instance.CheckSpell(spellText.text);
+
+        if (enemy == null)
+            return;
+
+        enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg);
+        EnemyAttack();
     }
 
     public void UseHeal()

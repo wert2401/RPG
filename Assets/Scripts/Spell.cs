@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour {
+[System.Serializable]
+public class Spell {
     public string words;
     public float fireDmg;
     public float waterDmg;
