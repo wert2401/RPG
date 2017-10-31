@@ -5,11 +5,12 @@ using UnityEngine;
 namespace Types
 {
     public enum TypeOfEnemy {
-        ANIMAL,
+        BEAST,
         HUMANOID,
 		DRAGON,
 		UNDEAD,
-		UNIC
+		UNIC,
+		ELEMENTAL
     }
 
 
