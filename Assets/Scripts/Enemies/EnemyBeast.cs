@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBeast: Enemy
 {
     public bool eatYou;
+    public string reaction;
 
     public override void SetEnemyUI()
     {
@@ -18,7 +19,8 @@ public class EnemyBeast: Enemy
 
     public override void Talk()
     {
-        Debug.Log("You`r trying to talk with: " + enemyName);
+        UIManager.instance.Print("Вы говорите с '" + enemyName+ "'");
+        UIManager.instance.Print(reaction);
         base.Talk();
     }
 
@@ -63,7 +65,7 @@ public class EnemyBeast: Enemy
     void Run()
     {
         UIManager.instance.Print("Вы убежали.");
-        GameLogic.instance.StopFight();
+        GameLogic.instance.StopFight(true);
         ResetUI();
     }
 }

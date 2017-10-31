@@ -34,6 +34,8 @@ public class GameLogic : MonoBehaviour {
         }
         else
             Debug.Log("Set start location!");
+
+        plHealth = player.maxHealth;
     }
 
 #region Location
@@ -88,11 +90,12 @@ public class GameLogic : MonoBehaviour {
         if (enemy == null) return;
 
         enHealth = enemy.maxHealth;
-        plHealth = player.maxHealth;
+        //plHealth = player.maxHealth;
         UIManager.instance.SetFightUI(enemy, player);
+        UIManager.instance.UpdateHealth(enHealth, plHealth);
     }
 
-    public void StopFight()
+    public void StopFight(bool ran)
     {
         UIManager.instance.SetLocationUI(startLocation);
         curLoc = startLocation;
@@ -104,11 +107,11 @@ public class GameLogic : MonoBehaviour {
             return;
         }
 
-        int lvlDif = enemy.enLvl - player.lvl;
-        int expG = enemy.expGain;
-        expG = enemy.expGain + (enemy.expGain * (lvlDif * (20 / 100)));
-        if (expG < 0) expG = 0;
-
+        int expG = enemy.expGain * (enemy.enLvl / player.lvl);
+        if (ran)
+        {  
+            expG = expG / 10;
+        }
         player.AddExp(expG);
     }
 
@@ -123,25 +126,31 @@ public class GameLogic : MonoBehaviour {
 
         if (plHealth <= 0 || enHealth <= 0)
         {
-            StopFight();
+            StopFight(false);
         }
     }
 
     public void Block()
     {
-        int a = Random.Range(0, 100);
-        if (a > 25 && a < 75)
+        float a = Random.value;
+        float c = 0.1f + player.agility * 0.01f;
+        if (a < c)
         {
-            UIManager.instance.Print("Вам удалось заблокировать удар");
+            a = Random.value;
+            c = 0.05f + (player.agility/2) * 0.01f;
+            if (a < c)
+            {
+                UIManager.instance.Print("Вам удается заблокировать удар и контратаковать");
+                PlayerAttack();
+            }
+            else
+            {
+                UIManager.instance.Print("Вам удается заблокировать удар");
+            }
         }
-        if (a < 25)
+        else
         {
-            UIManager.instance.Print("Вам удалось заблокировать удар и вы контратаковали");
-            PlayerAttack();
-        }
-        if (a > 75 && a < 99)
-        {
-            UIManager.instance.Print("Вам не удалось заблокировать удар");
+            UIManager.instance.Print("Вам не удается заблокировать удар");
             EnemyAttack();
         }
     }
@@ -189,7 +198,7 @@ public class GameLogic : MonoBehaviour {
         {
             case 0:
                 {
-                    StopFight();
+                    StopFight(true);
                     UIManager.instance.Print("Вы убежали.");
                     break;
                 }
@@ -219,7 +228,7 @@ public class GameLogic : MonoBehaviour {
         canRun = true;
         if (plHealth <= 0 || enHealth <= 0)
         {
-            StopFight();
+            StopFight(false);
         }
     }
 
@@ -231,7 +240,7 @@ public class GameLogic : MonoBehaviour {
         canRun = true;
         if (plHealth <= 0 || enHealth <= 0)
         {
-            StopFight();
+            StopFight(false);
         }
     }
 #endregion

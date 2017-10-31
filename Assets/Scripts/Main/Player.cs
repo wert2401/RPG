@@ -48,6 +48,7 @@ public class Player : MonoBehaviour {
         lvl++;
         freePoints += 5;
         needExp += (needExp * 20 / 100);
+        GameLogic.instance.plHealth = maxHealth;
         onStatsChanged.Invoke();
     }
 
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour {
         {
             case 0:
                 strenght += 1;
+                GameLogic.instance.plHealth += startHealth;
                 break;
             case 1:
                 agility += 1;
