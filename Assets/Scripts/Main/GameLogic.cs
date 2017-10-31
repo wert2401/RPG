@@ -20,7 +20,7 @@ public class GameLogic : MonoBehaviour {
     public float enHealth;
     float enDmg;
     public bool canRun = true;
-
+	int stun=0;
     [Header("Magic")]
     public Text spellText;
     Spell spell;
@@ -124,8 +124,9 @@ public class GameLogic : MonoBehaviour {
     {
         UIManager.instance.Print("Вы атаковали монстра, а он атаковал в ответ.");
 
-        plHealth -= enemy.damage;
+
         enHealth -= player.damage;
+		React ();
         UIManager.instance.UpdateHealth(enHealth, plHealth);
         canRun = true;
 
@@ -156,7 +157,7 @@ public class GameLogic : MonoBehaviour {
         else
         {
             UIManager.instance.Print("Вам не удается заблокировать удар");
-            EnemyAttack();
+			React ();
         }
     }
 
@@ -168,8 +169,9 @@ public class GameLogic : MonoBehaviour {
         if (enemy == null)
             return;
 
-        enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg);
-        EnemyAttack();
+	
+		enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
+		React ();
     }
 
     public void UseHeal()
@@ -217,7 +219,7 @@ public class GameLogic : MonoBehaviour {
             case 1:
                 {
                     UIManager.instance.Print("Убежать не удалось.");
-                    EnemyAttack();
+					React ();
                     canRun = false;
                     break;
                 }
@@ -230,7 +232,10 @@ public class GameLogic : MonoBehaviour {
         enemy.Interact();
     }
  #endregion
-
+	public void Stun()
+	{
+		stun = 3;
+	}
 #region Different attacks
     public void PlayerAttack()
     {
@@ -256,9 +261,55 @@ public class GameLogic : MonoBehaviour {
         }
     }
 #endregion
+	public void React()
+	{
+		if (stun == 0) 
+		{
+			float a = Random.value;
+			if (a < 0.4) 
+			{
+				EnemyAttack ();
+		
+			}
+			if (0.4 <= a && a<0.9) 
+			{
+						a = Random.value;
+						if (a<0.33)
+						{
+							enemy.React1();
+						}
+						if (0.33 <= a && a<0.67) 
+						{
+							enemy.React2();
+						}
+						if (0.67<=a)
+						{
+							enemy.React3();
+						}
+			}
+			if (a >= 0.9)
+			{
+				if (enHealth < enemy.maxHealth * 0.05f) {
+					StopFight (false);
+					UIManager.instance.Print ("Противник сбежал");
+				} 
+				else 
+				{
+					EnemyAttack ();
+				}
+			}
+
+		}
+		else 
+		{
+			stun--;
+			UIManager.instance.Print("Монстр не понимает, что происходит");
+			///Делает ничего
+			/// Абсолютно
+		}
 
 
 
 
-
+	}
 }

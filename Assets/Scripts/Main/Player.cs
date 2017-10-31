@@ -82,6 +82,7 @@ public class Player : MonoBehaviour {
     {
         lvl = 1;
         exp = 0;
+		GameLogic.instance.plHealth = 50;
         needExp = 100;
         freePoints = 5;
         strenght = 5;

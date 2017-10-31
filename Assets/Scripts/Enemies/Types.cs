@@ -6,12 +6,11 @@ namespace Types
 {
     public enum TypeOfEnemy {
         ANIMAL,
-        HUMANOID
+        HUMANOID,
+		DRAGON,
+		UNDEAD,
+		UNIC
     }
 
-    public enum TypeOfBeast
-    {
-        EATYOU,
-        NOT_EATYOU
-    }
+
 }

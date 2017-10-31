@@ -29,6 +29,18 @@ public class EnemyBeast: Enemy
         GameLogic.instance.PlayerAttack();
         ResetUI();
     }
+	public override void React1()
+	{
+		UIManager.instance.Print(" Реакция первая");
+	}
+	public override void React2()
+	{
+		UIManager.instance.Print(" Реакция вторая");
+	}
+	public override void React3()
+	{
+		UIManager.instance.Print(" Реакция третья");
+	}
 
     void TryFeed()
     {
@@ -70,3 +82,18 @@ public class EnemyBeast: Enemy
     }
 }
 
+///001///
+///001///
+///010///
+///001///__________________________   
+///100///                          |\ 
+///011///                          ||
+///111///__________________________|/ 
+///100///
+///001///
+///010///
+///010///
+
+
+//Молоток выше
+//А весной цветёт сакура

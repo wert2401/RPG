@@ -18,5 +18,16 @@ public class EnemyHumanoid : Enemy {
         UIManager.instance.Print(enemyName + " отвечает: " + answer);
         base.Talk();
     }
-
+	public override void React1()
+	{
+		UIManager.instance.Print(" Реакция первая гуманоидная");
+	}
+	public override void React2()
+	{
+		UIManager.instance.Print(" Реакция вторая гуманоидная");
+	}
+	public override void React3()
+	{
+		UIManager.instance.Print(" Реакция третья гуманоидная");
+	}
 }

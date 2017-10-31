@@ -9,21 +9,21 @@ public class Enemy : ScriptableObject {
     public int enLvl;
     public float maxHealth;
     public float damage;
-
+	public TypeOfEnemy tof;               
     [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
     public float airDmg;
     public float lightDmg;
     public float darkDmg;
-
+	public float earthDmg;
     [Header("Elements Resist/Vulnerability ")]
     public float fireRes;
     public float waterRes;
     public float airRes;
     public float lightRes;
     public float darkRes;
-
+	public float earthRes;
 #region Actions
     virtual public void Interact()
     {
@@ -41,8 +41,15 @@ public class Enemy : ScriptableObject {
         SetDynUI();
         ResetUI();
     }
-
-
+	virtual public void React1()
+	{
+	}
+	virtual public void React2()
+	{
+	}
+	virtual public void React3()
+	{
+	}
     #endregion
 
  #region UI

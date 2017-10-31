@@ -10,4 +10,5 @@ public class Spell {
     public float airDmg;
     public float lightDmg;
     public float darkDmg;
+	public float earthDmg;
 }
