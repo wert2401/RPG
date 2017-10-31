@@ -16,15 +16,18 @@ MonoBehaviour:
   enLvl: 1
   maxHealth: 60
   damage: 12
+  tof: 0
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 0
   darkDmg: 0
+  earthDmg: 0
   fireRes: 0
   waterRes: 0
   airRes: 0
   lightRes: 0
   darkRes: 0
+  earthRes: 0
   eatYou: 0
   reaction: 
