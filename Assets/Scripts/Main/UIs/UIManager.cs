@@ -162,7 +162,7 @@ public class UIManager : MonoBehaviour {
 #region Fight Log
     public void Print(string text)
     {
-        log.text += text + ".\r\n" + "**************" + "\r\n";
+        log.text += text + ".\r\n" + "**********" + "\r\n";
     }
 
     public void ClearLog()
