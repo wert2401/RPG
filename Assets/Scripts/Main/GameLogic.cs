@@ -117,6 +117,8 @@ public class GameLogic : MonoBehaviour {
         int expG = enemy.expGain * (enemy.enLvl / player.lvl);
         if (ran)
         {  
+			if (enemy.enLvl - player.lvl >= 20)
+				expG = 0;
             expG = expG / 10;
         }
         player.AddExp(expG);
