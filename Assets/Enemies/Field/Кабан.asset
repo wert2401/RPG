@@ -13,8 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
 <<<<<<< HEAD
+<<<<<<< HEAD
   enLvl: 5
 =======
+=======
+>>>>>>> parent of 745bd46... Magic fix
   expGain: 40
   enLvl: 2
 >>>>>>> parent of 745bd46... Magic fix
@@ -26,6 +29,7 @@ MonoBehaviour:
   lightDmg: 0
   darkDmg: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   earthDmg: 2
   fireRes: 1.5
   waterRes: 1
@@ -36,6 +40,8 @@ MonoBehaviour:
   expGain: 40
   drop: []
 =======
+=======
+>>>>>>> parent of 745bd46... Magic fix
   earthDmg: 0
   fireRes: 0
   waterRes: 0
@@ -43,6 +49,9 @@ MonoBehaviour:
   lightRes: 0
   darkRes: 0
   earthRes: 0
+<<<<<<< HEAD
+>>>>>>> parent of 745bd46... Magic fix
+=======
 >>>>>>> parent of 745bd46... Magic fix
   eatYou: 0
   reaction: 
