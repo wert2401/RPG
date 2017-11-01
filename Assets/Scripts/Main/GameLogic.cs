@@ -93,7 +93,7 @@ public class GameLogic : MonoBehaviour {
     private void StartFight()
     {
         if (enemy == null) return;
-
+		plDmg = InventoryManager.instance.GetItemsDamage ();
         enHealth = enemy.maxHealth;
         //plHealth = player.maxHealth;
         UIManager.instance.SetFightUI(enemy, player);
@@ -247,7 +247,7 @@ public class GameLogic : MonoBehaviour {
 		float a = Random.value;
 		if (a > (player.accuracy - enemy.evasChance) / 200 && player.accuracy>enemy.evasChance) 
 		{
-			enHealth -= player.damage + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
+			enHealth -= plDmg+ (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
 			UIManager.instance.Print ("Вы атакуете монстра");
 			UIManager.instance.UpdateHealth (enHealth, plHealth);
 			canRun = true;

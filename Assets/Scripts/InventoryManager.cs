@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour {
     public List<Item> items;
     public List<ItemSlot> slots;
     public Vector3 offset;
-
+	public Player player;
     [Header("UI")]
     public ItemSlot headHolder;
     public ItemSlot chestHolder;
@@ -131,11 +131,12 @@ public class InventoryManager : MonoBehaviour {
     public float GetItemsDamage()
     {
         float fullDmg = 0;
-        fullDmg = weaponHolder.item.armor;
         if (weaponHolder.item != null)
         {
             fullDmg += weaponHolder.item.damage;
+
         }
+		fullDmg += player.damage;
         return fullDmg;
     }
 }
