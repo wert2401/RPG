@@ -16,7 +16,6 @@ MonoBehaviour:
   enLvl: 1
   maxHealth: 60
   damage: 12
-  tof: 0
   fireDmg: 0
   waterDmg: 0
   airDmg: 0

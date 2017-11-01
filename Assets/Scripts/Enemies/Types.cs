@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Types
 {
-    public enum TypeOfEnemy {
-        BEAST,
-        HUMANOID,
-		DRAGON,
-		UNDEAD,
-		UNIC,
-		ELEMENTAL
+    public enum TypeOfItem 
+	{
+        WEAPON,
+		HELM,
+		BODY_ARM,
+		SHIELD,
+		BOOTS
     }
 
 
