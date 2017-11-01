@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     {
         get { return startHealth * strenght;  }
     }
+	public float accuracy=5;
+	public float evasChance=5;
 	public float damage;
 	public int healPotion = 5;
 	[Header("Elements Damage")]
@@ -70,18 +72,21 @@ public class Player : MonoBehaviour {
         }
         switch (type)
         {
-            case 0:
-                strenght += 1;
+			case 0:
+				strenght += 1;
+				damage += 0.2f;
                 GameLogic.instance.plHealth += startHealth;
                 break;
-            case 1:
-                agility += 1;
+			case 1:
+				agility += 1;
+				evasChance += 1;
                 break;
             case 2:
                 intelligence += 1;
                 break;
             case 3:
                 concentration += 1;
+				accuracy += 1;
                 break;
         }
         freePoints--;

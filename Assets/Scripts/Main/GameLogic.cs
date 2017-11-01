@@ -242,30 +242,49 @@ public class GameLogic : MonoBehaviour {
 #region Different attacks
     public void PlayerAttack()
     {
-		enHealth -= player.damage+(enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg)+(player.earthDmg*enemy.earthRes);
-        UIManager.instance.Print("Вы атакуете монстра");
-        UIManager.instance.UpdateHealth(enHealth, plHealth);
-        canRun = true;
-        if (plHealth <= 0 || enHealth <= 0)
-        {
-            StopFight(false);
-        }
+		float a = Random.value;
+		if (a > (player.accuracy - enemy.evasChance) / 200 && player.accuracy>enemy.evasChance) 
+		{
+			enHealth -= player.damage + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
+			UIManager.instance.Print ("Вы атакуете монстра");
+			UIManager.instance.UpdateHealth (enHealth, plHealth);
+			canRun = true;
+		}
+		else
+			UIManager.instance.Print ("Вы промахнулись");
     }
 
     public void EnemyAttack()
     {
-		plHealth -= enemy.damage+(player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg)+(enemy.earthDmg*player.earthRes);
-        UIManager.instance.Print("Монстр атакует вас");
-        UIManager.instance.UpdateHealth(enHealth, plHealth);
-        canRun = true;
-        if (plHealth <= 0 || enHealth <= 0)
-        {
-            StopFight(false);
-        }
+		float a = Random.value;
+		if (a > (player.accuracy - enemy.evasChance) / 200) 
+		{
+			plHealth -= enemy.damage + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
+			UIManager.instance.Print ("Монстр атакует вас");
+			UIManager.instance.UpdateHealth (enHealth, plHealth);
+			canRun = true;
+		}
+		else 
+		{
+			UIManager.instance.Print ("Монстр атакует вас");
+			UIManager.instance.Print ("Вы увернулись");
+		}
     }
 #endregion
+	public void smbdDied()
+	{
+		if (plHealth <= 0 || enHealth <= 0)
+		{
+			StopFight(false);
+		}
+	}
 	public void React()
 	{
+		if (plHealth <= 0 || enHealth <= 0)
+		{
+			StopFight(false);
+			return;
+		}
 		if (stun == 0) 
 		{
 			float a = Random.value;
@@ -295,6 +314,7 @@ public class GameLogic : MonoBehaviour {
 				if (enHealth < enemy.maxHealth * 0.05f) {
 					StopFight (false);
 					UIManager.instance.Print ("Противник сбежал");
+					return;
 				} 
 				else 
 				{
@@ -313,6 +333,6 @@ public class GameLogic : MonoBehaviour {
 
 
 
-
+		smbdDied ();
 	}
 }

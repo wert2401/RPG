@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: "\u041A\u0430\u0431\u0430\u043D"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
-  enLvl: 2
+  enLvl: 5
   maxHealth: 200
   damage: 18
+  accuracy: 0
+  evasChance: 2
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
