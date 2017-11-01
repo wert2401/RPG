@@ -5,17 +5,27 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     public string plName;
     public float startHealth;
-    public float maxHealth
+	public float maxHealth
     {
         get { return startHealth * strenght;  }
     }
-    public float damage;
-    public float fireDmg;
-    public float waterDmg;
-    public float airDmg;
-    public float earthDmg;
+	public float damage;
+	public int healPotion = 5;
+	[Header("Elements Damage")]
+	public float fireDmg;
+	public float waterDmg;
+	public float airDmg;
+	public float lightDmg;
+	public float darkDmg;
+	public float earthDmg;
 
-    public int healPotion = 5;
+	[Header("Elements Resist/Vulnerability ")]
+	public float fireRes;
+	public float waterRes;
+	public float airRes;
+	public float lightRes;
+	public float darkRes;
+	public float earthRes;
 
     [Header("Characterirstics")]
     public int lvl = 1;

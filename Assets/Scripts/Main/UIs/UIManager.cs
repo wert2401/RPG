@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
     public GameObject fightButtonsHolder;
     public GameObject dynButtonsHolder;
     public GameObject extrDynButtonsHolder;
+	public GameObject SpellScreen;
     [Header("Enemy")]
     public Text enName;
     public Text enHealth;
@@ -195,4 +196,8 @@ public class UIManager : MonoBehaviour {
             Destroy(tr.GetChild(i).gameObject);
         }
     }
+	public void SetSpellScreenOn()
+	{
+		SpellScreen.SetActive(!SpellScreen.activeSelf);
+	}
 }

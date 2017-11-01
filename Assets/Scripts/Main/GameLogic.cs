@@ -127,18 +127,8 @@ public class GameLogic : MonoBehaviour {
 
     public void Attack()
     {
-        UIManager.instance.Print("Вы атаковали монстра, а он атаковал в ответ.");
-
-
-        enHealth -= player.damage;
+		PlayerAttack ();
 		React ();
-        UIManager.instance.UpdateHealth(enHealth, plHealth);
-        canRun = true;
-
-        if (plHealth <= 0 || enHealth <= 0)
-        {
-            StopFight(false);
-        }
     }
 
     public void Block()
@@ -171,11 +161,17 @@ public class GameLogic : MonoBehaviour {
         Debug.Log("Spell");
         spell = MagicManager.instance.CheckSpell(spellText.text);
 
-        if (enemy == null)
-            return;
-
+		if (enemy == null || spell == null) 
+		{
+			UIManager.instance.Print("Но ничего не происходит");
+			UIManager.instance.SetSpellScreenOn ();
+			React ();
+			return;
+		}
 	
 		enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
+		UIManager.instance.Print("Вы успешно применяете заклинание");
+		UIManager.instance.SetSpellScreenOn ();
 		React ();
     }
 
@@ -244,7 +240,7 @@ public class GameLogic : MonoBehaviour {
 #region Different attacks
     public void PlayerAttack()
     {
-        enHealth -= player.damage;
+		enHealth -= player.damage+(enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg)+(player.earthDmg*enemy.earthRes);
         UIManager.instance.Print("Вы атакуете монстра");
         UIManager.instance.UpdateHealth(enHealth, plHealth);
         canRun = true;
@@ -256,7 +252,7 @@ public class GameLogic : MonoBehaviour {
 
     public void EnemyAttack()
     {
-        plHealth -= enemy.damage;
+		plHealth -= enemy.damage+(player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg)+(enemy.earthDmg*player.earthRes);
         UIManager.instance.Print("Монстр атакует вас");
         UIManager.instance.UpdateHealth(enHealth, plHealth);
         canRun = true;
