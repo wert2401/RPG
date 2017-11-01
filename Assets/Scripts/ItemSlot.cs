@@ -37,9 +37,11 @@ public class ItemSlot : MonoBehaviour {
 
     public void ShowDescr()
     {
-        if (item == null) return;
-        isOvered = true;
-        //if (isOvered) return;
+        if (item == null)
+        {
+            UnshowDescr();
+            return;
+        }
         Debug.Log("Mouse");
         string text;
 
@@ -56,7 +58,6 @@ public class ItemSlot : MonoBehaviour {
     }
     public void UnshowDescr()
     {
-        isOvered = false;
         InventoryManager.instance.UnShowDescr();
     }
 }
