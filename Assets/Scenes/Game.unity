@@ -1194,7 +1194,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147249812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80, y: -540.1345, z: 0}
+  m_LocalPosition: {x: 80, y: -540.07996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2094277921}
@@ -1421,7 +1421,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170799386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.239075, y: 175.00003, z: 0}
+  m_LocalPosition: {x: 61.142212, y: 175.00003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1288893845}
@@ -1937,7 +1937,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225396317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -759.7609, y: 252.65002, z: 0}
+  m_LocalPosition: {x: -759.8578, y: 252.65002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1804544396}
@@ -2358,7 +2358,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 244330221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 172.56093, y: -2500, z: 0}
+  m_LocalPosition: {x: 172.65779, y: -2500, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339636620}
@@ -3125,7 +3125,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 366795298}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 944.76086, y: -540.1345, z: 0}
+  m_LocalPosition: {x: 944.8578, y: -540.07996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1175929564}
@@ -12208,34 +12208,6 @@ MonoBehaviour:
     airDmg: 0
     lightDmg: 0
     darkDmg: 50
-    earthDmg: 0
-  - words: 
-    fireDmg: 0
-    waterDmg: 0
-    airDmg: 0
-    lightDmg: 0
-    darkDmg: 0
-    earthDmg: 0
-  - words: 
-    fireDmg: 0
-    waterDmg: 0
-    airDmg: 0
-    lightDmg: 0
-    darkDmg: 0
-    earthDmg: 0
-  - words: 
-    fireDmg: 0
-    waterDmg: 0
-    airDmg: 0
-    lightDmg: 0
-    darkDmg: 0
-    earthDmg: 0
-  - words: 
-    fireDmg: 0
-    waterDmg: 0
-    airDmg: 0
-    lightDmg: 0
-    darkDmg: 0
     earthDmg: 0
 --- !u!224 &1565564589
 RectTransform:

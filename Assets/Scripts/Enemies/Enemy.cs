@@ -9,7 +9,8 @@ public class Enemy : ScriptableObject {
     public int enLvl;
     public float maxHealth;
     public float damage;
-
+	public float accuracy;
+	public float evasChance;
     [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
