@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Name: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
-  expGain: 500
   enLvl: 5
   maxHealth: 540
-  damage: 46
-  tof: 4
+  damage: 20
   fireDmg: 0
   waterDmg: 0
-  airDmg: 0
+  airDmg: 11
   lightDmg: 0
-  darkDmg: 0
+  darkDmg: 15
   earthDmg: 0
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
+  fireRes: 0.8
+  waterRes: 1.2
+  airRes: 0.5
+  lightRes: 2
+  darkRes: 0.8
+  earthRes: 1.2
+  expGain: 500
+  drop: []
   eatYou: 1
   reaction: 
