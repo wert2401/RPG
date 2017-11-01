@@ -14,6 +14,7 @@ MonoBehaviour:
   enemyName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   enLvl: 9
   maxHealth: 540
   damage: 31
@@ -29,14 +30,22 @@ MonoBehaviour:
 >>>>>>> parent of 745bd46... Magic fix
 =======
 >>>>>>> parent of 745bd46... Magic fix
+=======
+  enLvl: 9
+  maxHealth: 540
+  damage: 31
+>>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 0
-  darkDmg: 0
+  darkDmg: 15
   earthDmg: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
   fireRes: 1
   waterRes: 1.5
   airRes: 0.5
@@ -45,6 +54,7 @@ MonoBehaviour:
   earthRes: 1.8
   expGain: 500
   drop: []
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 745bd46... Magic fix
@@ -58,5 +68,7 @@ MonoBehaviour:
 >>>>>>> parent of 745bd46... Magic fix
 =======
 >>>>>>> parent of 745bd46... Magic fix
+=======
+>>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
   eatYou: 1
   reaction: 
