@@ -109,6 +109,7 @@ public class GameLogic : MonoBehaviour {
         if (plHealth <= 0)
         {
             player.ResetStats();
+            InventoryManager.instance.ResetInv();
             return;
         }
 
@@ -118,6 +119,10 @@ public class GameLogic : MonoBehaviour {
             expG = expG / 10;
         }
         player.AddExp(expG);
+
+        Item itemGain = enemy.GetRandomDrop();
+        if (itemGain != null)
+            InventoryManager.instance.AddItem(itemGain);   
     }
 
     public void Attack()

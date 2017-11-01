@@ -29,8 +29,9 @@ public class UIManager : MonoBehaviour {
     [Header("Log")]
     public Text log;
 
-    [Header("Level system")]
+    [Header("Player stats and staff")]
     public GameObject charScreen;
+    public GameObject inventoryScreen;
 
     public delegate void met();
 
@@ -175,6 +176,13 @@ public class UIManager : MonoBehaviour {
     public void SetCharScreenOn()
     {
         charScreen.SetActive(!charScreen.activeSelf);
+    }
+#endregion
+
+#region Inventory
+    public void SetInventoryScreenOn()
+    {
+        inventoryScreen.SetActive(!inventoryScreen.activeSelf);
     }
 #endregion
 

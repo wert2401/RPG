@@ -5,11 +5,10 @@ using Types;
 
 public class Enemy : ScriptableObject {
     public string enemyName;
-    public int expGain;
+   
     public int enLvl;
     public float maxHealth;
     public float damage;
-	public TypeOfEnemy tof;               
     [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
@@ -24,7 +23,11 @@ public class Enemy : ScriptableObject {
     public float lightRes;
     public float darkRes;
 	public float earthRes;
-#region Actions
+    [Header("Enemy`s death")]
+    public int expGain;
+    public List<Item> drop;
+
+ #region Actions
     virtual public void Interact()
     {
         SetDynUI();
@@ -50,6 +53,14 @@ public class Enemy : ScriptableObject {
 	virtual public void React3()
 	{
 	}
+
+    public Item GetRandomDrop()
+    {
+        Item item;
+        int a = Random.Range(0, drop.Count-1);
+        item = drop[a];
+        return item;
+    }
     #endregion
 
  #region UI
