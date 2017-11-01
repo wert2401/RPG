@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour {
 
         if (loc.dungeons.Count > 0)
         {
-            Debug.Log("!!!!!");
             for (int i = 0; i < loc.dungeons.Count; i++)
             {
                 Dungeon _dun = loc.dungeons[i];
@@ -87,7 +86,6 @@ public class UIManager : MonoBehaviour {
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
-        Debug.Log("Button added" + " " + id);
     }
 
     public void SetLocationScreenOn(bool stage)

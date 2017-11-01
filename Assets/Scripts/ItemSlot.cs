@@ -11,10 +11,6 @@ public class ItemSlot : MonoBehaviour {
 
     public void SetItem(Item _item)
     {
-        //if (equipmentSlot && item != null)
-        //{
-        //    InventoryManager.instance.AddItem(item);
-        //}
         item = _item;
         imageHolder.sprite = item.image;
         if (btn != null)
