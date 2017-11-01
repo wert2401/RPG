@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Name: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
+<<<<<<< HEAD
   enLvl: 9
   maxHealth: 540
   damage: 31
+=======
+  expGain: 500
+  enLvl: 5
+  maxHealth: 540
+  damage: 46
+  tof: 4
+>>>>>>> parent of 745bd46... Magic fix
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 0
-  darkDmg: 15
+  darkDmg: 0
   earthDmg: 0
+<<<<<<< HEAD
   fireRes: 1
   waterRes: 1.5
   airRes: 0.5
@@ -29,5 +38,13 @@ MonoBehaviour:
   earthRes: 1.8
   expGain: 500
   drop: []
+=======
+  fireRes: 0
+  waterRes: 0
+  airRes: 0
+  lightRes: 0
+  darkRes: 0
+  earthRes: 0
+>>>>>>> parent of 745bd46... Magic fix
   eatYou: 1
   reaction: 

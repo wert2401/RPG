@@ -172,7 +172,6 @@ public class GameLogic : MonoBehaviour {
 		enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
 		UIManager.instance.Print("Вы успешно применяете заклинание");
 		UIManager.instance.SetSpellScreenOn ();
-		UIManager.instance.UpdateHealth(enHealth,plHealth);
 		React ();
     }
 
