@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: "\u041A\u0430\u0431\u0430\u043D"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
-  expGain: 40
   enLvl: 2
   maxHealth: 200
   damage: 6
@@ -28,5 +27,11 @@ MonoBehaviour:
   lightRes: 0
   darkRes: 0
   earthRes: 0
+  expGain: 40
+  drop:
+  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
+  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
+  - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
+  - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
   eatYou: 0
   reaction: 

@@ -21,20 +21,13 @@ public class InventoryManager : MonoBehaviour {
 
     private void UpdateInv()
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
-            if (items[i] != null)
+            if (items.Count > i && items[i] != null)
             {
                 slots[i].SetItem(items[i]);
             }
             else
-            {
-                slots[i].imageHolder.sprite = null;
-            }
-        }
-        if (items.Count == 0)
-        {
-            for (int i = 0; i < slots.Count; i++)
             {
                 slots[i].RemoveItem();
             }
@@ -45,8 +38,6 @@ public class InventoryManager : MonoBehaviour {
     {
         items.Add(item);
         UpdateInv();
-
-        Debug.Log("Not enough space in inventory");
     }
 
     public void RemoveItem(Item item)
@@ -58,30 +49,29 @@ public class InventoryManager : MonoBehaviour {
     public void EquipItem(Item item)
     {
         if (item == null) return;
+        items.Remove(item);
 
         switch (item.type)
         {
             case Types.TypeOfItem.HEAD:
                 headHolder.SetItem(item);
-                items.Remove(item);
-                UpdateInv();
+
                 break;
             case Types.TypeOfItem.CHEST:
                 chestHolder.SetItem(item);
-                items.Remove(item);
-                UpdateInv();
+
                 break;
             case Types.TypeOfItem.FEET:
                 feetHolder.SetItem(item);
-                items.Remove(item);
-                UpdateInv();
+;
                 break;
             case Types.TypeOfItem.WEAPON:
                 weaponHolder.SetItem(item);
-                items.Remove(item);
-                UpdateInv();
+
                 break;
         }
+        Debug.Log("Item equiped " + item);
+        UpdateInv();
     }
 
     public void ResetInv()

@@ -59,6 +59,7 @@ public class Enemy : ScriptableObject {
     {
         Item item;
         int a = Random.Range(0, drop.Count-1);
+        Debug.Log(a);
         item = drop[a];
         return item;
     }
