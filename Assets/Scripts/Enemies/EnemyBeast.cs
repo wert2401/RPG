@@ -31,15 +31,15 @@ public class EnemyBeast: Enemy
     }
 	public override void React1()
 	{
-		UIManager.instance.Print(" Реакция первая");
+		UIManager.instance.Print(" Реакция первая звериная");
 	}
 	public override void React2()
 	{
-		UIManager.instance.Print(" Реакция вторая");
+		UIManager.instance.Print(" Реакция вторая звериная");
 	}
 	public override void React3()
 	{
-		UIManager.instance.Print(" Реакция третья");
+		UIManager.instance.Print(" Реакция третья звериная");
 	}
 
     void TryFeed()
