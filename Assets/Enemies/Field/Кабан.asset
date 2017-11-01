@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: "\u041A\u0430\u0431\u0430\u043D"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
-  enLvl: 2
+  enLvl: 5
   maxHealth: 200
   damage: 18
   fireDmg: 0
@@ -20,30 +20,14 @@ MonoBehaviour:
   airDmg: 0
   lightDmg: 0
   darkDmg: 0
-<<<<<<< HEAD
   earthDmg: 2
   fireRes: 1.5
-  waterRes: 0.8
-  airRes: 1
+  waterRes: 1
+  airRes: 0.8
   lightRes: 1
-  darkRes: 1.2
-  earthRes: 0.9
+  darkRes: 1
+  earthRes: 0.7
   expGain: 40
   drop: []
-=======
-  earthDmg: 0
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
-  expGain: 40
-  drop:
-  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
-  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
-  - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
-  - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
->>>>>>> 60e10808ceb80e3576ed0d07a6bf8f67e6dca3b0
   eatYou: 0
   reaction: 

@@ -12,41 +12,22 @@ MonoBehaviour:
   m_Name: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
-  enLvl: 5
+  enLvl: 9
   maxHealth: 540
-<<<<<<< HEAD
-  damage: 20
-=======
-  damage: 46
->>>>>>> 60e10808ceb80e3576ed0d07a6bf8f67e6dca3b0
+  damage: 31
   fireDmg: 0
   waterDmg: 0
-  airDmg: 11
+  airDmg: 0
   lightDmg: 0
   darkDmg: 15
   earthDmg: 0
-<<<<<<< HEAD
-  fireRes: 0.8
-  waterRes: 1.2
+  fireRes: 1
+  waterRes: 1.5
   airRes: 0.5
-  lightRes: 2
-  darkRes: 0.8
-  earthRes: 1.2
+  lightRes: 1.5
+  darkRes: 1.2
+  earthRes: 1.8
   expGain: 500
   drop: []
-=======
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
-  expGain: 500
-  drop:
-  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
-  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
-  - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
-  - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
->>>>>>> 60e10808ceb80e3576ed0d07a6bf8f67e6dca3b0
   eatYou: 1
   reaction: 

@@ -12,41 +12,21 @@ MonoBehaviour:
   m_Name: "\u0413\u0440\u044F\u0437\u0435\u0432\u043E\u0439 \u0441\u0442\u0440\u0430\u0436"
   m_EditorClassIdentifier: 
   enemyName: "\u0413\u0440\u044F\u0437\u0435\u0432\u043E\u0439 \u0441\u0442\u0440\u0430\u0436"
-  enLvl: 3
+  enLvl: 7
   maxHealth: 350
-<<<<<<< HEAD
   damage: 15
-=======
-  damage: 0
->>>>>>> 60e10808ceb80e3576ed0d07a6bf8f67e6dca3b0
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 5
   darkDmg: 0
-<<<<<<< HEAD
   earthDmg: 15
-  fireRes: 0.3
+  fireRes: 0.5
   waterRes: 2
   airRes: 0.5
-  lightRes: 0.3
-  darkRes: 0.7
-  earthRes: 0.1
+  lightRes: 0.8
+  darkRes: 1
+  earthRes: 0.2
   expGain: 100
   drop: []
-=======
-  earthDmg: 35
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
-  expGain: 100
-  drop:
-  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
-  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
-  - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
-  - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
->>>>>>> 60e10808ceb80e3576ed0d07a6bf8f67e6dca3b0
   answer: "*\u0431\u0443\u043B\u044C\u043A\u0430\u043D\u044C\u0435*"
