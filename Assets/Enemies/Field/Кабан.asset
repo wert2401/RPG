@@ -12,44 +12,14 @@ MonoBehaviour:
   m_Name: "\u041A\u0430\u0431\u0430\u043D"
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  enLvl: 5
-=======
-=======
->>>>>>> parent of 745bd46... Magic fix
-  expGain: 40
   enLvl: 2
->>>>>>> parent of 745bd46... Magic fix
-=======
-  enLvl: 5
->>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
   maxHealth: 200
-  damage: 18
+  damage: 6
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 0
   darkDmg: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
-  earthDmg: 2
-  fireRes: 1.5
-  waterRes: 1
-  airRes: 0.8
-  lightRes: 1
-  darkRes: 1
-  earthRes: 0.7
-  expGain: 40
-  drop: []
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 745bd46... Magic fix
   earthDmg: 0
   fireRes: 0
   waterRes: 0
@@ -57,11 +27,11 @@ MonoBehaviour:
   lightRes: 0
   darkRes: 0
   earthRes: 0
-<<<<<<< HEAD
->>>>>>> parent of 745bd46... Magic fix
-=======
->>>>>>> parent of 745bd46... Magic fix
-=======
->>>>>>> parent of b242112... ОПЯТЬ КАКАЯ-ТО ХУЙНЯ
+  expGain: 40
+  drop:
+  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
+  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
+  - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
+  - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
   eatYou: 0
   reaction: 
