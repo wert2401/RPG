@@ -14,19 +14,19 @@ MonoBehaviour:
   enemyName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
   enLvl: 5
   maxHealth: 540
-  damage: 46
+  damage: 20
   fireDmg: 0
   waterDmg: 0
-  airDmg: 0
+  airDmg: 11
   lightDmg: 0
-  darkDmg: 0
+  darkDmg: 15
   earthDmg: 0
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
+  fireRes: 0.8
+  waterRes: 1.2
+  airRes: 0.5
+  lightRes: 2
+  darkRes: 0.8
+  earthRes: 1.2
   expGain: 500
   drop:
   - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
