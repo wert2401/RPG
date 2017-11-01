@@ -7,16 +7,24 @@ public class InventoryManager : MonoBehaviour {
     public static InventoryManager instance;
     public List<Item> items;
     public List<ItemSlot> slots;
+    public Vector3 offset;
 
     [Header("UI")]
     public ItemSlot headHolder;
     public ItemSlot chestHolder;
     public ItemSlot feetHolder;
     public ItemSlot weaponHolder;
+    public GameObject descriptionPanel;
+    public Text descrText;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        UpdateInv();
     }
 
     private void UpdateInv()
@@ -88,6 +96,18 @@ public class InventoryManager : MonoBehaviour {
         chestHolder.RemoveItem();
         feetHolder.RemoveItem();
         weaponHolder.RemoveItem();
+    }
+
+    public void ShowDescr(string text, Transform tr)
+    {
+        descriptionPanel.SetActive(true);
+        descriptionPanel.transform.position = tr.position + offset;
+        descrText.text = text;
+    }
+
+    public void UnShowDescr()
+    {
+        descriptionPanel.SetActive(false);
     }
 
     public float GetItemsArmor()

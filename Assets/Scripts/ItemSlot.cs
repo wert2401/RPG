@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour {
@@ -8,6 +9,7 @@ public class ItemSlot : MonoBehaviour {
     public Button btn;
     public Image imageHolder;
     public bool equipmentSlot;
+    bool isOvered;
 
     public void SetItem(Item _item)
     {
@@ -31,5 +33,30 @@ public class ItemSlot : MonoBehaviour {
         item = null;
         btn.onClick.RemoveAllListeners();
         imageHolder.sprite = null;
+    }
+
+    public void ShowDescr()
+    {
+        if (item == null) return;
+        isOvered = true;
+        //if (isOvered) return;
+        Debug.Log("Mouse");
+        string text;
+
+        if (item.type == Types.TypeOfItem.WEAPON)
+        {
+            text = "Урон: " + item.damage;
+        }
+        else
+        {
+            text = "Защита: " + item.armor;
+        }
+
+        InventoryManager.instance.ShowDescr(text, transform);
+    }
+    public void UnshowDescr()
+    {
+        isOvered = false;
+        InventoryManager.instance.UnShowDescr();
     }
 }
