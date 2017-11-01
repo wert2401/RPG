@@ -36,6 +36,10 @@ public class InventoryManager : MonoBehaviour {
 
     public void AddItem(Item item)
     {
+        if (items.Count == slots.Count)
+        {
+            return;
+        }
         items.Add(item);
         UpdateInv();
     }

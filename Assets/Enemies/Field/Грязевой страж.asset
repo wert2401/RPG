@@ -33,4 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
   - {fileID: 11400000, guid: cf883125c7cff304bb11ac43d44040a7, type: 2}
   - {fileID: 11400000, guid: a45279ee963b5e8488111d0a93169039, type: 2}
+  - {fileID: 11400000, guid: 1fdfd601964cb244884d683218e6a3b8, type: 2}
+  - {fileID: 11400000, guid: 1bb7fdbfeb25a044aac58344e59ce658, type: 2}
   answer: "*\u0431\u0443\u043B\u044C\u043A\u0430\u043D\u044C\u0435*"

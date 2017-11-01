@@ -109,6 +109,7 @@ public class GameLogic : MonoBehaviour {
         if (plHealth <= 0)
         {
             player.ResetStats();
+            UIManager.instance.Print("Вас настигла смерть от " + enemy.enemyName);
             InventoryManager.instance.ResetInv();
             return;
         }
