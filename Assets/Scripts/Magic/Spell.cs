@@ -11,4 +11,10 @@ public class Spell {
     public float lightDmg;
     public float darkDmg;
 	public float earthDmg;
+	public float fireBuff;
+	public float waterBuff;
+	public float airBuff;
+	public float lightBuff;
+	public float darkBuff;
+	public float earthBuff;
 }
