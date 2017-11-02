@@ -96,6 +96,7 @@ public class InventoryManager : MonoBehaviour {
         chestHolder.RemoveItem();
         feetHolder.RemoveItem();
         weaponHolder.RemoveItem();
+        UpdateInv();
     }
 
     public void ShowDescr(string text, Transform tr)
