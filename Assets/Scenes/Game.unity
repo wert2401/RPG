@@ -13785,6 +13785,11 @@ Prefab:
       propertyPath: earthRes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114787580823048354, guid: 8b21caff0e8f3bc40943f976be6cbcd2,
+        type: 2}
+      propertyPath: CH
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b21caff0e8f3bc40943f976be6cbcd2, type: 2}
   m_IsPrefabParent: 0

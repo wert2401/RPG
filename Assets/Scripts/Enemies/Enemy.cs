@@ -11,6 +11,8 @@ public class Enemy : ScriptableObject {
     public float damage;
 	public float accuracy;
 	public float evasChance;
+	public float CH;
+	public float CD;
     [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
