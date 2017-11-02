@@ -125,7 +125,7 @@ public class GameLogic : MonoBehaviour {
 
         Item itemGain = enemy.GetRandomDrop();
         if (itemGain != null)
-            InventoryManager.instance.AddItem(itemGain);   
+            InventoryManager.instance.AddItem(itemGain);
     }
 
     public void Attack()
@@ -188,7 +188,7 @@ public class GameLogic : MonoBehaviour {
             UIManager.instance.Print("У вас нет зелий лечения");
             return;
         }
-        if (plHealth > player.maxHealth)
+        if (plHealth >= player.maxHealth)
         {
             UIManager.instance.Print("Здоров как бык");
             return;
@@ -237,10 +237,12 @@ public class GameLogic : MonoBehaviour {
         enemy.Interact();
     }
  #endregion
+
 	public void Stun()
 	{
 		stun = 3;
 	}
+
 #region Different attacks
     public void PlayerAttack()
     {
@@ -273,20 +275,22 @@ public class GameLogic : MonoBehaviour {
 		}
     }
 #endregion
-	public void smbdDied()
+	public void CheckIfSomebodyDied()
 	{
 		if (plHealth <= 0 || enHealth <= 0)
 		{
 			StopFight(false);
-		}
+        }
 	}
+
 	public void React()
 	{
-		if (plHealth <= 0 || enHealth <= 0)
-		{
-			StopFight(false);
-			return;
-		}
+        if (plHealth <= 0 || enHealth <= 0)
+        {
+            StopFight(false);
+            return;
+        }
+
 		if (stun == 0) 
 		{
 			float a = Random.value;
@@ -333,8 +337,6 @@ public class GameLogic : MonoBehaviour {
 			/// Абсолютно
 		}
 
-
-
-		smbdDied ();
+		CheckIfSomebodyDied ();
 	}
 }

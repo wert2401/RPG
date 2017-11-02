@@ -9,7 +9,6 @@ public class ItemSlot : MonoBehaviour {
     public Button btn;
     public Image imageHolder;
     public bool equipmentSlot;
-    bool isOvered;
 
     public void SetItem(Item _item)
     {
@@ -31,7 +30,10 @@ public class ItemSlot : MonoBehaviour {
     public void RemoveItem()
     {
         item = null;
-        btn.onClick.RemoveAllListeners();
+        if (btn != null)
+        {
+            btn.onClick.RemoveAllListeners();
+        }
         imageHolder.sprite = null;
     }
 
@@ -56,6 +58,7 @@ public class ItemSlot : MonoBehaviour {
 
         InventoryManager.instance.ShowDescr(text, transform);
     }
+
     public void UnshowDescr()
     {
         InventoryManager.instance.UnShowDescr();
