@@ -157,7 +157,7 @@ public class GameLogic : MonoBehaviour {
         else
         {
             UIManager.instance.Print("Вам не удается заблокировать удар");
-			React ();
+			EnemyAttack ();
         }
     }
 
@@ -253,8 +253,14 @@ public class GameLogic : MonoBehaviour {
 		{
 			enHealth -= plDmg+ (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
 			UIManager.instance.Print ("Вы атакуете монстра");
-			UIManager.instance.UpdateHealth (enHealth, plHealth);
 			canRun = true;
+			a = Random.value;
+			if (a<player.CH/500)
+			{
+				UIManager.instance.Print ("Крит!");
+				enHealth -= player.CD*(plDmg+ (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
+			}
+			UIManager.instance.UpdateHealth (enHealth, plHealth);
 		}
 		else
 			UIManager.instance.Print ("Вы промахнулись");
@@ -263,16 +269,21 @@ public class GameLogic : MonoBehaviour {
     public void EnemyAttack()
     {
 		float a = Random.value;
+		UIManager.instance.Print ("Монстр атакует вас");
 		if (a > (player.accuracy - enemy.evasChance) / 200) 
 		{
 			plHealth -= enemy.damage + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
-			UIManager.instance.Print ("Монстр атакует вас");
-			UIManager.instance.UpdateHealth (enHealth, plHealth);
 			canRun = true;
+			a = Random.value;
+			if (a<enemy.CH/500)
+			{
+				UIManager.instance.Print ("Крит!");
+				plHealth -= enemy.CD*(enemy.damage + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes));
+			}
+			UIManager.instance.UpdateHealth (enHealth, plHealth);
 		}
 		else 
 		{
-			UIManager.instance.Print ("Монстр атакует вас");
 			UIManager.instance.Print ("Вы увернулись");
 		}
     }

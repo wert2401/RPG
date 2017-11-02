@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	public float evasChance=5;
 	public float damage;
 	public int healPotion = 5;
+	public float CH=5;
+	public float CD=1;
 	[Header("Elements Damage")]
 	public float fireDmg;
 	public float waterDmg;
@@ -75,11 +77,13 @@ public class Player : MonoBehaviour {
 			case 0:
 				strenght += 1;
 				damage += 0.2f;
+				CD += 0.01f;
                 GameLogic.instance.plHealth += startHealth;
                 break;
 			case 1:
 				agility += 1;
 				evasChance += 1;
+				CH += 1;
                 break;
             case 2:
                 intelligence += 1;
