@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour {
     public GameObject dynButtonsHolder;
     public GameObject extrDynButtonsHolder;
 	public GameObject SpellScreen;
+	public GameObject StartScreen;
+	public GameObject Died;
     [Header("Enemy")]
     public Text enName;
     public Text enHealth;
@@ -197,5 +199,17 @@ public class UIManager : MonoBehaviour {
 	public void SetSpellScreenOn()
 	{
 		SpellScreen.SetActive(!SpellScreen.activeSelf);
+	}
+	public void SetStartScreenOn()
+	{
+		StartScreen.SetActive(!StartScreen.activeSelf);
+	}
+	public void SetDiedScreenOn()
+	{
+		Died.SetActive(true);
+	}
+	public void SetDiedScreenOff()
+	{
+		Died.SetActive(false);
 	}
 }
