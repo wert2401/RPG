@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2494c4abf62445bed5d95ea0e2105, type: 3}
   m_Name: Chest1
   m_EditorClassIdentifier: 
+  itemName: 
+  cost: 10
   type: 1
   image: {fileID: 21300000, guid: ecaf060cb7820ca439c49c8d2ecec9a9, type: 3}
   armor: 0

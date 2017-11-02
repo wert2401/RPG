@@ -87,6 +87,13 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.SetLocationScreenOn(false);
         StartFight();
     }
+
+    public void MoveToShop(int id)
+    {
+        if (curLoc == null) return;
+
+        ShopManager.instance.SetShopUI(curLoc.shops[id]);
+    }
  #endregion
 
 #region Fight
@@ -277,6 +284,7 @@ public class GameLogic : MonoBehaviour {
 		}
     }
 #endregion
+
 	public void CheckIfSomebodyDied()
 	{
 		if (plHealth <= 0 || enHealth <= 0)

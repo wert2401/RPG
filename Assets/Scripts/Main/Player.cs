@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	public float evasChance=5;
 	public float damage;
 	public int healPotion = 5;
+    public int money = 100;
+
 	[Header("Elements Damage")]
 	public float fireDmg;
 	public float waterDmg;

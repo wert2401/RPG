@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour {
     public Button btn;
     public Image imageHolder;
     public bool equipmentSlot;
+    public bool isShopSlot;
 
     public void SetItem(Item _item)
     {
@@ -20,10 +21,18 @@ public class ItemSlot : MonoBehaviour {
         item = _item;
         imageHolder.sprite = item.image;
 
-        if (btn != null)
+        if (btn == null) return;
+
+        if(!isShopSlot)
         {
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => InventoryManager.instance.EquipItem(item));
+        }
+        else
+        {
+            Debug.Log("!!!!");
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => ShopManager.instance.BuyItem(item));
         }
     }
 
@@ -39,6 +48,7 @@ public class ItemSlot : MonoBehaviour {
 
     public void ShowDescr()
     {
+        if (isShopSlot) return;
         if (item == null)
         {
             UnshowDescr();

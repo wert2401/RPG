@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2494c4abf62445bed5d95ea0e2105, type: 3}
   m_Name: Feet2
   m_EditorClassIdentifier: 
+  itemName: 
+  cost: 10
   type: 2
   image: {fileID: 21300000, guid: 5b88174360641274798bdfb01e72417e, type: 3}
   armor: 0

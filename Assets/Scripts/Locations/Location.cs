@@ -9,5 +9,6 @@ public class Location : ScriptableObject {
 
     public List<Location> locations;
     public List<Dungeon> dungeons;
+    public List<Shop> shops;
 
 }

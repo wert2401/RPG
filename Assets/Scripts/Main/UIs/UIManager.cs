@@ -67,6 +67,15 @@ public class UIManager : MonoBehaviour {
                 AddDungeonButton(_dun.dungeonName, i);
             }
         }
+
+        if (loc.shops.Count > 0)
+        {
+            for (int i = 0; i < loc.shops.Count; i++)
+            {
+                Shop _shop = loc.shops[i];
+                AddShopButton(_shop.shopName, i);
+            }
+        }
     }
 
     public void SetLocationName(string name)
@@ -89,6 +98,15 @@ public class UIManager : MonoBehaviour {
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
     }
+
+    public void AddShopButton(string name, int id)
+    {
+        GameObject go = Instantiate(button, locButtonsHolder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToShop(id));
+    }
+
 
     public void SetLocationScreenOn(bool stage)
     {
@@ -185,7 +203,7 @@ public class UIManager : MonoBehaviour {
     {
         inventoryScreen.SetActive(!inventoryScreen.activeSelf);
     }
-#endregion
+    #endregion
 
     private void RemoveAllButtons(Transform tr)
     {
@@ -196,18 +214,22 @@ public class UIManager : MonoBehaviour {
             Destroy(tr.GetChild(i).gameObject);
         }
     }
+
 	public void SetSpellScreenOn()
 	{
 		SpellScreen.SetActive(!SpellScreen.activeSelf);
 	}
+
 	public void SetStartScreenOn()
 	{
 		StartScreen.SetActive(!StartScreen.activeSelf);
 	}
+
 	public void SetDiedScreenOn()
 	{
 		Died.SetActive(true);
 	}
+
 	public void SetDiedScreenOff()
 	{
 		Died.SetActive(false);
