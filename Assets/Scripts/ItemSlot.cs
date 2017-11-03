@@ -16,19 +16,21 @@ public class ItemSlot : MonoBehaviour {
         if(equipmentSlot && item != null)
         {
             InventoryManager.instance.AddItem(item);
+            InventoryManager.instance.RemoveItemsStats(item);
         }
 
         item = _item;
         imageHolder.sprite = item.image;
 
-        if (btn == null) return;
+        //if (btn == null) return;
 
-        if(!isShopSlot)
+        if(!isShopSlot && !equipmentSlot)
         {
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => InventoryManager.instance.EquipItem(item));
         }
-        else
+
+        if(isShopSlot && !equipmentSlot)
         {
             Debug.Log("!!!!");
             btn.onClick.RemoveAllListeners();
@@ -48,25 +50,83 @@ public class ItemSlot : MonoBehaviour {
 
     public void ShowDescr()
     {
-        if (isShopSlot) return;
+        //if (isShopSlot) return;
         if (item == null)
         {
             UnshowDescr();
             return;
         }
+
         Debug.Log("Mouse");
-        string text;
+        string text = "";
 
         if (item.type == Types.TypeOfItem.WEAPON)
         {
-            text = "Урон: " + item.damage;
+            text += "Урон: " + item.damage + " \r\n";
+
+            if (item.airDmg != 0)
+            {
+                text += "Урон от воздуха: " + item.airDmg + " \r\n";
+            }
+            if (item.darkDmg != 0)
+            {
+                text += "Урон от тьмы: " + item.darkDmg + " \r\n";
+            }
+            if (item.earthDmg != 0)
+            {
+                text += "Урон от земли: " + item.earthDmg + " \r\n";
+            }
+            if (item.fireDmg != 0)
+            {
+                text += "Урон от огня: " + item.fireDmg + " \r\n";
+            }
+            if (item.lightDmg != 0)
+            {
+                text += "Урон от света: " + item.lightDmg + " \r\n";
+            }
+            if (item.waterDmg != 0)
+            {
+                text += "Урон от воды: " + item.waterDmg + " \r\n";
+            }
         }
         else
         {
-            text = "Защита: " + item.armor;
+            text += "Защита: " + item.armor + " \r\n";
+
+            if (item.airRes != 0)
+            {
+                text += "Сопротивление воздуху: " + item.airRes + " \r\n";
+            }
+            if (item.darkDmg != 0)
+            {
+                text += "Сопротивление тьме: " + item.darkRes + " \r\n";
+            }
+            if (item.earthRes != 0)
+            {
+                text += "Сопротивление земле: " + item.earthRes + " \r\n";
+            }
+            if (item.fireDmg != 0)
+            {
+                text += "Сопротивление огню: " + item.fireRes + " \r\n";
+            }
+            if (item.lightRes != 0)
+            {
+                text += "Сопротивление свету: " + item.lightRes + " \r\n";
+            }
+            if (item.waterRes != 0)
+            {
+                text += "Сопротивление земле: " + item.waterRes + " \r\n";
+            }
         }
 
-        InventoryManager.instance.ShowDescr(text, transform);
+        if (!isShopSlot)
+        {
+            InventoryManager.instance.ShowDescr(text, transform, 1);
+        }
+        else
+        {
+            InventoryManager.instance.ShowDescr(text, transform, -1);
+        }
     }
 
     public void UnshowDescr()

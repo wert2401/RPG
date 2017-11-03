@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public PlayerDefaultStats pds;
     public string plName;
     public float startHealth;
 	public float maxHealth
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour {
 	public float accuracy=5;
 	public float evasChance=5;
 	public float damage;
+    public float armor;
 	public int healPotion = 5;
     public int money = 100;
 
@@ -101,15 +103,33 @@ public class Player : MonoBehaviour {
 
     public void ResetStats()
     {
-        lvl = 1;
-        exp = 0;
-		GameLogic.instance.plHealth = 50;
-        needExp = 100;
-        freePoints = 5;
-        strenght = 5;
-        agility = 5;
-        intelligence = 5;
-        concentration = 5;
+        damage = pds.damage;
+        armor = pds.armor;
+        money = pds.money;
+        lvl = pds.lvl;
+        exp = pds.exp;
+		GameLogic.instance.plHealth = pds.maxHealth;
+        needExp = pds.needExp;
+        freePoints = pds.freePoints;
+        strenght = pds.strenght;
+        agility = pds.agility;
+        intelligence = pds.intelligence;
+        concentration = pds.concentration;
         onStatsChanged.Invoke();
-    }
+
+        fireDmg = pds.fireDmg;
+        waterDmg = pds.waterDmg;
+        airDmg = pds.airDmg;
+        lightDmg = pds.lightDmg;
+        darkDmg = pds.darkDmg;
+        earthDmg = pds.earthDmg;
+
+
+        fireRes = pds.fireRes;
+        waterRes = pds.waterRes;
+        airRes = pds.airRes;
+        lightRes = pds.lightRes;
+        darkRes = pds.darkRes;
+        earthRes = pds.earthRes;
+}
 }

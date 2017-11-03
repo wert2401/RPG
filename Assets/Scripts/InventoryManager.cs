@@ -40,6 +40,7 @@ public class InventoryManager : MonoBehaviour {
                 slots[i].RemoveItem();
             }
         }
+        UnShowDescr();
     }
 
     public void AddItem(Item item)
@@ -82,6 +83,7 @@ public class InventoryManager : MonoBehaviour {
 
                 break;
         }
+        AddItemsStats(item);
         Debug.Log("Item equiped " + item);
         UpdateInv();
     }
@@ -92,6 +94,7 @@ public class InventoryManager : MonoBehaviour {
         {
             items[i] = null;
         }
+        items = new List<Item>();
         headHolder.RemoveItem();
         chestHolder.RemoveItem();
         feetHolder.RemoveItem();
@@ -99,16 +102,56 @@ public class InventoryManager : MonoBehaviour {
         UpdateInv();
     }
 
-    public void ShowDescr(string text, Transform tr)
+    public void ShowDescr(string text, Transform tr, int pos)
     {
         descriptionPanel.SetActive(true);
-        descriptionPanel.transform.position = tr.position + offset;
+        descriptionPanel.transform.position = tr.position + (offset*pos);
         descrText.text = text;
     }
 
     public void UnShowDescr()
     {
         descriptionPanel.SetActive(false);
+    }
+
+    public void AddItemsStats(Item item)
+    {
+        player.damage += item.damage;
+        player.armor += item.armor;
+
+        player.fireDmg += item.fireDmg;
+        player.airDmg += item.airDmg;
+        player.darkDmg += item.darkDmg;
+        player.earthDmg += item.earthDmg;
+        player.lightDmg += item.lightDmg;
+        player.waterDmg += item.waterDmg;
+
+        player.fireRes += item.fireRes;
+        player.airRes += item.airRes;
+        player.darkRes += item.darkRes;
+        player.earthRes += item.earthRes;
+        player.lightRes += item.lightRes;
+        player.waterRes += item.waterRes;
+    }
+
+    public void RemoveItemsStats(Item item)
+    {
+        player.damage -= item.damage;
+        player.armor -= item.armor;
+
+        player.fireDmg -= item.fireDmg;
+        player.airDmg -= item.airDmg;
+        player.darkDmg -= item.darkDmg;
+        player.earthDmg -= item.earthDmg;
+        player.lightDmg -= item.lightDmg;
+        player.waterDmg -= item.waterDmg;
+
+        player.fireRes -= item.fireRes;
+        player.airRes -= item.airRes;
+        player.darkRes -= item.darkRes;
+        player.earthRes -= item.earthRes;
+        player.lightRes -= item.lightRes;
+        player.waterRes -= item.waterRes;
     }
 
     public float GetItemsArmor()

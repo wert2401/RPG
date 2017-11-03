@@ -38,14 +38,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c46c2ae2ddd7b43b31e58ef87bed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pds: {fileID: 11400000, guid: d201ea5e0aebe1447ac4f21a85743bda, type: 2}
   plName: player name
-  startHealth: 20
+  startHealth: 10
+  accuracy: 5
+  evasChance: 5
   damage: 10
+  armor: 0
+  healPotion: 5
+  money: 100
+  CH: 5
+  CD: 1
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
+  lightDmg: 0
+  darkDmg: 0
   earthDmg: 0
-  healPotion: 5
+  fireRes: 1
+  waterRes: 1
+  airRes: 1
+  lightRes: 1
+  darkRes: 1
+  earthRes: 1
   lvl: 1
   exp: 0
   needExp: 100
