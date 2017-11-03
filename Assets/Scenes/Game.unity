@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a807a164671fe40b9d069c9e505bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bufftime: 0
   startLocation: {fileID: 11400000, guid: 0b20f90257664504f89dadf1da5eb470, type: 2}
   curLoc: {fileID: 0}
   player: {fileID: 521289389}
@@ -14574,6 +14575,10 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u0432\u043E\u0437\u0434\u0443\u0445\u0430"
+    buffTime: 0
   - words: igni-prae-eny
     fireDmg: 50
     waterDmg: 0
@@ -14587,6 +14592,10 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u043E\u0433\u043D\u044F"
+    buffTime: 0
   - words: ter-prae-eny
     fireDmg: 0
     waterDmg: 0
@@ -14600,6 +14609,10 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u0437\u0435\u043C\u043B\u0438"
+    buffTime: 0
   - words: aqua-prae-eny
     fireDmg: 0
     waterDmg: 50
@@ -14613,6 +14626,10 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u0432\u043E\u0434\u044B"
+    buffTime: 0
   - words: lux-prae-eny
     fireDmg: 0
     waterDmg: 0
@@ -14626,6 +14643,10 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u0441\u0432\u0435\u0442\u0430"
+    buffTime: 0
   - words: taen-prae-eny
     fireDmg: 0
     waterDmg: 0
@@ -14639,6 +14660,112 @@ MonoBehaviour:
     lightBuff: 0
     darkBuff: 0
     earthBuff: 0
+    spelltype: attack
+    SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+      \u0441\u0438\u043B\u043E\u0439 \u0442\u044C\u043C\u044B"
+    buffTime: 0
+  - words: taen-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 50
+    earthDmg: 0
+    fireBuff: 0
+    waterBuff: 0
+    airBuff: 0
+    lightBuff: 0
+    darkBuff: 15
+    earthBuff: 0
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u0442\u044C\u043C\u044B"
+    buffTime: 3
+  - words: lux-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 0
+    earthDmg: 0
+    fireBuff: 0
+    waterBuff: 0
+    airBuff: 0
+    lightBuff: 15
+    darkBuff: 0
+    earthBuff: 0
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u0441\u0432\u0435\u0442\u0430"
+    buffTime: 3
+  - words: aqua-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 0
+    earthDmg: 0
+    fireBuff: 0
+    waterBuff: 15
+    airBuff: 0
+    lightBuff: 0
+    darkBuff: 0
+    earthBuff: 0
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u0432\u043E\u0434\u044B"
+    buffTime: 3
+  - words: aer-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 0
+    earthDmg: 0
+    fireBuff: 0
+    waterBuff: 0
+    airBuff: 15
+    lightBuff: 0
+    darkBuff: 0
+    earthBuff: 0
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u0432\u0435\u0442\u0440\u043E\u0432"
+    buffTime: 3
+  - words: igni-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 0
+    earthDmg: 0
+    fireBuff: 15
+    waterBuff: 0
+    airBuff: 0
+    lightBuff: 0
+    darkBuff: 0
+    earthBuff: 0
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u043E\u0433\u043D\u044F"
+    buffTime: 3
+  - words: ter-prae-dae
+    fireDmg: 0
+    waterDmg: 0
+    airDmg: 0
+    lightDmg: 0
+    darkDmg: 50
+    earthDmg: 0
+    fireBuff: 0
+    waterBuff: 0
+    airBuff: 0
+    lightBuff: 0
+    darkBuff: 0
+    earthBuff: 15
+    spelltype: buff
+    SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
+      \u0441\u0438\u043B\u0443 \u0437\u0435\u043C\u043B\u0438"
+    buffTime: 3
 --- !u!224 &1565564589
 RectTransform:
   m_ObjectHideFlags: 0

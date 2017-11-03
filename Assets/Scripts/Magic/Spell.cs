@@ -17,4 +17,7 @@ public class Spell {
 	public float lightBuff;
 	public float darkBuff;
 	public float earthBuff;
+	public string spelltype;
+	public string SpellWords;
+	public int buffTime;
 }

@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class GameLogic : MonoBehaviour {
     [HideInInspector]
     public static GameLogic instance;
-
     public Location startLocation;
     public Location curLoc;
-
     [Header("Player")]
     public Player player;
     public float plHealth;
@@ -167,7 +165,7 @@ public class GameLogic : MonoBehaviour {
 			EnemyAttack ();
         }
     }
-
+	public int bufftime;
     public void Spell()
     {
         Debug.Log("Spell");
@@ -180,13 +178,35 @@ public class GameLogic : MonoBehaviour {
 			React ();
 			return;
 		}
-	
+		if (spell.spelltype=="attack")
 		enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
+		if (spell.spelltype == "buff") 
+		{
+			if (bufftime > 0) 
+			{
+				UIManager.instance.Print ("Ваше оружие уже зачаровано");
+				UIManager.instance.Print ("Это было бесполезно");
+				React ();
+				UIManager.instance.SetSpellScreenOn ();
+				return;
+			}
+			else 
+			{
+				UIManager.instance.Print(spell.SpellWords);
+				bufftime=spell.buffTime;
+				player.airDmg += spell.airBuff;
+				player.earthDmg += spell.earthBuff;
+				player.fireDmg += spell.fireBuff;
+				player.waterDmg += spell.waterBuff;
+				player.lightDmg += spell.lightBuff;
+				player.darkDmg += spell.darkBuff;
+			}
+		}
 		UIManager.instance.Print("Вы успешно применяете заклинание");
 		UIManager.instance.UpdateHealth(enHealth,plHealth);
 		UIManager.instance.SetSpellScreenOn ();
 		React ();
-    }
+	}
 
     public void UseHeal()
     {
@@ -271,6 +291,8 @@ public class GameLogic : MonoBehaviour {
 		}
 		else
 			UIManager.instance.Print ("Вы промахнулись");
+		if(bufftime>0)
+		bufftime -= 1;
     }
 
     public void EnemyAttack()
