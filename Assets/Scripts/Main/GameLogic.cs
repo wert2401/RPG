@@ -12,7 +12,13 @@ public class GameLogic : MonoBehaviour {
     public Player player;
     public float plHealth;
     float plDmg;
-
+	int bufftime;
+	float airbuff;
+	float earthbuff;
+	float firebuff;
+	float waterbuff;
+	float lightbuff;
+	float darkbuff;
     [Header("Enemy")]
     public Enemy enemy;
     public float enHealth;
@@ -165,7 +171,6 @@ public class GameLogic : MonoBehaviour {
 			EnemyAttack ();
         }
     }
-	public int bufftime;
     public void Spell()
     {
         Debug.Log("Spell");
@@ -194,12 +199,18 @@ public class GameLogic : MonoBehaviour {
 			{
 				UIManager.instance.Print(spell.SpellWords);
 				bufftime=spell.buffTime;
-				player.airDmg += spell.airBuff;
-				player.earthDmg += spell.earthBuff;
-				player.fireDmg += spell.fireBuff;
-				player.waterDmg += spell.waterBuff;
-				player.lightDmg += spell.lightBuff;
-				player.darkDmg += spell.darkBuff;
+				airbuff = spell.airBuff;
+				earthbuff = spell.earthBuff;
+				firebuff = spell.fireBuff;
+				waterbuff = spell.waterBuff;
+				lightbuff = spell.lightBuff;
+				darkbuff = spell.darkBuff;
+				player.airDmg += airbuff;
+				player.earthDmg += earthbuff;
+				player.fireDmg += firebuff;
+				player.waterDmg += waterbuff;
+				player.lightDmg += lightbuff;
+				player.darkDmg += darkbuff;
 			}
 		}
 		UIManager.instance.Print("Вы успешно применяете заклинание");
@@ -292,7 +303,19 @@ public class GameLogic : MonoBehaviour {
 		else
 			UIManager.instance.Print ("Вы промахнулись");
 		if(bufftime>0)
+		{
 		bufftime -= 1;
+			if (bufftime == 0)
+			{
+				player.airDmg -= airbuff;
+				player.earthDmg -= earthbuff;
+				player.fireDmg -= firebuff;
+				player.waterDmg -= waterbuff;
+				player.lightDmg -= lightbuff;
+				player.darkDmg -= darkbuff;
+				UIManager.instance.Print ("Бафф кончился");
+			}
+		}
     }
 
     public void EnemyAttack()
