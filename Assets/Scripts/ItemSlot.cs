@@ -62,70 +62,71 @@ public class ItemSlot : MonoBehaviour {
 
         if (item.type == Types.TypeOfItem.WEAPON)
         {
-            text += "Урон: " + item.damage + " \r\n";
+            text += "Урон:" + item.damage + "\r\n";
 
-            if (item.airDmg != 0)
+            if (item.airDmg != 1)
             {
-                text += "Урон от воздуха: " + item.airDmg + " \r\n";
+                text += "Урон от воздуха:" + item.airDmg + "\r\n";
             }
-            if (item.darkDmg != 0)
+            if (item.darkDmg != 1)
             {
-                text += "Урон от тьмы: " + item.darkDmg + " \r\n";
+                text += "Урон от тьмы:" + item.darkDmg + "\r\n";
             }
-            if (item.earthDmg != 0)
+            if (item.earthDmg != 1)
             {
-                text += "Урон от земли: " + item.earthDmg + " \r\n";
+                text += "Урон от земли:" + item.earthDmg + "\r\n";
             }
-            if (item.fireDmg != 0)
+            if (item.fireDmg != 1)
             {
-                text += "Урон от огня: " + item.fireDmg + " \r\n";
+                text += "Урон от огня:" + item.fireDmg + "\r\n";
             }
-            if (item.lightDmg != 0)
+            if (item.lightDmg != 1)
             {
-                text += "Урон от света: " + item.lightDmg + " \r\n";
+                text += "Урон от света:" + item.lightDmg + "\r\n";
             }
-            if (item.waterDmg != 0)
+            if (item.waterDmg != 1)
             {
-                text += "Урон от воды: " + item.waterDmg + " \r\n";
+                text += "Урон от воды:" + item.waterDmg + "\r\n";
             }
         }
         else
         {
-            text += "Защита: " + item.armor + " \r\n";
+            text += "Защита:" + item.armor + "\r\n";
 
-            if (item.airRes != 0)
+            if (item.airRes != 1)
             {
-                text += "Сопротивление воздуху: " + item.airRes + " \r\n";
+                text += "Сопротивление воздуху:" + item.airRes + "\r\n";
             }
-            if (item.darkDmg != 0)
+            if (item.darkDmg != 1)
             {
-                text += "Сопротивление тьме: " + item.darkRes + " \r\n";
+                text += "Сопротивление тьме:" + item.darkRes + "\r\n";
             }
-            if (item.earthRes != 0)
+            if (item.earthRes != 1)
             {
-                text += "Сопротивление земле: " + item.earthRes + " \r\n";
+                text += "Сопротивление земле:" + item.earthRes + "\r\n";
             }
-            if (item.fireDmg != 0)
+            if (item.fireDmg != 1)
             {
-                text += "Сопротивление огню: " + item.fireRes + " \r\n";
+                text += "Сопротивление огню:" + item.fireRes + "\r\n";
             }
-            if (item.lightRes != 0)
+            if (item.lightRes != 1)
             {
-                text += "Сопротивление свету: " + item.lightRes + " \r\n";
+                text += "Сопротивление свету:" + item.lightRes + "\r\n";
             }
-            if (item.waterRes != 0)
+            if (item.waterRes != 1)
             {
-                text += "Сопротивление земле: " + item.waterRes + " \r\n";
+                text += "Сопротивление земле:" + item.waterRes + "\r\n";
             }
         }
 
         if (!isShopSlot)
         {
-            InventoryManager.instance.ShowDescr(text, transform, 1);
+            InventoryManager.instance.ShowDescr(text, isShopSlot);
         }
         else
         {
-            InventoryManager.instance.ShowDescr(text, transform, -1);
+            text += "Цена:" + item.cost;
+            InventoryManager.instance.ShowDescr(text, isShopSlot);
         }
     }
 

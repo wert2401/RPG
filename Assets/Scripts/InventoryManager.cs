@@ -15,7 +15,8 @@ public class InventoryManager : MonoBehaviour {
     public ItemSlot feetHolder;
     public ItemSlot weaponHolder;
     public GameObject descriptionPanel;
-    public Text descrText;
+    public Text invDescrText;
+    public Text shopDescrText;
 
     private void Awake()
     {
@@ -102,16 +103,19 @@ public class InventoryManager : MonoBehaviour {
         UpdateInv();
     }
 
-    public void ShowDescr(string text, Transform tr, int pos)
+    public void ShowDescr(string text, bool isShop)
     {
-        descriptionPanel.SetActive(true);
-        descriptionPanel.transform.position = tr.position + (offset*pos);
-        descrText.text = text;
+        //descriptionPanel.SetActive(true);
+        //descriptionPanel.transform.position = tr.position + (offset*pos);
+        if (!isShop)
+            invDescrText.text = text;
+        else
+            shopDescrText.text = text;
     }
 
     public void UnShowDescr()
     {
-        descriptionPanel.SetActive(false);
+        invDescrText.text = shopDescrText.text = "";
     }
 
     public void AddItemsStats(Item item)
@@ -119,19 +123,19 @@ public class InventoryManager : MonoBehaviour {
         player.damage += item.damage;
         player.armor += item.armor;
 
-        player.fireDmg += item.fireDmg;
-        player.airDmg += item.airDmg;
-        player.darkDmg += item.darkDmg;
-        player.earthDmg += item.earthDmg;
-        player.lightDmg += item.lightDmg;
-        player.waterDmg += item.waterDmg;
+        player.fireDmg *= item.fireDmg;
+        player.airDmg *= item.airDmg;
+        player.darkDmg *= item.darkDmg;
+        player.earthDmg *= item.earthDmg;
+        player.lightDmg *= item.lightDmg;
+        player.waterDmg *= item.waterDmg;
 
-        player.fireRes += item.fireRes;
-        player.airRes += item.airRes;
-        player.darkRes += item.darkRes;
-        player.earthRes += item.earthRes;
-        player.lightRes += item.lightRes;
-        player.waterRes += item.waterRes;
+        player.fireRes *= item.fireRes;
+        player.airRes *= item.airRes;
+        player.darkRes *= item.darkRes;
+        player.earthRes *= item.earthRes;
+        player.lightRes *= item.lightRes;
+        player.waterRes *= item.waterRes;
     }
 
     public void RemoveItemsStats(Item item)
@@ -139,48 +143,48 @@ public class InventoryManager : MonoBehaviour {
         player.damage -= item.damage;
         player.armor -= item.armor;
 
-        player.fireDmg -= item.fireDmg;
-        player.airDmg -= item.airDmg;
-        player.darkDmg -= item.darkDmg;
-        player.earthDmg -= item.earthDmg;
-        player.lightDmg -= item.lightDmg;
-        player.waterDmg -= item.waterDmg;
+        player.fireDmg /= item.fireDmg;
+        player.airDmg /= item.airDmg;
+        player.darkDmg /= item.darkDmg;
+        player.earthDmg /= item.earthDmg;
+        player.lightDmg /= item.lightDmg;
+        player.waterDmg /= item.waterDmg;
 
-        player.fireRes -= item.fireRes;
-        player.airRes -= item.airRes;
-        player.darkRes -= item.darkRes;
-        player.earthRes -= item.earthRes;
-        player.lightRes -= item.lightRes;
-        player.waterRes -= item.waterRes;
+        player.fireRes /= item.fireRes;
+        player.airRes /= item.airRes;
+        player.darkRes /= item.darkRes;
+        player.earthRes /= item.earthRes;
+        player.lightRes /= item.lightRes;
+        player.waterRes /= item.waterRes;
     }
 
-    public float GetItemsArmor()
-    {
-        float fullArmor = 0;
-        if (headHolder.item != null)
-        {
-            fullArmor += headHolder.item.armor;
-        }
-        if (chestHolder.item != null)
-        {
-            fullArmor += chestHolder.item.armor;
-        }
-        if (feetHolder.item != null)
-        {
-            fullArmor += feetHolder.item.armor;
-        }
-        return fullArmor;
-    }
+    //public float GetItemsArmor()
+    //{
+    //    float fullArmor = 0;
+    //    if (headHolder.item != null)
+    //    {
+    //        fullArmor += headHolder.item.armor;
+    //    }
+    //    if (chestHolder.item != null)
+    //    {
+    //        fullArmor += chestHolder.item.armor;
+    //    }
+    //    if (feetHolder.item != null)
+    //    {
+    //        fullArmor += feetHolder.item.armor;
+    //    }
+    //    return fullArmor;
+    //}
 
-    public float GetItemsDamage()
-    {
-        float fullDmg = 0;
-        if (weaponHolder.item != null)
-        {
-            fullDmg += weaponHolder.item.damage;
+  //  public float GetItemsDamage()
+  //  {
+  //      float fullDmg = 0;
+  //      if (weaponHolder.item != null)
+  //      {
+  //          fullDmg += weaponHolder.item.damage;
 
-        }
-		fullDmg += player.damage;
-        return fullDmg;
-    }
+  //      }
+		//fullDmg += player.damage;
+  //      return fullDmg;
+  //  }
 }

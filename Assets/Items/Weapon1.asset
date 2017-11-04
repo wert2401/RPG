@@ -15,17 +15,17 @@ MonoBehaviour:
   cost: 10
   type: 3
   image: {fileID: 21300000, guid: 74d46c046f6a41a428e9b54a65d1342c, type: 3}
-  armor: 0
+  armor: 1
   damage: 1
-  fireDmg: 0
-  waterDmg: 0
+  fireDmg: 1
+  waterDmg: 1
   airDmg: 3
   lightDmg: 2
-  darkDmg: 0
-  earthDmg: 0
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
+  darkDmg: 1
+  earthDmg: 1
+  fireRes: 1
+  waterRes: 1
+  airRes: 1
+  lightRes: 1
+  darkRes: 1
+  earthRes: 1

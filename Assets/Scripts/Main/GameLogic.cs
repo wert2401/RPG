@@ -12,13 +12,14 @@ public class GameLogic : MonoBehaviour {
     public Player player;
     public float plHealth;
     float plDmg;
-	int bufftime;
-	float airbuff;
-	float earthbuff;
-	float firebuff;
-	float waterbuff;
-	float lightbuff;
-	float darkbuff;
+	//int bufftime;
+	//float airbuff;
+	//float earthbuff;
+	//float firebuff;
+	//float waterbuff;
+	//float lightbuff;
+	//float darkbuff;
+    Spell buffSpell;
     [Header("Enemy")]
     public Enemy enemy;
     public float enHealth;
@@ -26,8 +27,9 @@ public class GameLogic : MonoBehaviour {
     public bool canRun = true;
 	int stun=0;
     [Header("Magic")]
-    public Text spellText;
+    public InputField spellText;
     Spell spell;
+    
 
     private void Awake()
     {
@@ -109,7 +111,7 @@ public class GameLogic : MonoBehaviour {
         enHealth = enemy.maxHealth;
         //plHealth = player.maxHealth;
         UIManager.instance.SetFightUI(enemy, player);
-        UIManager.instance.UpdateHealth(enHealth, plHealth);
+        UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
     }
 
     public void StopFight(bool ran)
@@ -176,19 +178,23 @@ public class GameLogic : MonoBehaviour {
     {
         Debug.Log("Spell");
         spell = MagicManager.instance.CheckSpell(spellText.text);
+        spellText.text = "";
 
-		if (enemy == null || spell == null) 
+        if (enemy == null || spell == null) 
 		{
 			UIManager.instance.Print("Но ничего не происходит");
 			UIManager.instance.SetSpellScreenOn ();
 			React ();
 			return;
 		}
+
 		if (spell.spelltype=="attack")
-		enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
-		if (spell.spelltype == "buff") 
+		    enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
+            UIManager.instance.Print(spell.SpellWords);
+
+        if (spell.spelltype == "buff") 
 		{
-			if (bufftime > 0) 
+            if (buffSpell != null && buffSpell.buffTime > 0) 
 			{
 				UIManager.instance.Print ("Ваше оружие уже зачаровано");
 				UIManager.instance.Print ("Это было бесполезно");
@@ -199,23 +205,18 @@ public class GameLogic : MonoBehaviour {
 			else 
 			{
 				UIManager.instance.Print(spell.SpellWords);
-				bufftime=spell.buffTime;
-				airbuff = spell.airBuff;
-				earthbuff = spell.earthBuff;
-				firebuff = spell.fireBuff;
-				waterbuff = spell.waterBuff;
-				lightbuff = spell.lightBuff;
-				darkbuff = spell.darkBuff;
-				player.airDmg += airbuff;
-				player.earthDmg += earthbuff;
-				player.fireDmg += firebuff;
-				player.waterDmg += waterbuff;
-				player.lightDmg += lightbuff;
-				player.darkDmg += darkbuff;
-			}
+                buffSpell = spell;
+                player.airDmg += buffSpell.airBuff;
+                player.earthDmg += buffSpell.earthBuff;
+                player.fireDmg += buffSpell.fireBuff;
+                player.waterDmg += buffSpell.waterBuff;
+                player.lightDmg += buffSpell.lightBuff;
+                player.darkDmg += buffSpell.darkBuff;
+
+            }
 		}
 		UIManager.instance.Print("Вы успешно применяете заклинание");
-		UIManager.instance.UpdateHealth(enHealth,plHealth);
+		UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
 		UIManager.instance.SetSpellScreenOn ();
 		React ();
 	}
@@ -240,7 +241,7 @@ public class GameLogic : MonoBehaviour {
         }
         plHealth += b;
         player.healPotion--;
-        UIManager.instance.UpdateHealth(enHealth,plHealth);
+        UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
         UIManager.instance.Print("Вы излечились");
     }
 
@@ -290,33 +291,34 @@ public class GameLogic : MonoBehaviour {
 		float a = Random.value;
 		if (a > (player.accuracy - enemy.evasChance) / 200 && player.accuracy>enemy.evasChance) 
 		{
-			enHealth -= plDmg + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
+			enHealth -= (plDmg * Mathf.Pow(0.86f,enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
 			UIManager.instance.Print ("Вы атакуете монстра");
 			canRun = true;
 			a = Random.value;
 			if (a<player.CH/500)
 			{
 				UIManager.instance.Print ("Крит!");
-				enHealth -= player.CD*(plDmg+ (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
+				enHealth -= player.CD*((plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
 			}
-			UIManager.instance.UpdateHealth (enHealth, plHealth);
+			UIManager.instance.UpdateHealth (Mathf.Round(enHealth), Mathf.Round(plHealth));
 		}
 		else
 			UIManager.instance.Print ("Вы промахнулись");
 
-		if(bufftime>0)
+		if(buffSpell!=null && buffSpell.buffTime > 0)
 		{
-		bufftime -= 1;
-			if (bufftime == 0)
-			{
-				player.airDmg -= airbuff;
-				player.earthDmg -= earthbuff;
-				player.fireDmg -= firebuff;
-				player.waterDmg -= waterbuff;
-				player.lightDmg -= lightbuff;
-				player.darkDmg -= darkbuff;
-				UIManager.instance.Print ("Бафф кончился");
-			}
+		    buffSpell.buffTime -= 1;
+			    if (buffSpell.buffTime == 0)
+			    {
+                    player.airDmg -= buffSpell.airBuff;
+                    player.earthDmg -= buffSpell.earthBuff;
+                    player.fireDmg -= buffSpell.fireBuff;
+                    player.waterDmg -= buffSpell.waterBuff;
+                    player.lightDmg -= buffSpell.lightBuff;
+                    player.darkDmg -= buffSpell.darkBuff;
+                    buffSpell = null;
+				    UIManager.instance.Print ("Бафф кончился");
+			    }
 		}
     }
 
@@ -326,15 +328,15 @@ public class GameLogic : MonoBehaviour {
 		UIManager.instance.Print ("Монстр атакует вас");
 		if (a > (player.accuracy - enemy.evasChance) / 200) 
 		{
-			plHealth -= enemy.damage + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
+			plHealth -= (enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
 			canRun = true;
 			a = Random.value;
 			if (a<enemy.CH/500)
 			{
 				UIManager.instance.Print ("Крит!");
-				plHealth -= enemy.CD*(enemy.damage + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes));
+				plHealth -= enemy.CD*((enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes));
 			}
-			UIManager.instance.UpdateHealth (enHealth, plHealth);
+			UIManager.instance.UpdateHealth (Mathf.Round(enHealth), Mathf.Round(plHealth));
 		}
 		else 
 		{
