@@ -32,7 +32,7 @@ public class ItemSlot : MonoBehaviour {
 
         if(isShopSlot && !equipmentSlot)
         {
-            Debug.Log("!!!!");
+            //Debug.Log("!!!!");
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => ShopManager.instance.BuyItem(item));
         }
@@ -57,7 +57,7 @@ public class ItemSlot : MonoBehaviour {
             return;
         }
 
-        Debug.Log("Mouse");
+        //Debug.Log("Mouse");
         string text = "";
 
         if (item.type == Types.TypeOfItem.WEAPON)

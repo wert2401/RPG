@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour {
 #region UI
     public void SetShopUI(Shop shop)
     {
-        Debug.Log("ShopUi");
+        //Debug.Log("ShopUi");
         shopName.text = shop.shopName;
         SetItems(shop);
         UpdateUI();
