@@ -16,6 +16,7 @@ MonoBehaviour:
   accuracy: 5
   evasChance: 5
   damage: 10
+  armor: 0
   healPotion: 5
   money: 100
   CH: 5

@@ -30,6 +30,8 @@ public class Enemy : ScriptableObject {
 	public float earthRes;
     [Header("Enemy`s death")]
     public int expGain;
+    public int minMoneyGain;
+    public int maxMoneyGain;
     public List<Item> drop;
 
  #region Actions
@@ -66,6 +68,13 @@ public class Enemy : ScriptableObject {
         Debug.Log(a);
         item = drop[a];
         return item;
+    }
+
+    public int GetRandomMoney()
+    {
+        int mGain;
+        mGain = Random.Range(minMoneyGain, maxMoneyGain);
+        return mGain;
     }
     #endregion
 

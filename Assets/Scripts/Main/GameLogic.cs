@@ -142,6 +142,9 @@ public class GameLogic : MonoBehaviour {
         Item itemGain = enemy.GetRandomDrop();
         if (itemGain != null)
             InventoryManager.instance.AddItem(itemGain);
+
+        int moneyGain = enemy.GetRandomMoney();
+        player.money += moneyGain;
     }
 
     public void Attack()

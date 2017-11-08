@@ -15,8 +15,11 @@ MonoBehaviour:
   enLvl: 7
   maxHealth: 350
   damage: 15
+  armor: 0
   accuracy: 0
   evasChance: 2
+  CH: 0
+  CD: 0
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
@@ -30,6 +33,8 @@ MonoBehaviour:
   darkRes: 0.7
   earthRes: 0.1
   expGain: 100
+  minMoneyGain: 20
+  maxMoneyGain: 40
   drop:
   - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
   - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}
