@@ -15,7 +15,7 @@ MonoBehaviour:
   enLvl: 9
   maxHealth: 540
   damage: 20
-  armor: 0
+  armor: 2
   accuracy: 0
   evasChance: 9
   CH: 0

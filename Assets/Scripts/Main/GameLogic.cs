@@ -329,7 +329,7 @@ public class GameLogic : MonoBehaviour {
     {
 		float a = Random.value;
 		UIManager.instance.Print ("Монстр атакует вас");
-		if (a > (player.accuracy - enemy.evasChance) / 200) 
+		if (a > (enemy.accuracy - player.evasChance) / 200 && enemy.accuracy > player.evasChance) 
 		{
 			plHealth -= (enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
 			canRun = true;

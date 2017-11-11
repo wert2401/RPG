@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: "\u041A\u0430\u0431\u0430\u043D"
   enLvl: 5
-  maxHealth: 200
+  maxHealth: 225
   damage: 18
   armor: 0
   accuracy: 0
