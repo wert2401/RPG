@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonName: "\u0417\u0430\u0431\u0440\u043E\u0448\u0435\u043D\u043D\u044B\u0439
     \u0437\u0430\u043C\u043E\u043A(71-80)"
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: ba54f3636e88dbe448b04b97439c7a91, type: 2}

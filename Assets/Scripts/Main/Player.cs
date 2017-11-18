@@ -53,10 +53,8 @@ public class Player : MonoBehaviour {
         exp += expGain;
         while (exp >= needExp)
         {
-            int a = exp - needExp;
-            exp = a;
+            exp -= needExp;
             AddLevel();
-            return;
         }
         onStatsChanged.Invoke();
     }

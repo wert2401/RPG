@@ -123,12 +123,12 @@ public class InventoryManager : MonoBehaviour {
         player.damage += item.damage;
         player.armor += item.armor;
 
-        player.fireDmg *= item.fireDmg;
-        player.airDmg *= item.airDmg;
-        player.darkDmg *= item.darkDmg;
-        player.earthDmg *= item.earthDmg;
-        player.lightDmg *= item.lightDmg;
-        player.waterDmg *= item.waterDmg;
+        player.fireDmg += item.fireDmg;
+        player.airDmg += item.airDmg;
+        player.darkDmg += item.darkDmg;
+        player.earthDmg += item.earthDmg;
+        player.lightDmg += item.lightDmg;
+        player.waterDmg += item.waterDmg;
 
         player.fireRes *= item.fireRes;
         player.airRes *= item.airRes;
@@ -143,12 +143,12 @@ public class InventoryManager : MonoBehaviour {
         player.damage -= item.damage;
         player.armor -= item.armor;
 
-        player.fireDmg /= item.fireDmg;
-        player.airDmg /= item.airDmg;
-        player.darkDmg /= item.darkDmg;
-        player.earthDmg /= item.earthDmg;
-        player.lightDmg /= item.lightDmg;
-        player.waterDmg /= item.waterDmg;
+        player.fireDmg -= item.fireDmg;
+        player.airDmg -= item.airDmg;
+        player.darkDmg -= item.darkDmg;
+        player.earthDmg -= item.earthDmg;
+        player.lightDmg -= item.lightDmg;
+        player.waterDmg -= item.waterDmg;
 
         player.fireRes /= item.fireRes;
         player.airRes /= item.airRes;

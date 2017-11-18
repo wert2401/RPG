@@ -7,7 +7,6 @@ public class EnemyBeast: Enemy
 {
     public bool eatYou;
     public string reaction;
-
     public override void SetEnemyUI()
     {
         UIManager.instance.AddDynButton("Поговорить", Talk, UIManager.instance.dynButtonsHolder.transform);
@@ -21,7 +20,6 @@ public class EnemyBeast: Enemy
     {
         UIManager.instance.Print("Вы говорите с '" + enemyName+ "'");
         UIManager.instance.Print(reaction);
-        base.Talk();
     }
 
     public override void Attack()
@@ -97,3 +95,16 @@ public class EnemyBeast: Enemy
 
 //Молоток выше
 //А весной цветёт сакура
+
+//На потом
+//{
+//Debug.Log("Spell");
+
+//		UIManager.instance.Print("Вы успешно применяете заклинание");
+//		UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
+//		UIManager.instance.SetSpellScreenOn();
+
+//        React();
+//	}
+
+   

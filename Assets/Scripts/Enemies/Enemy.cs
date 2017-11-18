@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Types;
 
-public class Enemy : ScriptableObject {
+public class Enemy : ScriptableObject
+{
     public string enemyName;
    
     public int enLvl;

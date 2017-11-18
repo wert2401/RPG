@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameLogic : MonoBehaviour {
     [HideInInspector]
     public static GameLogic instance;
@@ -28,14 +27,14 @@ public class GameLogic : MonoBehaviour {
 	int stun=0;
     [Header("Magic")]
     public InputField spellText;
-    Spell spell;
+    public Spell spell;
+    public Buff buff;
+    public int BT;
     
-
     private void Awake()
     {
         instance = this;
     }
-
     private void Start()
     {
         if (startLocation != null)
@@ -146,7 +145,23 @@ public class GameLogic : MonoBehaviour {
         int moneyGain = enemy.GetRandomMoney();
         player.money += moneyGain;
     }
+    public void BuffUse()
+    {
+        if (BT > 0)
+        {
+            BT -= 1;
+            if (BT == 0)
+            {
+                player.airDmg -= buff.airBuff; 
+                player.earthDmg -= buff.earthBuff;
+                player.fireDmg -= buff.fireBuff;
+                player.waterDmg -= buff.waterBuff;
+                player.lightDmg -= buff.lightBuff;
+                player.darkDmg -= buff.darkBuff;
 
+            }
+        }
+    }
     public void Attack()
     {
 		PlayerAttack ();
@@ -179,50 +194,21 @@ public class GameLogic : MonoBehaviour {
     }
     public void Spell()
     {
-        Debug.Log("Spell");
         spell = MagicManager.instance.CheckSpell(spellText.text);
         spellText.text = "";
-
-        if (enemy == null || spell == null) 
-		{
-			UIManager.instance.Print("Но ничего не происходит");
-			UIManager.instance.SetSpellScreenOn ();
-			React ();
-			return;
-		}
-
-		if (spell.spelltype=="attack")
-		    enHealth -= (enemy.airRes * spell.airDmg) + (enemy.fireRes * spell.fireDmg) + (enemy.darkRes * spell.darkDmg) + (enemy.waterRes * spell.waterDmg) + (enemy.lightRes * spell.lightDmg)+(spell.earthDmg*enemy.earthRes);
-            UIManager.instance.Print(spell.SpellWords);
-
-        if (spell.spelltype == "buff") 
-		{
-            if (buffSpell != null && buffSpell.buffTime > 0) 
-			{
-				UIManager.instance.Print ("Ваше оружие уже зачаровано");
-				UIManager.instance.Print ("Это было бесполезно");
-				React ();
-				UIManager.instance.SetSpellScreenOn ();
-				return;
-			}
-			else 
-			{
-				UIManager.instance.Print(spell.SpellWords);
-                buffSpell = spell;
-                player.airDmg += buffSpell.airBuff;
-                player.earthDmg += buffSpell.earthBuff;
-                player.fireDmg += buffSpell.fireBuff;
-                player.waterDmg += buffSpell.waterBuff;
-                player.lightDmg += buffSpell.lightBuff;
-                player.darkDmg += buffSpell.darkBuff;
-
-            }
-		}
-		UIManager.instance.Print("Вы успешно применяете заклинание");
-		UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
-		UIManager.instance.SetSpellScreenOn ();
-		React ();
-	}
+        if (spell == null)
+        {
+            UIManager.instance.Print("Но ничего не произошло");
+            UIManager.instance.SetSpellScreenOn();
+            React();
+            return;
+        }
+        else
+        {
+            spell.SpellUse();
+            UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
+        }
+    }
 
     public void UseHeal()
     {
@@ -307,22 +293,7 @@ public class GameLogic : MonoBehaviour {
 		}
 		else
 			UIManager.instance.Print ("Вы промахнулись");
-
-		if(buffSpell!=null && buffSpell.buffTime > 0)
-		{
-		    buffSpell.buffTime -= 1;
-			    if (buffSpell.buffTime == 0)
-			    {
-                    player.airDmg -= buffSpell.airBuff;
-                    player.earthDmg -= buffSpell.earthBuff;
-                    player.fireDmg -= buffSpell.fireBuff;
-                    player.waterDmg -= buffSpell.waterBuff;
-                    player.lightDmg -= buffSpell.lightBuff;
-                    player.darkDmg -= buffSpell.darkBuff;
-                    buffSpell = null;
-				    UIManager.instance.Print ("Бафф кончился");
-			    }
-		}
+        BuffUse();
     }
 
     public void EnemyAttack()
@@ -409,7 +380,7 @@ public class GameLogic : MonoBehaviour {
 			///Делает ничего
 			/// Абсолютно
 		}
-
-		CheckIfSomebodyDied ();
+        
+        CheckIfSomebodyDied ();
 	}
 }

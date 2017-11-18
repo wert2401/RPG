@@ -16,13 +16,13 @@ MonoBehaviour:
   type: 1
   image: {fileID: 21300000, guid: e3bd02c251031be4fa61372af46fddec, type: 3}
   armor: 1
-  damage: 1
-  fireDmg: 1
-  waterDmg: 1
-  airDmg: 1
-  lightDmg: 1
-  darkDmg: 1
-  earthDmg: 1
+  damage: 10
+  fireDmg: 10
+  waterDmg: 10
+  airDmg: 10
+  lightDmg: 10
+  darkDmg: 10
+  earthDmg: 10
   fireRes: 1
   waterRes: 0.15
   airRes: 1

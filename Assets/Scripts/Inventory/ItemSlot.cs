@@ -64,27 +64,27 @@ public class ItemSlot : MonoBehaviour {
         {
             text += "Урон:" + item.damage + "\r\n";
 
-            if (item.airDmg != 1)
+            if (item.airDmg > 0)
             {
                 text += "Урон от воздуха:" + item.airDmg + "\r\n";
             }
-            if (item.darkDmg != 1)
+            if (item.darkDmg > 0)
             {
                 text += "Урон от тьмы:" + item.darkDmg + "\r\n";
             }
-            if (item.earthDmg != 1)
+            if (item.earthDmg > 0)
             {
                 text += "Урон от земли:" + item.earthDmg + "\r\n";
             }
-            if (item.fireDmg != 1)
+            if (item.fireDmg > 0)
             {
                 text += "Урон от огня:" + item.fireDmg + "\r\n";
             }
-            if (item.lightDmg != 1)
+            if (item.lightDmg > 0)
             {
                 text += "Урон от света:" + item.lightDmg + "\r\n";
             }
-            if (item.waterDmg != 1)
+            if (item.waterDmg > 0)
             {
                 text += "Урон от воды:" + item.waterDmg + "\r\n";
             }
