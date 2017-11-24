@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerDefaultStats : ScriptableObject {
     public string plName;
     public float startHealth;
+    public float ManaMax;
     public float maxHealth
     {
         get { return startHealth * strenght; }

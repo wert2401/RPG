@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0dfad8cf742b84281cd2863cebf483, type: 3}
   m_Name: PlayerDefStats
   m_EditorClassIdentifier: 
-  plName: 
+  plName: "\u0418\u0433\u0440\u043E\u043A"
   startHealth: 10
+  ManaMax: 50
   accuracy: 5
   evasChance: 5
   damage: 10

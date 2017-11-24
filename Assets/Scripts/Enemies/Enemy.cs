@@ -9,6 +9,7 @@ public class Enemy : ScriptableObject
    
     public int enLvl;
     public float maxHealth;
+    public float ManaMax;
     public float damage;
     public float armor;
 	public float accuracy;
@@ -41,10 +42,17 @@ public class Enemy : ScriptableObject
         SetDynUI();
     }
 
-    virtual public void Attack()
+    public void EnManaLost(Buff _buff)
     {
-        GameLogic.instance.Attack();
-        ResetUI();
+        if (GameLogic.instance.enMana < _buff.ManaCost)
+        {
+            UIManager.instance.Print("Противнику не хватает маны");
+            GameLogic.instance.enHealth -= (GameLogic.instance.enMana);
+            GameLogic.instance.enMana = 0;
+            _buff.TF = false;
+        }
+        else
+            _buff.TF = true;
     }
 
     virtual public void Talk()

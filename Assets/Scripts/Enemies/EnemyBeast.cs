@@ -7,12 +7,15 @@ public class EnemyBeast: Enemy
 {
     public bool eatYou;
     public string reaction;
+    public Buff Roar;
+    public Buff Howl;
+
     public override void SetEnemyUI()
     {
         UIManager.instance.AddDynButton("Поговорить", Talk, UIManager.instance.dynButtonsHolder.transform);
         UIManager.instance.AddDynButton("Покормить", TryFeed, UIManager.instance.dynButtonsHolder.transform);
 
-        UIManager.instance.AddDynButton("Ударить", Attack, UIManager.instance.extrDynButtonsHolder.transform);
+        UIManager.instance.AddDynButton("Ударить", GameLogic.instance.PlayerHit, UIManager.instance.extrDynButtonsHolder.transform);
         UIManager.instance.AddDynButton("Сбежать", Run, UIManager.instance.extrDynButtonsHolder.transform);
     }
 
@@ -22,27 +25,25 @@ public class EnemyBeast: Enemy
         UIManager.instance.Print(reaction);
     }
 
-    public override void Attack()
-    {
-        GameLogic.instance.PlayerAttack();
-        ResetUI();
-    }
 	public override void React1()
 	{
-		UIManager.instance.Print(" Реакция первая звериная");
-	}
+        GameLogic.instance.BuffUse(Roar,true);
+        Debug.Log("Первая реакция зверя");
+    }
 	public override void React2()
 	{
-		UIManager.instance.Print(" Реакция вторая звериная");
-	}
+        GameLogic.instance.EnBuffUse(Howl,true);
+        Debug.Log("Вторая реакция зверя");
+    }
 	public override void React3()
 	{
-		UIManager.instance.Print(" Реакция третья звериная");
-	}
+		UIManager.instance.Print("Реакция третья звериная");
+        Debug.Log("Третья реакция зверя");
+    }
 
     void TryFeed()
     {
-        UIManager.instance.Print("Вы кормите " + enemyName + ".");
+        UIManager.instance.Print("Вы кормите " + enemyName);
 
         int a = Random.Range(0, 2);
         switch (a)
@@ -51,13 +52,13 @@ public class EnemyBeast: Enemy
                 {
                     if (!eatYou)
                     {
-                        UIManager.instance.Print(enemyName + " отвлекся.");
+                        UIManager.instance.Print(enemyName + " отвлекся");
                         SetExtrDynUI();
                         break;
                     }
                     else
                     {
-                        UIManager.instance.Print(enemyName + " хочет съесть только вас.");
+                        UIManager.instance.Print(enemyName + " хочет съесть только вас");
                         GameLogic.instance.EnemyAttack();
                         ResetUI();
                         break;
@@ -65,7 +66,7 @@ public class EnemyBeast: Enemy
                 }
             case 1:
                 {
-                    UIManager.instance.Print(enemyName + " не реагирует на вашу еду.");
+                    UIManager.instance.Print(enemyName + " не реагирует на вашу еду");
                     ResetUI();
                     break;
                 }

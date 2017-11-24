@@ -10,7 +10,7 @@ public class GameLogic : MonoBehaviour {
     [Header("Player")]
     public Player player;
     public float plHealth;
-    float plDmg;
+    public float plMana;
 	//int bufftime;
 	//float airbuff;
 	//float earthbuff;
@@ -22,15 +22,17 @@ public class GameLogic : MonoBehaviour {
     [Header("Enemy")]
     public Enemy enemy;
     public float enHealth;
-    float enDmg;
+    public float enMana;
     public bool canRun = true;
 	int stun=0;
     [Header("Magic")]
     public InputField spellText;
     public Spell spell;
-    public Buff buff;
-    public int BT;
-    
+    public List<Buff> buffs;
+    public List<int> BTs;
+    public List<Buff> Enbuffs;
+    public List<int> EnBTs;
+
     private void Awake()
     {
         instance = this;
@@ -44,8 +46,7 @@ public class GameLogic : MonoBehaviour {
         }
         else
             Debug.Log("Set start location!");
-
-        plHealth = player.maxHealth;
+        player.ResetStats();
     }
 
 #region Location
@@ -106,11 +107,55 @@ public class GameLogic : MonoBehaviour {
     {
         if (enemy == null) return;
         //plDmg = InventoryManager.instance.GetItemsDamage ();
-        plDmg = player.damage;
+        //plDmg = player.damage;
+        
         enHealth = enemy.maxHealth;
-        //plHealth = player.maxHealth;
+        enMana = enemy.ManaMax;
         UIManager.instance.SetFightUI(enemy, player);
         UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
+    }
+
+
+
+    public void BuffUse(Buff _buff,bool isEnemy)
+    {
+        if (isEnemy)
+            enemy.EnManaLost(_buff);
+        else
+            _buff.ManaLost();
+        if (_buff.TF == false)
+            return;
+        UIManager.instance.Print(_buff.words);
+        player.airDmg += _buff.airBuff;
+        player.earthDmg += _buff.earthBuff;
+        player.damage += _buff.physBuff;
+        player.fireDmg += _buff.fireBuff;
+        player.waterDmg += _buff.waterBuff;
+        player.lightDmg += _buff.lightBuff;
+        player.darkDmg += _buff.darkBuff;
+        buffs.Add(_buff);
+        BTs.Add(_buff.buffTime);
+    }
+
+    public void EnBuffUse(Buff _buff,bool isEnemy)
+    {
+        if (isEnemy)
+            enemy.EnManaLost(_buff);
+        else
+            _buff.ManaLost();
+        if (_buff.TF == false)
+            return;
+        UIManager.instance.Print(_buff.words);
+        enMana -= _buff.ManaCost;
+        enemy.airDmg += _buff.airBuff;
+        enemy.damage += _buff.physBuff;
+        enemy.earthDmg += _buff.earthBuff;
+        enemy.fireDmg += _buff.fireBuff;
+        enemy.waterDmg += _buff.waterBuff;
+        enemy.lightDmg += _buff.lightBuff;
+        enemy.darkDmg += _buff.darkBuff;
+        Enbuffs.Add(_buff);
+        EnBTs.Add(_buff.buffTime);
     }
 
     public void StopFight(bool ran)
@@ -147,21 +192,52 @@ public class GameLogic : MonoBehaviour {
     }
     public void BuffUse()
     {
-        if (BT > 0)
+        for (int i = 0; i < buffs.Count; i++)
         {
-            BT -= 1;
-            if (BT == 0)
+            if (BTs[i] > 0)
             {
-                player.airDmg -= buff.airBuff; 
-                player.earthDmg -= buff.earthBuff;
-                player.fireDmg -= buff.fireBuff;
-                player.waterDmg -= buff.waterBuff;
-                player.lightDmg -= buff.lightBuff;
-                player.darkDmg -= buff.darkBuff;
-
+                BTs[i] -= 1;
+                if (BTs[i] == 0)
+                {
+                    player.airDmg -= buffs[i].airBuff;
+                    player.earthDmg -= buffs[i].earthBuff;
+                    player.fireDmg -= buffs[i].fireBuff;
+                    player.waterDmg -= buffs[i].waterBuff;
+                    player.lightDmg -= buffs[i].lightBuff;
+                    player.darkDmg -= buffs[i].darkBuff;
+                    player.damage -= buffs[i].physBuff;
+                    buffs.Remove(buffs[i]);
+                    BTs.Remove(BTs[i]);
+                    i--;
+                }
             }
         }
     }
+
+    public void EnBuffUse()
+    {
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            if (EnBTs[i] > 0)
+            {
+                EnBTs[i] -= 1;
+                if (EnBTs[i] == 0)
+                {
+                    player.airDmg -= Enbuffs[i].airBuff;
+                    player.earthDmg -= Enbuffs[i].earthBuff;
+                    player.fireDmg -= Enbuffs[i].fireBuff;
+                    player.waterDmg -= Enbuffs[i].waterBuff;
+                    player.lightDmg -= Enbuffs[i].lightBuff;
+                    player.darkDmg -= Enbuffs[i].darkBuff;
+                    enemy.damage -= Enbuffs[i].physBuff;
+                    Enbuffs.Remove(Enbuffs[i]);
+                    EnBTs.Remove(EnBTs[i]);
+                    i--;
+                }
+            }
+        }
+    }
+
     public void Attack()
     {
 		PlayerAttack ();
@@ -275,14 +351,14 @@ public class GameLogic : MonoBehaviour {
 	}
     public void PlayerHit()
     {
-        enHealth -= (plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
+        enHealth -= (player.damage * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
         UIManager.instance.Print("Вы атакуете монстра");
         canRun = true;
         float a = Random.value;
         if (a < player.CH / 500)
         {
             UIManager.instance.Print("Крит!");
-            enHealth -= player.CD * ((plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
+            enHealth -= player.CD * ((player.damage * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
         }
         UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
     }
@@ -322,6 +398,7 @@ public class GameLogic : MonoBehaviour {
 		}
 		else 
 			UIManager.instance.Print ("Вы увернулись");
+        EnBuffUse();
     }
 #endregion
 
@@ -330,6 +407,8 @@ public class GameLogic : MonoBehaviour {
 		if (plHealth <= 0 || enHealth <= 0)
 		{
 			StopFight(false);
+            Enbuffs.Clear();
+            EnBTs.Clear();
         }
 	}
 

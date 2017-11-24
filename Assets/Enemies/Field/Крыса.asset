@@ -14,6 +14,7 @@ MonoBehaviour:
   enemyName: "\u041A\u0440\u044B\u0441\u0430"
   enLvl: 2
   maxHealth: 80
+  ManaMax: 0
   damage: 7
   armor: 0
   accuracy: 0
@@ -44,3 +45,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bb7fdbfeb25a044aac58344e59ce658, type: 2}
   eatYou: 0
   reaction: 
+  Roar: {fileID: 11400000, guid: dbaf8b8128dc1ac4089e5e6f8953a469, type: 2}
+  Howl: {fileID: 11400000, guid: 18a65468b6bdd9b41a2bf096fd09d5a5, type: 2}

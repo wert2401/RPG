@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public PlayerDefaultStats pds;
     public string plName;
     public float startHealth;
+    public float ManaMax;
 	public float maxHealth
     {
         get { return startHealth * strenght;  }
@@ -107,12 +108,14 @@ public class Player : MonoBehaviour {
         lvl = pds.lvl;
         exp = pds.exp;
 		GameLogic.instance.plHealth = pds.maxHealth;
+        GameLogic.instance.plMana = pds.ManaMax;
         needExp = pds.needExp;
         freePoints = pds.freePoints;
         strenght = pds.strenght;
         agility = pds.agility;
         intelligence = pds.intelligence;
         concentration = pds.concentration;
+        if (onStatsChanged !=null)
         onStatsChanged.Invoke();
 
         fireDmg = pds.fireDmg;
@@ -122,6 +125,8 @@ public class Player : MonoBehaviour {
         darkDmg = pds.darkDmg;
         earthDmg = pds.earthDmg;
 
+        GameLogic.instance.buffs.Clear();
+        GameLogic.instance.BTs.Clear();
 
         fireRes = pds.fireRes;
         waterRes = pds.waterRes;
@@ -129,5 +134,5 @@ public class Player : MonoBehaviour {
         lightRes = pds.lightRes;
         darkRes = pds.darkRes;
         earthRes = pds.earthRes;
-}
+    }
 }

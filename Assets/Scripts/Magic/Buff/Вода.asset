@@ -14,7 +14,10 @@ MonoBehaviour:
   words: aqua-prae-dae
   SpellWords: "\u0412\u0430\u0448\u0435 \u043E\u0440\u0443\u0436\u0438\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0442\u0430\u0435\u0442
     \u0441\u0438\u043B\u0443 \u0432\u043E\u0434\u044B"
-  SpellType: 0
+  ManaCost: 50
+  TF: 0
+  onEnemy: 0
+  physBuff: 0
   fireBuff: 0
   waterBuff: 15
   airBuff: 0

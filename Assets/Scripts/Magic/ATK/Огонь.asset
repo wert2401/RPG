@@ -14,7 +14,8 @@ MonoBehaviour:
   words: igni-prae-eny
   SpellWords: "\u0412\u044B \u0430\u0442\u0430\u043A\u0443\u0435\u0442\u0435 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
     \u0441\u0438\u043B\u043E\u0439 \u043E\u0433\u043D\u044F"
-  SpellType: 0
+  ManaCost: 50
+  TF: 0
   fireDmg: 50
   waterDmg: 0
   airDmg: 0

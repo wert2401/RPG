@@ -14,9 +14,13 @@ public class AttackSpell : Spell
     public float earthDmg;
     public override void SpellUse()
     {
+        ManaLost();
+        if (!TF)
+            return;
         UIManager.instance.Print(SpellWords);
         GameLogic.instance.enHealth -= (GameLogic.instance.enemy.airRes * airDmg) + (GameLogic.instance.enemy.fireRes * fireDmg) + (GameLogic.instance.enemy.darkRes * darkDmg) + (GameLogic.instance.enemy.waterRes * waterDmg) + (GameLogic.instance.enemy.lightRes * lightDmg) + (earthDmg * GameLogic.instance.enemy.earthRes);
         UIManager.instance.SetSpellScreenOn();
         GameLogic.instance.React();
     }
+
 }
