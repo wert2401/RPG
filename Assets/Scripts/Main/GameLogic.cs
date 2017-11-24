@@ -273,26 +273,42 @@ public class GameLogic : MonoBehaviour {
 	{
 		stun = 3;
 	}
+    public void PlayerHit()
+    {
+        enHealth -= (plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
+        UIManager.instance.Print("Вы атакуете монстра");
+        canRun = true;
+        float a = Random.value;
+        if (a < player.CH / 500)
+        {
+            UIManager.instance.Print("Крит!");
+            enHealth -= player.CD * ((plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
+        }
+        UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
+    }
+    public void EnemyHit()
+    {
+        plHealth -= (enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
+        canRun = true;
+        float a = Random.value;
+        if (a < enemy.CH / 500)
+        {
+            UIManager.instance.Print("Крит!");
+            plHealth -= enemy.CD * ((enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes));
+        }
+        UIManager.instance.UpdateHealth(Mathf.Round(enHealth), Mathf.Round(plHealth));
+    }
 
 #region Different attacks
     public void PlayerAttack()
     {
-		float a = Random.value;
-		if (a > (player.accuracy - enemy.evasChance) / 200 && player.accuracy>enemy.evasChance) 
-		{
-			enHealth -= (plDmg * Mathf.Pow(0.86f,enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes);
-			UIManager.instance.Print ("Вы атакуете монстра");
-			canRun = true;
-			a = Random.value;
-			if (a<player.CH/500)
-			{
-				UIManager.instance.Print ("Крит!");
-				enHealth -= player.CD*((plDmg * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
-			}
-			UIManager.instance.UpdateHealth (Mathf.Round(enHealth), Mathf.Round(plHealth));
-		}
-		else
-			UIManager.instance.Print ("Вы промахнулись");
+	    float a = Random.value;
+	    if (a > (enemy.evasChance - player.accuracy) / 100) 
+	    {
+            PlayerHit();
+	    }
+	    else
+		    UIManager.instance.Print ("Вы промахнулись");
         BuffUse();
     }
 
@@ -300,22 +316,12 @@ public class GameLogic : MonoBehaviour {
     {
 		float a = Random.value;
 		UIManager.instance.Print ("Монстр атакует вас");
-		if (a > (enemy.accuracy - player.evasChance) / 200 && enemy.accuracy > player.evasChance) 
+		if (a > (player.evasChance - enemy.accuracy) / 100) 
 		{
-			plHealth -= (enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes);
-			canRun = true;
-			a = Random.value;
-			if (a<enemy.CH/500)
-			{
-				UIManager.instance.Print ("Крит!");
-				plHealth -= enemy.CD*((enemy.damage * Mathf.Pow(0.86f, player.armor)) + (player.airRes * enemy.airDmg) + (player.fireRes * enemy.fireDmg) + (player.darkRes * enemy.darkDmg) + (player.waterRes * enemy.waterDmg) + (player.lightRes * enemy.lightDmg) + (enemy.earthDmg * player.earthRes));
-			}
-			UIManager.instance.UpdateHealth (Mathf.Round(enHealth), Mathf.Round(plHealth));
+            EnemyHit();
 		}
 		else 
-		{
 			UIManager.instance.Print ("Вы увернулись");
-		}
     }
 #endregion
 
