@@ -18,7 +18,7 @@ public class AttackSpell : Spell
         if (!TF)
             return;
         UIManager.instance.Print(SpellWords);
-        GameLogic.instance.enHealth -= (GameLogic.instance.enemy.airRes * airDmg) + (GameLogic.instance.enemy.fireRes * fireDmg) + (GameLogic.instance.enemy.darkRes * darkDmg) + (GameLogic.instance.enemy.waterRes * waterDmg) + (GameLogic.instance.enemy.lightRes * lightDmg) + (earthDmg * GameLogic.instance.enemy.earthRes);
+        GameLogic.instance.esh.curHealth -= (GameLogic.instance.enemy.airRes * airDmg) + (GameLogic.instance.enemy.fireRes * fireDmg) + (GameLogic.instance.enemy.darkRes * darkDmg) + (GameLogic.instance.enemy.waterRes * waterDmg) + (GameLogic.instance.enemy.lightRes * lightDmg) + (earthDmg * GameLogic.instance.enemy.earthRes);
         UIManager.instance.SetSpellScreenOn();
         GameLogic.instance.React();
     }

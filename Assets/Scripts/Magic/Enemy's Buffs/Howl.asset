@@ -15,7 +15,7 @@ MonoBehaviour:
     \u041E\u041D \u041F\u0415\u0420\u0415\u041F\u041E\u041B\u041D\u0415\u041D \u0420\u0415\u0428\u0418\u041C\u041E\u0421\u0422\u042C\u042E."
   SpellWords: 
   ManaCost: 0
-  TF: 0
+  TF: 1
   onEnemy: 1
   physBuff: 15
   fireBuff: 0
@@ -24,4 +24,4 @@ MonoBehaviour:
   lightBuff: 0
   darkBuff: 0
   earthBuff: 0
-  buffTime: 0
+  buffTime: 3

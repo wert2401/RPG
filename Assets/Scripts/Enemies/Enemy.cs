@@ -44,11 +44,11 @@ public class Enemy : ScriptableObject
 
     public void EnManaLost(Buff _buff)
     {
-        if (GameLogic.instance.enMana < _buff.ManaCost)
+        if (GameLogic.instance.esh.curMana < _buff.ManaCost)
         {
             UIManager.instance.Print("Противнику не хватает маны");
-            GameLogic.instance.enHealth -= (GameLogic.instance.enMana);
-            GameLogic.instance.enMana = 0;
+            GameLogic.instance.esh.curHealth -= (GameLogic.instance.esh.curMana);
+            GameLogic.instance.esh.curMana = 0;
             _buff.TF = false;
         }
         else

@@ -125,9 +125,6 @@ public class Player : MonoBehaviour {
         darkDmg = pds.darkDmg;
         earthDmg = pds.earthDmg;
 
-        GameLogic.instance.buffs.Clear();
-        GameLogic.instance.BTs.Clear();
-
         fireRes = pds.fireRes;
         waterRes = pds.waterRes;
         airRes = pds.airRes;
