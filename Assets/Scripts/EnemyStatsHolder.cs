@@ -27,7 +27,7 @@ public class EnemyStatsHolder : MonoBehaviour {
     public float darkRes;
     public float earthRes;
 
-    public void SetEnemy(Enemy enemy)
+    public void SetEnemy(Creature enemy)
     {
         curHealth = enemy.maxHealth;
         curMana = enemy.ManaMax;

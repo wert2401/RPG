@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Types;
 
-public class Enemy : ScriptableObject
+public class Creature : ScriptableObject
 {
-    public string enemyName;
+    public string CrName;
    
-    public int enLvl;
+    public int crLvl;
     public float maxHealth;
     public float ManaMax;
     public float damage;

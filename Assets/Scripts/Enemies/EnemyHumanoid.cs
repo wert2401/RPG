@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewHumanoidEnemy", menuName = "RPG/Enemies/Humanoid")]
-public class EnemyHumanoid : Enemy {
+public class EnemyHumanoid : Creature {
     [TextArea]
     public string answer;
 
@@ -14,8 +14,8 @@ public class EnemyHumanoid : Enemy {
 
     public override void Talk()
     {
-        UIManager.instance.Print("Вы говорите с " + enemyName);
-        UIManager.instance.Print(enemyName + " отвечает: " + answer);
+        UIManager.instance.Print("Вы говорите с " + CrName);
+        UIManager.instance.Print(CrName + " отвечает: " + answer);
         base.Talk();
     }
 	public override void React1()

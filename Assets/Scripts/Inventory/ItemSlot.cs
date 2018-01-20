@@ -97,7 +97,7 @@ public class ItemSlot : MonoBehaviour {
             {
                 text += "Сопротивление воздуху:" + item.airRes + "\r\n";
             }
-            if (item.darkDmg != 1)
+            if (item.darkRes != 1)
             {
                 text += "Сопротивление тьме:" + item.darkRes + "\r\n";
             }
@@ -105,7 +105,7 @@ public class ItemSlot : MonoBehaviour {
             {
                 text += "Сопротивление земле:" + item.earthRes + "\r\n";
             }
-            if (item.fireDmg != 1)
+            if (item.fireRes != 1)
             {
                 text += "Сопротивление огню:" + item.fireRes + "\r\n";
             }

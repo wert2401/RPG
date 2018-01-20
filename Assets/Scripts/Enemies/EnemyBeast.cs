@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBeastEnemy", menuName = "RPG/Enemies/Beast")]
-public class EnemyBeast: Enemy
+public class EnemyBeast: Creature
 {
     public bool eatYou;
     public string reaction;
@@ -21,7 +21,7 @@ public class EnemyBeast: Enemy
 
     public override void Talk()
     {
-        UIManager.instance.Print("Вы говорите с '" + enemyName+ "'");
+        UIManager.instance.Print("Вы говорите с '" + CrName+ "'");
         UIManager.instance.Print(reaction);
     }
 
@@ -43,7 +43,7 @@ public class EnemyBeast: Enemy
 
     void TryFeed()
     {
-        UIManager.instance.Print("Вы кормите " + enemyName);
+        UIManager.instance.Print("Вы кормите " + CrName);
 
         int a = Random.Range(0, 2);
         switch (a)
@@ -52,13 +52,13 @@ public class EnemyBeast: Enemy
                 {
                     if (!eatYou)
                     {
-                        UIManager.instance.Print(enemyName + " отвлекся");
+                        UIManager.instance.Print(CrName + " отвлекся");
                         SetExtrDynUI();
                         break;
                     }
                     else
                     {
-                        UIManager.instance.Print(enemyName + " хочет съесть только вас");
+                        UIManager.instance.Print(CrName + " хочет съесть только вас");
                         GameLogic.instance.EnemyAttack();
                         ResetUI();
                         break;
@@ -66,7 +66,7 @@ public class EnemyBeast: Enemy
                 }
             case 1:
                 {
-                    UIManager.instance.Print(enemyName + " не реагирует на вашу еду");
+                    UIManager.instance.Print(CrName + " не реагирует на вашу еду");
                     ResetUI();
                     break;
                 }

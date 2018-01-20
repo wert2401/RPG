@@ -50,21 +50,12 @@ public class UIManager : MonoBehaviour {
         SetLocationName(loc.locationName);
         RemoveAllButtons(locButtonsHolder.transform);
 
-        if (loc.locations.Count > 0)
+        if (loc.CoFW > 0)
         {
-            for (int i = 0; i < loc.locations.Count; i++)
+            for (int i = 0; i < loc.CoFW; i++)
             {
                 Location _loc = loc.locations[i];
                 AddLocationButton(_loc.locationName, i);
-            }
-        }
-
-        if (loc.dungeons.Count > 0)
-        {
-            for (int i = 0; i < loc.dungeons.Count; i++)
-            {
-                Dungeon _dun = loc.dungeons[i];
-                AddDungeonButton(_dun.dungeonName, i);
             }
         }
 
@@ -91,14 +82,6 @@ public class UIManager : MonoBehaviour {
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToLocation(id));
     }
 
-    public void AddDungeonButton(string name, int id)
-    {
-        GameObject go = Instantiate(button, locButtonsHolder.transform);
-        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
-        btnHelp.SetText(name);
-        btnHelp.btn.onClick.AddListener(() => GameLogic.instance.EnterTheDungeon(id));
-    }
-
     public void AddShopButton(string name, int id)
     {
         GameObject go = Instantiate(button, locButtonsHolder.transform);
@@ -120,7 +103,7 @@ public class UIManager : MonoBehaviour {
         fightScreen.SetActive(stage);
     }
 
-    public void SetFightUI(Enemy en, Player pl)
+    public void SetFightUI(Creature en, Player pl)
     {
         RemoveAllButtons(dynButtonsHolder.transform);
         RemoveAllButtons(extrDynButtonsHolder.transform);
@@ -132,7 +115,7 @@ public class UIManager : MonoBehaviour {
         en.SetEnemyUI();
 
         UpdateHealth(en.maxHealth, pl.maxHealth);
-        UpdateNames(en.enemyName, pl.plName);
+        UpdateNames(en.CrName, pl.plName);
     }
 
     public void UpdateHealth(float enemyHp, float playerHp)

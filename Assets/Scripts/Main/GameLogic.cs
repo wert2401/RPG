@@ -21,7 +21,7 @@ public class GameLogic : MonoBehaviour {
     Spell buffSpell;
     [Header("Enemy")]
     public EnemyStatsHolder esh;
-    public Enemy enemy;
+    public Creature enemy;
     //public float enHealth;
     public float enMana;
     public bool canRun = true;
@@ -41,6 +41,7 @@ public class GameLogic : MonoBehaviour {
 
     private void Start()
     {
+        LocationCleaner.instance.LocClear();
         if (startLocation != null)
         {
             UIManager.instance.SetLocationUI(startLocation);
@@ -82,18 +83,24 @@ public class GameLogic : MonoBehaviour {
     {
         if (curLoc == null) return;
 
-        //curLoc = curLoc.locations[id];
         UIManager.instance.SetLocationUI(curLoc.locations[id]);
         curLoc = curLoc.locations[id];
-    }
-
-    public void EnterTheDungeon(int id)
-    {
-        if (curLoc == null) return;
-
-        enemy = curLoc.dungeons[id].GetRandomEnemy();
-        UIManager.instance.SetLocationScreenOn(false);
-        StartFight();
+        curLoc.CoV++;
+        if (curLoc.CoV>=curLoc.NCoV)
+        {
+            curLoc.CoFW++;
+            if (curLoc.CoFW>curLoc.locations.Count)
+            {
+                curLoc.CoFW = curLoc.locations.Count;
+            }
+            curLoc.CoV = 0;
+            curLoc.NCoV *= curLoc.Multiplier;
+        }
+        float a = Random.value;
+        if (a<curLoc.CoF)
+        {
+            StartFight();
+        }
     }
 
     public void MoveToShop(int id)
@@ -107,6 +114,8 @@ public class GameLogic : MonoBehaviour {
 #region Fight
     private void StartFight()
     {
+        UIManager.instance.SetLocationScreenOn(false);
+        enemy = curLoc.GetRandomEnemy();
         if (enemy == null) return;
         //plDmg = InventoryManager.instance.GetItemsDamage ();
         //plDmg = player.damage;
@@ -161,10 +170,8 @@ public class GameLogic : MonoBehaviour {
 
     public void StopFight(bool ran)
     {
-        UIManager.instance.SetLocationUI(startLocation);
-        curLoc = startLocation;
         UIManager.instance.SetFightScreenOn(false);
-
+        UIManager.instance.SetLocationUI(curLoc);
         if (plHealth <= 0)
         {
             player.ResetStats();
@@ -172,13 +179,14 @@ public class GameLogic : MonoBehaviour {
 			UIManager.instance.SetDiedScreenOn();
 			UIManager.instance.ClearLog ();
             InventoryManager.instance.ResetInv();
+            LocationCleaner.instance.LocClear();
             return;
         }
 
-        int expG = enemy.expGain * (enemy.enLvl / player.lvl);
+        int expG = enemy.expGain * (enemy.crLvl / player.lvl);
         if (ran)
         {  
-			if (enemy.enLvl - player.lvl >= 20)
+			if (enemy.crLvl - player.lvl >= 20)
 				expG = 0;
             expG = expG / 10;
         }
