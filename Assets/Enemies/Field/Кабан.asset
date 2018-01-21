@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ac3f7b34fadcf4ca54a037b23c41e7, type: 3}
   m_Name: "\u041A\u0430\u0431\u0430\u043D"
   m_EditorClassIdentifier: 
-  enemyName: "\u041A\u0430\u0431\u0430\u043D"
-  enLvl: 5
+  CrName: "\u041A\u0430\u0431\u0430\u043D"
+  crLvl: 0
   maxHealth: 225
   ManaMax: 0
   damage: 18

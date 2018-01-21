@@ -105,6 +105,7 @@ public class Player : MonoBehaviour {
         damage = pds.damage;
         armor = pds.armor;
         money = pds.money;
+        healPotion = pds.healPotion;
         lvl = pds.lvl;
         exp = pds.exp;
 		GameLogic.instance.plHealth = pds.maxHealth;

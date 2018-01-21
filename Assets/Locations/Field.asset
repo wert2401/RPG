@@ -13,15 +13,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Field
   description: 
-  CoF: 0
+  CoF: 0.75
   CoV: 0
-  CoFW: 1
+  CoFW: 2
   NCoV: 10
   Multiplier: 2
   locations:
+  - {fileID: 11400000}
   - {fileID: 11400000, guid: dec8bf2c038128247a343b9eac32e25b, type: 2}
   - {fileID: 11400000, guid: c517dd467208412429baa0d36cebf30a, type: 2}
   - {fileID: 11400000, guid: cb555b54d54163347bf7b2806033a872, type: 2}
   - {fileID: 11400000, guid: 0ba139f2be311d94488eac5c5975c19b, type: 2}
   shops: []
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: de053c7cd7975e14da53f1334d863f42, type: 2}
+  - {fileID: 11400000, guid: 3853c683314259841a57d7c34722e000, type: 2}
+  - {fileID: 11400000, guid: bf712d2a518a2d448b07e8cb22f67c95, type: 2}
+  - {fileID: 11400000, guid: c3ea7942dccf5e141b950f892fa9025c, type: 2}

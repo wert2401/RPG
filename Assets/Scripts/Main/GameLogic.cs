@@ -180,6 +180,7 @@ public class GameLogic : MonoBehaviour {
 			UIManager.instance.ClearLog ();
             InventoryManager.instance.ResetInv();
             LocationCleaner.instance.LocClear();
+            UIManager.instance.SetLocationUI(startLocation);
             return;
         }
 

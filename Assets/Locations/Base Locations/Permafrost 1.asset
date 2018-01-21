@@ -15,11 +15,16 @@ MonoBehaviour:
   description: 
   CoF: 0
   CoV: 0
-  CoFW: 1
+  CoFW: 2
   NCoV: 10
   Multiplier: 2
   locations:
+  - {fileID: 11400000}
   - {fileID: 11400000, guid: cb555b54d54163347bf7b2806033a872, type: 2}
   - {fileID: 11400000, guid: d516cc299d91b434f91e33451aca2866, type: 2}
   shops: []
-  enemies: []
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

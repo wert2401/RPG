@@ -22,4 +22,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f9a8d1cbd0f6a24d9d2c9807df50086, type: 2}
   - {fileID: 11400000, guid: cb555b54d54163347bf7b2806033a872, type: 2}
   shops: []
-  enemies: []
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
