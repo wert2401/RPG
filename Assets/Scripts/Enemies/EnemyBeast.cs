@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewBeastEnemy", menuName = "RPG/Enemies/Beast")]
+[CreateAssetMenu(fileName = "NewBeastEnemy", menuName = "RPG/Creatures/Beast")]
 public class EnemyBeast: Creature
 {
     public bool eatYou;

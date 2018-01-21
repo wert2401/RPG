@@ -36,7 +36,8 @@ public class UIManager : MonoBehaviour {
     public GameObject charScreen;
     public GameObject inventoryScreen;
 
-    public delegate void met();
+    public delegate void Met();
+    public delegate void Dia(int a);
 
     private void Awake()
     {
@@ -145,12 +146,20 @@ public class UIManager : MonoBehaviour {
         fightButtonsHolder.SetActive(stage);
     }
 
-    public void AddDynButton(string name, met met, Transform holder)
+    public void AddDynButton(string name, Met met, Transform holder)
     {
         GameObject go = Instantiate(button, holder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(met.Invoke);
+    }
+
+    public void AddDiaButton(string name, Dia dia, Transform holder,int id)
+    {
+        GameObject go = Instantiate(button, holder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(() => dia(id));
     }
 
     //public void AddExtrDynButton(string name, met met)
@@ -162,7 +171,7 @@ public class UIManager : MonoBehaviour {
     //}
     #endregion
 
-#region Fight Log
+    #region Fight Log
     public void Print(string text)
     {
         log.text += text + ".\r\n" + "**********" + "\r\n";
@@ -191,11 +200,15 @@ public class UIManager : MonoBehaviour {
     private void RemoveAllButtons(Transform tr)
     {
         if (tr.childCount <= 0) return;
-
         for (int i = 0; i < tr.childCount; i++)
         {
             Destroy(tr.GetChild(i).gameObject);
         }
+    }
+
+    public void ClearDialogue()
+    {
+        RemoveAllButtons(dynButtonsHolder.transform);
     }
 
 	public void SetSpellScreenOn()

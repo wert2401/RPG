@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHumanoidEnemy", menuName = "RPG/Enemies/Humanoid")]
+[CreateAssetMenu(fileName = "NewHumanoidEnemy", menuName = "RPG/Creatures/Humanoid")]
 public class EnemyHumanoid : Creature {
     [TextArea]
     public string answer;
