@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: "\u041A\u0440\u044B\u0441\u0430"
   m_EditorClassIdentifier: 
   CrName: "\u041A\u0440\u044B\u0441\u0430"
-  crLvl: 0
+  crLvl: 2
   maxHealth: 80
   ManaMax: 0
   damage: 7

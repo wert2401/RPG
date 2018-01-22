@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd3b20d4762def4eb1ea86b5f1fdd9e, type: 3}
   m_Name: NewShop
   m_EditorClassIdentifier: 
-  shopName: 
-  items: []
+  shopName: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D Gucci"
+  items:
+  - {fileID: 11400000, guid: 307996a74582bf747b2a5da68a19f107, type: 2}
+  - {fileID: 11400000, guid: 243d2d4c0fa198047928f549dd7bf9e6, type: 2}

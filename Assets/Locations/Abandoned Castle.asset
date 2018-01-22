@@ -15,7 +15,7 @@ MonoBehaviour:
   description: 
   CoF: 0
   CoV: 0
-  CoFW: 2
+  CoFW: 1
   NCoV: 10
   Multiplier: 2
   locations:
@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  NPC: []

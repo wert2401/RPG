@@ -11,6 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 3
   m_EditorClassIdentifier: Assembly-CSharp::Answer
-  Words: 
-  PlAns: []
-  Answers: []
+  Words: "\u041C\u043E\u0439"
+  PlAns:
+  - "\u041A\u0442\u043E \u0442\u044B?"
+  - "\u0412\u0441\u0451 \u0432 \u043F\u043E\u0440\u044F\u0434\u043A\u0435?"
+  Answers:
+  - {fileID: 11400000, guid: 1377649ab444de9449adeae3af411b28, type: 2}
+  - {fileID: 11400000, guid: a13debc3d0ede2d42b1fe1329c3c6a0f, type: 2}

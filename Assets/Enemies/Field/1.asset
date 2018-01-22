@@ -11,6 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::Answer
-  Words: 
-  PlAns: []
-  Answers: []
+  Words: "\u0420\u0443\u043B\u0435\u0442"
+  PlAns:
+  - "\u0412\u0441\u0451 \u0432 \u043F\u043E\u0440\u044F\u0434\u043A\u0435?"
+  - "\u041A\u0430\u043A\u043E\u0439 \u0440\u0443\u043B\u0435\u0442?"
+  Answers:
+  - {fileID: 11400000, guid: a13debc3d0ede2d42b1fe1329c3c6a0f, type: 2}
+  - {fileID: 11400000, guid: 6a14bec072f5c6742a9932462a9e0325, type: 2}
