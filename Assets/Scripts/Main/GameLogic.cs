@@ -86,21 +86,26 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.SetLocationUI(curLoc.locations[id]);
         curLoc = curLoc.locations[id];
         curLoc.CoV++;
-        if (curLoc.CoV>=curLoc.NCoV)
+        if (curLoc.CoV >= curLoc.NCoV)
         {
             curLoc.CoFW++;
-            if (curLoc.CoFW>curLoc.locations.Count)
+            if (curLoc.CoFW > curLoc.locations.Count)
             {
                 curLoc.CoFW = curLoc.locations.Count;
             }
             curLoc.CoV = 0;
             curLoc.NCoV *= curLoc.Multiplier;
         }
-        float a = Random.value;
-        if (a<curLoc.CoF)
+
+        if (!curLoc.isTown)
         {
-            StartFight();
+            float a = Random.value;
+            if (a < curLoc.CoF)
+            {
+                StartFight(0);
+            }
         }
+
     }
 
     public void MoveToShop(int id)
@@ -112,10 +117,18 @@ public class GameLogic : MonoBehaviour {
  #endregion
 
 #region Fight
-    private void StartFight()
+    public void StartFight(int i)
     {
         UIManager.instance.SetLocationScreenOn(false);
-        enemy = curLoc.GetRandomEnemy();
+        if (curLoc.isTown)
+        {
+            enemy = curLoc.NPC[i];
+        }
+        else
+        {
+            enemy = curLoc.GetRandomEnemy();
+        }
+
         if (enemy == null) return;
         //plDmg = InventoryManager.instance.GetItemsDamage ();
         //plDmg = player.damage;
@@ -337,6 +350,16 @@ public class GameLogic : MonoBehaviour {
 
         Debug.Log("Try to run");
         int a = Random.Range(0, 2);
+        NPC npc = (NPC)enemy;
+        if (npc != null)
+        {
+            if (esh.curHealth == enemy.maxHealth)
+            {
+                StopFight(true);
+                return;
+            }
+        }
+
         switch (a)
         {
             case 0:

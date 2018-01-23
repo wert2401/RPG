@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour {
         SetLocationName(loc.locationName);
         RemoveAllButtons(locButtonsHolder.transform);
 
-        if (loc.CoFW > 0)
+        if (loc.CoFW > 0 && loc.locations.Count > 0)
         {
             for (int i = 0; i < loc.CoFW; i++)
             {
@@ -66,6 +66,14 @@ public class UIManager : MonoBehaviour {
             {
                 Shop _shop = loc.shops[i];
                 AddShopButton(_shop.shopName, i);
+            }
+        }
+
+        if (loc.NPC.Count > 0 && loc.isTown)
+        {
+            for (int i = 0; i < loc.NPC.Count; i++)
+            {
+                AddDiaButton(loc.NPC[i].CrName, GameLogic.instance.StartFight, locButtonsHolder.transform, i);
             }
         }
     }
@@ -171,7 +179,7 @@ public class UIManager : MonoBehaviour {
     //}
     #endregion
 
-    #region Fight Log
+#region Fight Log
     public void Print(string text)
     {
         log.text += text + ".\r\n" + "**********" + "\r\n";
