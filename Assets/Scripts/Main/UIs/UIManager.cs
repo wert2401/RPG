@@ -68,14 +68,6 @@ public class UIManager : MonoBehaviour {
                 AddShopButton(_shop.shopName, i);
             }
         }
-
-        if (loc.CoFW==loc.locations.Count)
-        {
-            for (int i = 0; i < loc.NPC.Count; i++)
-            {
-                AddNPCButton(loc.NPC[i].CrName, i);
-            }
-        }
     }
 
     public void SetLocationName(string name)
@@ -89,14 +81,6 @@ public class UIManager : MonoBehaviour {
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToLocation(id));
-    }
-
-    public void AddNPCButton(string name, int id)
-    {
-        GameObject go = Instantiate(button, locButtonsHolder.transform);
-        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
-        btnHelp.SetText(name);
-        btnHelp.btn.onClick.AddListener(() => GameLogic.instance.StartActing(id));
     }
 
     public void AddShopButton(string name, int id)

@@ -15,7 +15,7 @@ public class Location : ScriptableObject {
     public List<Location> locations;
     public List<Shop> shops;
     public List<Creature> enemies;
-    public List<NPC> NPC;
+    public List<Creature> NPC;
 
     public Creature GetRandomEnemy()
     {
@@ -39,7 +39,7 @@ public class Location : ScriptableObject {
         return enemies[0];
     }
 
-    public NPC GetTargetNPC(int id)
+    public Creature GetTargetNPC(int id)
     {
         return NPC[id];
     }
