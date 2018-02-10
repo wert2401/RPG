@@ -71,7 +71,6 @@ public class Creature : ScriptableObject
 
     public Item GetRandomDrop()
     {
-        if (drop.Count == 0) return null; 
         Item item;
         int a = Random.Range(0, drop.Count-1);
         //Debug.Log(a);

@@ -13,16 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Start Location
   description: 
-  isTown: 0
   CoF: 0
   CoV: 0
-  CoFW: 3
+  CoFW: 1
   NCoV: 10
-  Multiplier: 0
+  Multiplier: 2
   locations:
   - {fileID: 11400000, guid: 7f9a8d1cbd0f6a24d9d2c9807df50086, type: 2}
   - {fileID: 11400000, guid: cb555b54d54163347bf7b2806033a872, type: 2}
-  - {fileID: 11400000, guid: 4c497103faa4d6d43871f21e41f62926, type: 2}
   shops: []
   enemies: []
   NPC: []

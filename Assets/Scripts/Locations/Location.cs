@@ -7,7 +7,6 @@ public class Location : ScriptableObject {
     public string locationName;
     public string description;
 
-    public bool isTown;
     public float CoF;
     public int CoV;
     public int CoFW;
