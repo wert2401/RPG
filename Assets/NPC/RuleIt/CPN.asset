@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794d096cfda398e43b37e3d9565e3513, type: 3}
-  m_Name: NewNPC
+  m_Name: CPN
   m_EditorClassIdentifier: 
   CrName: "\u0422\u0417\u0421"
   crLvl: 0
@@ -37,6 +37,8 @@ MonoBehaviour:
   minMoneyGain: 0
   maxMoneyGain: 0
   drop: []
+  isAgressiveBase: 0
+  isAgressive: 0
   Money: 0
   FAnswer: {fileID: 11400000, guid: 880f0cac1ea91a74d994ccc22b27c817, type: 2}
   CAnswer: {fileID: 11400000, guid: a13debc3d0ede2d42b1fe1329c3c6a0f, type: 2}

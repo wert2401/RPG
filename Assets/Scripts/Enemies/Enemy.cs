@@ -6,7 +6,6 @@ using Types;
 public class Creature : ScriptableObject
 {
     public string CrName;
-   
     public int crLvl;
     public float maxHealth;
     public float ManaMax;

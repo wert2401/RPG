@@ -5,7 +5,10 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "NewNPC", menuName = "RPG/Creatures/NPC")]
 public class NPC : Creature
 {
+    public bool isAgressiveBase;
+    public bool isAgressive;
     public int Money;
+
     //public List<Answer> Answers;
     //public List<Answer> PlAnswers;
 
@@ -29,7 +32,7 @@ public class NPC : Creature
         }
     }
 
-    public void NPCT(int id)
+    public virtual void NPCT(int id)
     {
         UIManager.instance.ClearDialogue();
         CAnswer = CAnswer.Answers[id];
@@ -38,18 +41,5 @@ public class NPC : Creature
         {
             UIManager.instance.AddDiaButton(CAnswer.PlAns[i], NPCT, UIManager.instance.dynButtonsHolder.transform,i);
         }
-        //int a = id[0];
-        //id.Clear();
-        //UIManager.instance.Print(Answers[a].Words);
-        //for (int i = 0; i < PlAnswers.Count; i++)
-        //{
-        //    id.Add(i);
-        //    UIManager.instance.AddDynButton(PlAnswers[i].Words, PT, UIManager.instance.dynButtonsHolder.transform);
-        //}
-    }
-
-    public void PT()
-    {
-
     }
 }

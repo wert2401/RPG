@@ -127,6 +127,17 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
     }
 
+    public void StartActing(int id)
+    {
+        UIManager.instance.SetLocationScreenOn(false);
+        enemy = curLoc.GetTargetNPC(id);
+        if (enemy == null) return;
+
+        esh.SetEnemy(enemy);
+        UIManager.instance.SetFightUI(enemy, player);
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+    }
+
     public void BuffUse(Buff _buff,bool isEnemy)
     {
         if (isEnemy)
@@ -436,49 +447,49 @@ public class GameLogic : MonoBehaviour {
             StopFight(false);
             return;
         }
-
 		if (stun == 0) 
 		{
-			float a = Random.value;
-			if (a < 0.4) 
-			{
-				EnemyAttack ();
-		
-			}
-			if (0.4 <= a && a<0.9) 
-			{
-						a = Random.value;
-						if (a<0.33)
-						{
-							enemy.React1();
-						}
-						if (0.33 <= a && a<0.67) 
-						{
-							enemy.React2();
-						}
-						if (0.67<=a)
-						{
-							enemy.React3();
-						}
-			}
-			if (a >= 0.9)
-			{
-				if (esh.curHealth < enemy.maxHealth * 0.05f) {
-					StopFight (false);
-					UIManager.instance.Print ("Противник сбежал");
-					return;
-				} 
-				else 
-				{
-					EnemyAttack ();
-				}
-			}
+                float a = Random.value;
+                if (a < 0.4)
+                {
+                    EnemyAttack();
+
+                }
+                if (0.4 <= a && a < 0.9)
+                {
+                    a = Random.value;
+                    if (a < 0.33)
+                    {
+                        enemy.React1();
+                    }
+                    if (0.33 <= a && a < 0.67)
+                    {
+                        enemy.React2();
+                    }
+                    if (0.67 <= a)
+                    {
+                        enemy.React3();
+                    }
+                }
+                if (a >= 0.9)
+                {
+                    if (esh.curHealth < enemy.maxHealth * 0.05f)
+                    {
+                        StopFight(false);
+                        UIManager.instance.Print("Противник сбежал");
+                        return;
+                    }
+                    else
+                    {
+                        EnemyAttack();
+                    }
+                }
 
 		}
 		else 
 		{
 			stun--;
-			UIManager.instance.Print("Монстр не понимает, что происходит");
+			UIManager.instance.Print("Противник не понимает, что происходит");
 			///Делает ничего
 			/// Абсолютно
 		}
