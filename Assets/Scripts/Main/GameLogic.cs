@@ -109,6 +109,15 @@ public class GameLogic : MonoBehaviour {
 
         ShopManager.instance.SetShopUI(curLoc.shops[id]);
     }
+
+    public void StartActingWithNPC(int id)
+    {
+        UIManager.instance.SetLocationScreenOn(false);
+        enemy = curLoc.GetTargetNPC(id);
+        esh.SetEnemy(enemy);
+        UIManager.instance.SetFightUI(enemy, player);
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+    }
  #endregion
 
 #region Fight

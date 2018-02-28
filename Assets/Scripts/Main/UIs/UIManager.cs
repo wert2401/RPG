@@ -60,6 +60,15 @@ public class UIManager : MonoBehaviour {
             }
         }
 
+        if (loc.NPC.Count>0)
+        {
+            for (int i = 0; i < loc.NPC.Count; i++)
+            {
+                NPC _NPC = loc.NPC[i];
+                AddNPCButton(_NPC.name, i);
+            }
+        }
+
         if (loc.shops.Count > 0)
         {
             for (int i = 0; i < loc.shops.Count; i++)
@@ -81,6 +90,14 @@ public class UIManager : MonoBehaviour {
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
         btnHelp.SetText(name);
         btnHelp.btn.onClick.AddListener(() => GameLogic.instance.MoveToLocation(id));
+    }
+
+    public void AddNPCButton(string name, int id)
+    {
+        GameObject go = Instantiate(button, locButtonsHolder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(() => GameLogic.instance.StartActingWithNPC(id));
     }
 
     public void AddShopButton(string name, int id)
