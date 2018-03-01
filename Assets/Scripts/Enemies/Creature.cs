@@ -16,6 +16,7 @@ public class Creature : ScriptableObject
 	public float evasChance;
 	public float CH;
 	public float CD;
+    public bool isAlive = true;
     [Header("Elements Damage")]
     public float fireDmg;
     public float waterDmg;
@@ -57,7 +58,7 @@ public class Creature : ScriptableObject
 
     virtual public void Talk()
     {
-        SetDynUI();
+        //SetDynUI();
         ResetUI();
     }
 	virtual public void React1()
@@ -70,16 +71,16 @@ public class Creature : ScriptableObject
 	{
 	}
 
-    public Item GetRandomDrop()
+    public virtual void GetDrop()
     {
-        Item item;
         int a = Random.Range(0, drop.Count-1);
         //Debug.Log(a);
-        item = drop[a];
-        return item;
+        Item item = drop[a];
+        if (item != null)
+            InventoryManager.instance.AddItem(item);
     }
 
-    public int GetRandomMoney()
+    public virtual int GetMoney()
     {
         int mGain;
         mGain = Random.Range(minMoneyGain, maxMoneyGain);

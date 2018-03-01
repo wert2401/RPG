@@ -14,15 +14,13 @@ public class EnemyBeast: Creature
     {
         UIManager.instance.AddDynButton("Поговорить", Talk, UIManager.instance.dynButtonsHolder.transform);
         UIManager.instance.AddDynButton("Покормить", TryFeed, UIManager.instance.dynButtonsHolder.transform);
-
-        UIManager.instance.AddDynButton("Ударить", GameLogic.instance.PlayerHit, UIManager.instance.extrDynButtonsHolder.transform);
-        UIManager.instance.AddDynButton("Сбежать", Run, UIManager.instance.extrDynButtonsHolder.transform);
     }
 
     public override void Talk()
     {
         UIManager.instance.Print("Вы говорите с '" + CrName+ "'");
         UIManager.instance.Print(reaction);
+        base.Talk();
     }
 
 	public override void React1()
@@ -41,6 +39,13 @@ public class EnemyBeast: Creature
         Debug.Log("Третья реакция зверя");
     }
 
+    public void HitAfterFeeding()
+    {
+        GameLogic.instance.PlayerHit();
+        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
+        ResetUI();
+    }
+
     void TryFeed()
     {
         UIManager.instance.Print("Вы кормите " + CrName);
@@ -53,7 +58,9 @@ public class EnemyBeast: Creature
                     if (!eatYou)
                     {
                         UIManager.instance.Print(CrName + " отвлекся");
-                        SetExtrDynUI();
+                        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
+                        UIManager.instance.AddDynButton("Ударить", HitAfterFeeding, UIManager.instance.dynButtonsHolder.transform);
+                        UIManager.instance.AddDynButton("Сбежать", Run, UIManager.instance.dynButtonsHolder.transform);
                         break;
                     }
                     else

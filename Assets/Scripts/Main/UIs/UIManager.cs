@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour {
 
     [Header("Log")]
     public Text log;
+    public GameObject Hint;
+    public Text HintText;
 
     [Header("Player stats and staff")]
     public GameObject charScreen;
@@ -42,6 +44,17 @@ public class UIManager : MonoBehaviour {
     private void Awake()
     {
         instance = this;
+    }
+
+    public void UseHint(string Text)
+    {
+        Hint.SetActive(true);
+        HintText.text = Text;
+    }
+
+    public void OkHint()
+    {
+        Hint.SetActive(false);
     }
 
 #region Locations
@@ -65,7 +78,8 @@ public class UIManager : MonoBehaviour {
             for (int i = 0; i < loc.NPC.Count; i++)
             {
                 NPC _NPC = loc.NPC[i];
-                AddNPCButton(_NPC.name, i);
+                if (_NPC.isAlive == true)
+                    AddNPCButton(_NPC.name, i);
             }
         }
 
@@ -123,6 +137,7 @@ public class UIManager : MonoBehaviour {
 
     public void SetFightUI(Creature en, Player pl)
     {
+        UseHint("Перед вами "+en.CrName);
         RemoveAllButtons(dynButtonsHolder.transform);
         RemoveAllButtons(extrDynButtonsHolder.transform);
         ClearLog();
@@ -214,7 +229,7 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
-    private void RemoveAllButtons(Transform tr)
+    public void RemoveAllButtons(Transform tr)
     {
         if (tr.childCount <= 0) return;
         for (int i = 0; i < tr.childCount; i++)

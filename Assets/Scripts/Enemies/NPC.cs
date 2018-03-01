@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class NPC : Creature
 {
     public int Money;
+    public List<Item> Inventory;
     //public List<Answer> Answers;
     //public List<Answer> PlAnswers;
 
@@ -26,6 +27,19 @@ public class NPC : Creature
         for (int i = 0; i < FAnswer.Answers.Count; i++)
         {
             UIManager.instance.AddDiaButton(FAnswer.PlAns[i], NPCT, UIManager.instance.dynButtonsHolder.transform,i);
+        }
+    }
+
+    public override int GetMoney()
+    {
+        return Money;
+    }
+
+    public override void GetDrop()
+    {
+        for (int i = 0; i < Inventory.Count; i++)
+        {
+            InventoryManager.instance.AddItem(Inventory[i]);
         }
     }
 

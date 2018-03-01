@@ -7,21 +7,16 @@ public class GameLogic : MonoBehaviour {
     public static GameLogic instance;
     public Location startLocation;
     public Location curLoc;
+    public List<Location> Locations;
     [Header("Player")]
     public Player player;
     public float plHealth;
     public float plMana;
-	//int bufftime;
-	//float airbuff;
-	//float earthbuff;
-	//float firebuff;
-	//float waterbuff;
-	//float lightbuff;
-	//float darkbuff;
     Spell buffSpell;
     [Header("Enemy")]
     public EnemyStatsHolder esh;
     public Creature enemy;
+    public Creature ifNPC;
     //public float enHealth;
     public float enMana;
     public bool canRun = true;
@@ -50,6 +45,27 @@ public class GameLogic : MonoBehaviour {
         else
             Debug.Log("Set start location!");
         player.ResetStats();
+        RessurectNPC();
+    }
+
+    public void RessurectNPC()
+    {
+        for (int i = 0; i < Locations.Count; i++)
+        {
+            for (int l = 0; l < Locations[i].NPC.Count; l++)
+            {
+                Locations[i].NPC[l].isAlive = true;
+            }
+        }
+    }
+
+    public void ClearAllBuffsOnPlayer()
+    {
+        for (int i = 0; i < BTs.Count; i++)
+        {
+            BTs[i] = 0;
+        }
+        BuffUse();
     }
 
 #region Location
@@ -114,6 +130,7 @@ public class GameLogic : MonoBehaviour {
     {
         UIManager.instance.SetLocationScreenOn(false);
         enemy = curLoc.GetTargetNPC(id);
+        ifNPC = enemy;
         esh.SetEnemy(enemy);
         UIManager.instance.SetFightUI(enemy, player);
         UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
@@ -202,27 +219,30 @@ public class GameLogic : MonoBehaviour {
         }
         player.AddExp(expG);
 
-        Item itemGain = enemy.GetRandomDrop();
-        if (itemGain != null)
-            InventoryManager.instance.AddItem(itemGain);
+        enemy.GetDrop();
 
-        int moneyGain = enemy.GetRandomMoney();
+        int moneyGain = enemy.GetMoney();
         player.money += moneyGain;
 
         EnBuffs.Clear();
         EnBTs.Clear();
-        buffs.Clear();
-        BTs.Clear();
+        ClearAllBuffsOnPlayer();
+        if (ifNPC != null)
+        {
+            enemy.isAlive = false;
+            ifNPC = null;
+        }
+        UIManager.instance.SetLocationUI(curLoc);
     }
 
     public void BuffUse()
     {
         for (int i = 0; i < buffs.Count; i++)
         {
-            if (BTs[i] > 0)
+            if (BTs[i] >= 0)
             {
                 BTs[i] -= 1;
-                if (BTs[i] == 0)
+                if (BTs[i] <= 0)
                 {
                     player.airDmg -= buffs[i].airBuff;
                     player.earthDmg -= buffs[i].earthBuff;
