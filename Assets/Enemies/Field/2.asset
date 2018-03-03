@@ -18,3 +18,4 @@ MonoBehaviour:
   Answers:
   - {fileID: 11400000, guid: 1377649ab444de9449adeae3af411b28, type: 2}
   - {fileID: 11400000, guid: 6a14bec072f5c6742a9932462a9e0325, type: 2}
+  CanEndDialogue: 1

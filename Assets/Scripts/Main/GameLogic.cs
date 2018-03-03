@@ -219,19 +219,20 @@ public class GameLogic : MonoBehaviour {
         }
         player.AddExp(expG);
 
-        enemy.GetDrop();
-
-        int moneyGain = enemy.GetMoney();
-        player.money += moneyGain;
-
+        if (!ran)
+        {
+            int moneyGain = enemy.GetMoney();
+            player.money += moneyGain;
+            if (ifNPC != null)
+            {
+                enemy.isAlive = false;
+                ifNPC = null;
+            }
+            enemy.GetDrop();
+        }
         EnBuffs.Clear();
         EnBTs.Clear();
         ClearAllBuffsOnPlayer();
-        if (ifNPC != null)
-        {
-            enemy.isAlive = false;
-            ifNPC = null;
-        }
         UIManager.instance.SetLocationUI(curLoc);
     }
 
@@ -434,6 +435,7 @@ public class GameLogic : MonoBehaviour {
             esh.curHealth -= player.CD * ((player.damage * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
         }
         UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        CheckIfSomebodyDied();
     }
 
     public void EnemyHit()

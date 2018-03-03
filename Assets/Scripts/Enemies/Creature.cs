@@ -40,7 +40,10 @@ public class Creature : ScriptableObject
  #region Actions
     virtual public void Interact()
     {
+        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
         SetDynUI();
+        SetEnemyUI();
+        UIManager.instance.AddDynButton("Назад",Back, UIManager.instance.dynButtonsHolder.transform);
     }
 
     public void EnManaLost(Buff _buff)
@@ -60,6 +63,12 @@ public class Creature : ScriptableObject
     {
         //SetDynUI();
         ResetUI();
+    }
+    public void Back()
+    {
+        UIManager.instance.SetDynButtonsOn(false);
+        UIManager.instance.SetFightButtonsOn(true);
+        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
     }
 	virtual public void React1()
 	{

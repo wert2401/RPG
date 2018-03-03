@@ -28,6 +28,8 @@ public class NPC : Creature
         {
             UIManager.instance.AddDiaButton(FAnswer.PlAns[i], NPCT, UIManager.instance.dynButtonsHolder.transform,i);
         }
+        if(FAnswer.CanEndDialogue)
+            UIManager.instance.AddDynButton("Назад", Back, UIManager.instance.dynButtonsHolder.transform);
     }
 
     public override int GetMoney()
@@ -52,14 +54,8 @@ public class NPC : Creature
         {
             UIManager.instance.AddDiaButton(CAnswer.PlAns[i], NPCT, UIManager.instance.dynButtonsHolder.transform,i);
         }
-        //int a = id[0];
-        //id.Clear();
-        //UIManager.instance.Print(Answers[a].Words);
-        //for (int i = 0; i < PlAnswers.Count; i++)
-        //{
-        //    id.Add(i);
-        //    UIManager.instance.AddDynButton(PlAnswers[i].Words, PT, UIManager.instance.dynButtonsHolder.transform);
-        //}
+        if(CAnswer.CanEndDialogue)
+            UIManager.instance.AddDynButton("Назад", Back, UIManager.instance.dynButtonsHolder.transform);
     }
 
     public void PT()

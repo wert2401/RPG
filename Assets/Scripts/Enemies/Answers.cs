@@ -9,4 +9,5 @@ public class Answer : ScriptableObject
     //public List<int> NoA;
     public List<string> PlAns;
     public List<Answer> Answers;
+    public bool CanEndDialogue;
 }
