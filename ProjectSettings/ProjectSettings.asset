@@ -118,10 +118,10 @@ PlayerSettings:
   wiiUAllowScreenCapture: 1
   wiiUControllerCount: 0
   m_SupportedAspectRatios:
-    4:3: 1
-    5:4: 1
-    16:10: 1
-    16:9: 0
+    4:3: 0
+    5:4: 0
+    16:10: 0
+    16:9: 1
     Others: 0
   bundleVersion: 1.0
   preloadedAssets: []
@@ -240,7 +240,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: e3bd02c251031be4fa61372af46fddec, type: 3}
+      m_Icon: {fileID: 2800000, guid: 9d5cf0a73dcbd3b4684a903ca31e2561, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

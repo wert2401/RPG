@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794d096cfda398e43b37e3d9565e3513, type: 3}
-  m_Name: NewNPC
+  m_Name: First One
   m_EditorClassIdentifier: 
   CrName: "\u0422\u0417\u0421"
   crLvl: 1
@@ -28,12 +28,12 @@ MonoBehaviour:
   lightDmg: 0
   darkDmg: 0
   earthDmg: 0
-  fireRes: 0
-  waterRes: 0
-  airRes: 0
-  lightRes: 0
-  darkRes: 0
-  earthRes: 0
+  fireRes: 1
+  waterRes: 1
+  airRes: 1
+  lightRes: 1
+  darkRes: 1
+  earthRes: 1
   expGain: 5
   minMoneyGain: 0
   maxMoneyGain: 0

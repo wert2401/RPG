@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957c6cbbba8c99f48b6fc426bbb2e438, type: 3}
   m_Name: Roar
   m_EditorClassIdentifier: 
-  words: "\u0417\u0432\u0435\u0440\u044C \u0440\u044B\u0447\u0438\u0442, \u0432\u0430\u0448\u0430
+  words: 
+  SpellWords: "\u0417\u0432\u0435\u0440\u044C \u0440\u044B\u0447\u0438\u0442, \u0432\u0430\u0448\u0430
     \u0440\u0443\u043A\u0430 \u0434\u0440\u043E\u0433\u043D\u0443\u043B\u0430."
-  SpellWords: 
   ManaCost: 0
-  TF: 0
+  TF: 1
   onEnemy: 0
   physBuff: -15
   fireBuff: 0

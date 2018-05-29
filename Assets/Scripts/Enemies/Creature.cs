@@ -83,10 +83,11 @@ public class Creature : ScriptableObject
     public virtual void GetDrop()
     {
         int a = Random.Range(0, drop.Count-1);
-        //Debug.Log(a);
         Item item = drop[a];
         if (item != null)
+        {
             InventoryManager.instance.AddItem(item);
+        }
     }
 
     public virtual int GetMoney()

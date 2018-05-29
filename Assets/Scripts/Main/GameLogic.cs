@@ -65,7 +65,7 @@ public class GameLogic : MonoBehaviour {
         {
             BTs[i] = 0;
         }
-        BuffUse();
+        BuffTick();
     }
 
 #region Location
@@ -161,7 +161,7 @@ public class GameLogic : MonoBehaviour {
             _buff.ManaLost();
         if (_buff.TF == false)
             return;
-        UIManager.instance.Print(_buff.words);
+        UIManager.instance.Print(_buff.SpellWords);
         player.airDmg += _buff.airBuff;
         player.earthDmg += _buff.earthBuff;
         player.damage += _buff.physBuff;
@@ -181,7 +181,7 @@ public class GameLogic : MonoBehaviour {
             _buff.ManaLost();
         if (_buff.TF == false)
             return;
-        UIManager.instance.Print(_buff.words);
+        UIManager.instance.Print(_buff.SpellWords);
         esh.curMana -= _buff.ManaCost;
         esh.airDmg += _buff.airBuff;
         esh.damage += _buff.physBuff;
@@ -229,6 +229,7 @@ public class GameLogic : MonoBehaviour {
                 ifNPC = null;
             }
             enemy.GetDrop();
+            Debug.Log("Айтем выдан");
         }
         EnBuffs.Clear();
         EnBTs.Clear();
@@ -236,7 +237,7 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.SetLocationUI(curLoc);
     }
 
-    public void BuffUse()
+    public void BuffTick()
     {
         for (int i = 0; i < buffs.Count; i++)
         {
@@ -260,7 +261,7 @@ public class GameLogic : MonoBehaviour {
         }
     }
 
-    public void EnBuffUse()
+    public void EnemyBuffTick()
     {
         for (int i = 0; i < EnBuffs.Count; i++)
         {
@@ -402,7 +403,7 @@ public class GameLogic : MonoBehaviour {
 	    }
 	    else
 		    UIManager.instance.Print ("Вы промахнулись");
-        BuffUse();
+        BuffTick();
     }
 
     public void EnemyAttack()
@@ -415,7 +416,7 @@ public class GameLogic : MonoBehaviour {
 		}
 		else 
 			UIManager.instance.Print ("Вы увернулись");
-        EnBuffUse();
+        EnemyBuffTick();
     }
 
     public void Stun()
@@ -435,7 +436,6 @@ public class GameLogic : MonoBehaviour {
             esh.curHealth -= player.CD * ((player.damage * Mathf.Pow(0.86f, enemy.armor)) + (enemy.airRes * player.airDmg) + (enemy.fireRes * player.fireDmg) + (enemy.darkRes * player.darkDmg) + (enemy.waterRes * player.waterDmg) + (enemy.lightRes * player.lightDmg) + (player.earthDmg * enemy.earthRes));
         }
         UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
-        CheckIfSomebodyDied();
     }
 
     public void EnemyHit()
@@ -452,13 +452,6 @@ public class GameLogic : MonoBehaviour {
     }
     #endregion
 
-    public void CheckIfSomebodyDied()
-	{
-		if (plHealth <= 0 || esh.curHealth <= 0)
-		{
-			StopFight(false);
-        }
-	}
 
 	public void React()
 	{
@@ -513,7 +506,10 @@ public class GameLogic : MonoBehaviour {
 			///Делает ничего
 			/// Абсолютно
 		}
-        
-        CheckIfSomebodyDied ();
-	}
+        if (plHealth <= 0 || esh.curHealth <= 0)
+        {
+            StopFight(false);
+            return;
+        }
+    }
 }
