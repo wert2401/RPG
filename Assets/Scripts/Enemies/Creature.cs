@@ -7,7 +7,7 @@ public class Creature : ScriptableObject
 {
     public string CrName;
    
-    public int crLvl;
+    public int lvl;
     public float maxHealth;
     public float ManaMax;
     public float damage;

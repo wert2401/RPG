@@ -25,8 +25,9 @@ public class EnemyBeast: Creature
 
 	public override void React1()
 	{
-        GameLogic.instance.BuffUse(Roar,true);
-        Debug.Log("Первая реакция зверя");
+        UIManager.instance.Print("Зверь рычит, ваша рука дрогнула");
+        GameLogic.instance.AddEffect(true, 0, 3);
+        Debug.Log("Зверь рычит");
     }
 	public override void React2()
 	{
