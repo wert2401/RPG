@@ -73,9 +73,30 @@ public class GameLogic : MonoBehaviour {
 
     public void AddEffect(bool onPlayer,int id,int time)
     {
-        OperatingEffect = allEffects[id];
+        OperatingEffect = Instantiate(allEffects[id]);
         OperatingEffect.time = time;
         OperatingEffect.onPlayer = onPlayer;
+        bool shouldEnd = false;
+        if(onPlayer)
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                if (allEffects[id].EffectName == PlayerEffects[i].EffectName)
+                {
+                    if(!allEffects[id].stackable)
+                        shouldEnd = true;
+                }
+            }
+        else
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                if (allEffects[id].EffectName == EnemyEffects[i].EffectName)
+                {
+                    if (!allEffects[id].stackable)
+                        shouldEnd = true;
+                }
+            }
+        if (shouldEnd)
+            return;
         if (onPlayer)
         {
             PlayerEffects.Add(Instantiate(OperatingEffect));
@@ -305,6 +326,11 @@ public class GameLogic : MonoBehaviour {
             effect.End();
         }
         PlayerEffects.Clear();
+        foreach (Effect effect in EnemyEffects)
+        {
+            effect.End();
+        }
+        EnemyEffects.Clear();
         UIManager.instance.SetFightScreenOn(false);
         UIManager.instance.SetLocationUI(curLoc);
         if (plHealth <= 0)
@@ -499,6 +525,7 @@ public class GameLogic : MonoBehaviour {
     {
         Debug.Log("Interact");
         enemy.Interact();
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
     }
  #endregion
 
@@ -522,12 +549,14 @@ public class GameLogic : MonoBehaviour {
                 i--;
             }
         }
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
     }
 
     public void EnemyAttack()
     {
+        Debug.Log("Enemy attack");
 		float a = Random.value;
-		UIManager.instance.Print ("Монстр атакует вас");
+		UIManager.instance.Print ("Противник атакует вас");
 		if (a > (player.evasChance - enemy.accuracy) / 100) 
 		{
             EnemyHit();
@@ -565,7 +594,6 @@ public class GameLogic : MonoBehaviour {
             DealPhysDamage(player.damage * player.CD);
             DealWaterDamage(player.waterDmg * player.CD);
         }
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
     }
 
     public void EnemyHit()
@@ -622,7 +650,7 @@ public class GameLogic : MonoBehaviour {
 						{
 							enemy.React2();
 						}
-						if (0.67<=a)
+						if (0.67<=a && a<0.9)
 						{
 							enemy.React3();
 						}
@@ -644,14 +672,16 @@ public class GameLogic : MonoBehaviour {
 		else 
 		{
 			stun--;
-			UIManager.instance.Print("Монстр не понимает, что происходит");
+			UIManager.instance.Print("Противник не понимает, что происходит");
 			///Делает ничего
 			/// Абсолютно
 		}
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
         if (plHealth <= 0 || esh.curHealth <= 0)
         {
             StopFight(false);
             return;
         }
+        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
     }
 }

@@ -31,13 +31,19 @@ public class EnemyBeast: Creature
     }
 	public override void React2()
 	{
-        GameLogic.instance.EnBuffUse(Howl,true);
-        Debug.Log("Вторая реакция зверя");
+        UIManager.instance.Print("Зверь воет, кажется, ОН ПЕРЕПОЛНЕН РЕШИМОСТЬЮ");
+        GameLogic.instance.AddEffect(false, 1, 3);
+        Debug.Log("Зверь воет");
     }
 	public override void React3()
 	{
-		UIManager.instance.Print("Реакция третья звериная");
-        Debug.Log("Третья реакция зверя");
+        UIManager.instance.Print("Мощным ударом зверь пытается разорвать вашу плоть");
+        GameLogic.instance.GetPhysDamage((1 + (lvl / 10))* damage);
+        if(((1 + (lvl / 10)) * damage * Mathf.Pow(0.86f, GameLogic.instance.enemy.armor)) >=(GameLogic.instance.plHealth/5))
+        {
+            GameLogic.instance.AddEffect(true, 2, 5);
+        }
+        Debug.Log("Зверь сделал удар лапой");
     }
 
     public void HitAfterFeeding()
