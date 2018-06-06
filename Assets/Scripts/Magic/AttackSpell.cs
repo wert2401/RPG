@@ -16,9 +16,13 @@ public class AttackSpell : Spell
     {
         ManaLost();
         if (!TF)
+        {
+            UIManager.instance.SetSpellScreenOn();
+            GameLogic.instance.React();
             return;
+        }
         UIManager.instance.Print(SpellWords);
-        GameLogic.instance.esh.curHealth -= (GameLogic.instance.enemy.airRes * airDmg) + (GameLogic.instance.enemy.fireRes * fireDmg) + (GameLogic.instance.enemy.darkRes * darkDmg) + (GameLogic.instance.enemy.waterRes * waterDmg) + (GameLogic.instance.enemy.lightRes * lightDmg) + (earthDmg * GameLogic.instance.enemy.earthRes);
+        GameLogic.instance.enemy.health -= (GameLogic.instance.enemy.airRes * airDmg) + (GameLogic.instance.enemy.fireRes * fireDmg) + (GameLogic.instance.enemy.darkRes * darkDmg) + (GameLogic.instance.enemy.waterRes * waterDmg) + (GameLogic.instance.enemy.lightRes * lightDmg) + (earthDmg * GameLogic.instance.enemy.earthRes);
         UIManager.instance.SetSpellScreenOn();
         GameLogic.instance.React();
     }

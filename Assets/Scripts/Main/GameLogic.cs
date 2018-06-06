@@ -17,7 +17,6 @@ public class GameLogic : MonoBehaviour {
     public float plMana;
     Spell buffSpell;
     [Header("Enemy")]
-    public EnemyStatsHolder esh;
     public List<Effect> EnemyEffects;
     public Creature enemy;
     public Creature ifNPC;
@@ -174,108 +173,134 @@ public class GameLogic : MonoBehaviour {
         UIManager.instance.SetLocationScreenOn(false);
         enemy = curLoc.GetTargetNPC(id);
         ifNPC = enemy;
-        esh.SetEnemy(enemy);
         UIManager.instance.SetFightUI(enemy, player);
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
  #endregion
-
 #region Fight
     private void StartFight()
     {
         UIManager.instance.SetLocationScreenOn(false);
-        enemy = curLoc.GetRandomEnemy();
+        enemy = Instantiate(curLoc.GetRandomEnemy());
+        enemy.health = enemy.maxHealth;
+        enemy.mana = enemy.ManaMax;
         if (enemy == null) return;
-        //plDmg = InventoryManager.instance.GetItemsDamage ();
-        //plDmg = player.damage;
-
-        esh.SetEnemy(enemy);
-        //enHealth = enemy.maxHealth;
-        //enMana = enemy.ManaMax;
         UIManager.instance.SetFightUI(enemy, player);
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
 #region Dealing damage
     public void DealPhysDamage(float damage)
     {
-        esh.curHealth -= (damage * Mathf.Pow(0.86f, player.armor));
+        enemy.health -= (damage * Mathf.Pow(0.86f, enemy.armor));
+        if(damage * Mathf.Pow(0.86f, enemy.armor) != 0)
+            UIManager.instance.Print("Противник получил "+ damage * Mathf.Pow(0.86f, enemy.armor) + " физического урона");
     }
 
     public void DealAirDamage(float damage)
     {
-        esh.curHealth -= (damage * player.airRes);
+        enemy.health -= (damage * enemy.airRes);
+        if (damage * enemy.airRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.airRes + " воздушного урона");
     }
 
     public void DealWaterDamage(float damage)
     {
-        esh.curHealth -= (damage * player.waterRes);
+        enemy.health -= (damage * enemy.waterRes);
+        if (damage * enemy.waterRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.waterRes + " водного урона");
     }
 
     public void DealDarkDamage(float damage)
     {
-        esh.curHealth -= (damage * player.darkRes);
+        enemy.health -= (damage * enemy.darkRes);
+        if (damage * enemy.darkRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.darkRes + " тёмного урона");
     }
 
     public void DealLightDamage(float damage)
     {
-        esh.curHealth -= (damage * player.lightRes);
+        enemy.health -= (damage * enemy.lightRes);
+        if (damage * enemy.lightRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.lightRes + " светлого урона");
     }
 
     public void DealEarthDamage(float damage)
     {
-        esh.curHealth -= (damage * player.earthRes);
+        enemy.health -= (damage * enemy.earthRes);
+        if (damage * enemy.earthRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.earthRes + " земляного урона");
     }
 
     public void DealFireDamage(float damage)
     {
-        esh.curHealth -= (damage * player.fireRes);
+        enemy.health -= (damage * enemy.fireRes);
+        if (damage * enemy.fireRes != 0)
+            UIManager.instance.Print("Противник получил " + damage * enemy.fireRes + " огненного урона");
     }
 
     public void DealPureDamage(float damage)
     {
-        esh.curHealth -= damage;
+        enemy.health -= damage;
+        if (damage != 0)
+            UIManager.instance.Print("Противник получил " + damage + " чистого урона");
     }
 
     #endregion
 #region Getting damage
     public void GetPhysDamage(float damage)
     {
-        plHealth -= (damage * Mathf.Pow(0.86f, enemy.armor));
+        plHealth -= (damage * Mathf.Pow(0.86f, player.armor));
+        if (damage * Mathf.Pow(0.86f, player.armor) != 0)
+            UIManager.instance.Print("Вы получили " + damage * Mathf.Pow(0.86f, player.armor) + " физического урона");
     }
 
     public void GetAirDamage(float damage)
     {
-        plHealth -= (damage * enemy.airRes);
+        plHealth -= (damage * player.airRes);
+        if (damage * player.airRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.airRes + " воздушного урона");
     }
 
     public void GetWaterDamage(float damage)
     {
-        plHealth -= (damage * enemy.waterRes);
+        plHealth -= (damage * player.waterRes);
+        if (damage * player.waterRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.waterRes + " водного урона");
     }
 
     public void GetDarkDamage(float damage)
     {
-        plHealth -= (damage * enemy.darkRes);
+        plHealth -= (damage * player.darkRes);
+        if (damage * player.darkRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.darkRes + " тёмного урона");
     }
 
     public void GetLightDamage(float damage)
     {
-        plHealth -= (damage * enemy.lightRes);
+        plHealth -= (damage * player.lightRes);
+        if (damage * player.lightRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.lightRes + " светлого урона");
     }
 
     public void GetEarthDamage(float damage)
     {
-        plHealth -= (damage * enemy.earthRes);
+        plHealth -= (damage * player.earthRes);
+        if (damage * player.earthRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.earthRes + " земляного урона");
     }
 
     public void GetFireDamage(float damage)
     {
-        plHealth -= (damage * enemy.fireRes);
+        plHealth -= (damage * player.fireRes);
+        if (damage * player.fireRes != 0)
+            UIManager.instance.Print("Вы получили " + damage * player.fireRes + " огненного урона");
     }
 
     public void GetPureDamage(float damage)
     {
         plHealth -= damage;
+        if (damage != 0)
+            UIManager.instance.Print("Вы получили " + damage + " чистого урона");
     }
     #endregion
     public void BuffUse(Buff _buff,bool isEnemy)
@@ -307,14 +332,14 @@ public class GameLogic : MonoBehaviour {
         if (_buff.TF == false)
             return;
         UIManager.instance.Print(_buff.SpellWords);
-        esh.curMana -= _buff.ManaCost;
-        esh.airDmg += _buff.airBuff;
-        esh.damage += _buff.physBuff;
-        esh.earthDmg += _buff.earthBuff;
-        esh.fireDmg += _buff.fireBuff;
-        esh.waterDmg += _buff.waterBuff;
-        esh.lightDmg += _buff.lightBuff;
-        esh.darkDmg += _buff.darkBuff;
+        enemy.mana -= _buff.ManaCost;
+        enemy.airDmg += _buff.airBuff;
+        enemy.damage += _buff.physBuff;
+        enemy.earthDmg += _buff.earthBuff;
+        enemy.fireDmg += _buff.fireBuff;
+        enemy.waterDmg += _buff.waterBuff;
+        enemy.lightDmg += _buff.lightBuff;
+        enemy.darkDmg += _buff.darkBuff;
         EnBuffs.Add(_buff);
         EnBTs.Add(_buff.buffTime);
     }
@@ -405,13 +430,13 @@ public class GameLogic : MonoBehaviour {
                 EnBTs[i] -= 1;
                 if (EnBTs[i] == 0)
                 {
-                    esh.airDmg -= EnBuffs[i].airBuff;
-                    esh.earthDmg -= EnBuffs[i].earthBuff;
-                    esh.fireDmg -= EnBuffs[i].fireBuff;
-                    esh.waterDmg -= EnBuffs[i].waterBuff;
-                    esh.lightDmg -= EnBuffs[i].lightBuff;
-                    esh.darkDmg -= EnBuffs[i].darkBuff;
-                    esh.damage -= EnBuffs[i].physBuff;
+                    enemy.airDmg -= EnBuffs[i].airBuff;
+                    enemy.earthDmg -= EnBuffs[i].earthBuff;
+                    enemy.fireDmg -= EnBuffs[i].fireBuff;
+                    enemy.waterDmg -= EnBuffs[i].waterBuff;
+                    enemy.lightDmg -= EnBuffs[i].lightBuff;
+                    enemy.darkDmg -= EnBuffs[i].darkBuff;
+                    enemy.damage -= EnBuffs[i].physBuff;
                     EnBuffs.Remove(EnBuffs[i]);
                     EnBTs.Remove(EnBTs[i]);
                     i--;
@@ -465,7 +490,7 @@ public class GameLogic : MonoBehaviour {
         else
         {
             spell.SpellUse();
-            UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+            UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
         }
     }
 
@@ -489,7 +514,7 @@ public class GameLogic : MonoBehaviour {
         }
         plHealth += b;
         player.healPotion--;
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
         UIManager.instance.Print("Вы излечились");
     }
 
@@ -525,7 +550,7 @@ public class GameLogic : MonoBehaviour {
     {
         Debug.Log("Interact");
         enemy.Interact();
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
  #endregion
 
@@ -549,7 +574,7 @@ public class GameLogic : MonoBehaviour {
                 i--;
             }
         }
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
 
     public void EnemyAttack()
@@ -573,6 +598,7 @@ public class GameLogic : MonoBehaviour {
 
     public void PlayerHit()
     {
+        UIManager.instance.Print("Вы атакуете монстра");
         DealAirDamage(player.airDmg);
         DealDarkDamage(player.darkDmg);
         DealEarthDamage(player.earthDmg);
@@ -580,7 +606,6 @@ public class GameLogic : MonoBehaviour {
         DealLightDamage(player.lightDmg);
         DealPhysDamage(player.damage);
         DealWaterDamage(player.waterDmg);
-        UIManager.instance.Print("Вы атакуете монстра");
         canRun = true;
         float a = Random.value;
         if (a < player.CH / 500)
@@ -598,34 +623,34 @@ public class GameLogic : MonoBehaviour {
 
     public void EnemyHit()
     {
-        GetAirDamage(esh.airDmg);
-        GetDarkDamage(esh.darkDmg);
-        GetEarthDamage(esh.earthDmg);
-        GetFireDamage(esh.fireDmg);
-        GetLightDamage(esh.lightDmg);
-        GetPhysDamage(esh.damage);
-        GetWaterDamage(esh.waterDmg);
+        GetAirDamage(enemy.airDmg);
+        GetDarkDamage(enemy.darkDmg);
+        GetEarthDamage(enemy.earthDmg);
+        GetFireDamage(enemy.fireDmg);
+        GetLightDamage(enemy.lightDmg);
+        GetPhysDamage(enemy.damage);
+        GetWaterDamage(enemy.waterDmg);
         canRun = true;
         float a = Random.value;
-        if (a < esh.CH / 500)
+        if (a < enemy.CH / 500)
         {
             UIManager.instance.Print("Крит!");
-            GetAirDamage(esh.airDmg * esh.CD);
-            GetDarkDamage(esh.darkDmg * esh.CD);
-            GetEarthDamage(esh.earthDmg * esh.CD);
-            GetFireDamage(esh.fireDmg * esh.CD);
-            GetLightDamage(esh.lightDmg * esh.CD);
-            GetPhysDamage(esh.damage * esh.CD);
-            GetWaterDamage(esh.waterDmg * esh.CD);
+            GetAirDamage(enemy.airDmg * enemy.CD);
+            GetDarkDamage(enemy.darkDmg * enemy.CD);
+            GetEarthDamage(enemy.earthDmg * enemy.CD);
+            GetFireDamage(enemy.fireDmg * enemy.CD);
+            GetLightDamage(enemy.lightDmg * enemy.CD);
+            GetPhysDamage(enemy.damage * enemy.CD);
+            GetWaterDamage(enemy.waterDmg * enemy.CD);
         }
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
     #endregion
 
 
 	public void React()
 	{
-        if (plHealth <= 0 || esh.curHealth <= 0)
+        if (plHealth <= 0 || enemy.health <= 0)
         {
             StopFight(false);
             return;
@@ -657,7 +682,7 @@ public class GameLogic : MonoBehaviour {
 			}
 			if (a >= 0.9)
 			{
-				if (esh.curHealth < enemy.maxHealth * 0.05f) {
+				if (enemy.health < enemy.maxHealth * 0.05f) {
 					StopFight (false);
 					UIManager.instance.Print ("Противник сбежал");
 					return;
@@ -676,12 +701,12 @@ public class GameLogic : MonoBehaviour {
 			///Делает ничего
 			/// Абсолютно
 		}
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
-        if (plHealth <= 0 || esh.curHealth <= 0)
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
+        if (plHealth <= 0 || enemy.health <= 0)
         {
             StopFight(false);
             return;
         }
-        UIManager.instance.UpdateHealth(Mathf.Round(esh.curHealth), Mathf.Round(plHealth));
+        UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
 }

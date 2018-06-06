@@ -16,5 +16,8 @@ public class Effect : ScriptableObject
     }
     public virtual void End()
     {
+        time--;
+        if (time <= 0)
+            End();
     }
 }

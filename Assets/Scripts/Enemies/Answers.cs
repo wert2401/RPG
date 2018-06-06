@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Answer : ScriptableObject
 {
     public string Words;
-    //public List<int> NoA;
     public List<string> PlAns;
     public List<Answer> Answers;
     public bool CanEndDialogue;

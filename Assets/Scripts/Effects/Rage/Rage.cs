@@ -12,7 +12,7 @@ public class Rage : Effect
         }
         else
         {
-            GameLogic.instance.esh.damage += (3 * GameLogic.instance.enemy.lvl);
+            GameLogic.instance.enemy.damage += (3 * GameLogic.instance.enemy.lvl);
             UIManager.instance.Print("Ваш противник в ярости!");
         }
     }
@@ -25,14 +25,8 @@ public class Rage : Effect
         }
         else
         {
-            GameLogic.instance.esh.damage -= (3 * GameLogic.instance.enemy.lvl);
+            GameLogic.instance.enemy.damage -= (3 * GameLogic.instance.enemy.lvl);
             UIManager.instance.Print("Ваш противник больше не в ярости");
         }
-    }
-    public override void Tick()
-    {
-        time--;
-        if (time <= 0)
-            End();
     }
 }

@@ -9,7 +9,9 @@ public class Creature : ScriptableObject
    
     public int lvl;
     public float maxHealth;
+    public float health;
     public float ManaMax;
+    public float mana;
     public float damage;
     public float armor;
 	public float accuracy;
@@ -48,11 +50,11 @@ public class Creature : ScriptableObject
 
     public void EnManaLost(Buff _buff)
     {
-        if (GameLogic.instance.esh.curMana < _buff.ManaCost)
+        if (GameLogic.instance.enemy.mana < _buff.ManaCost)
         {
             UIManager.instance.Print("Противнику не хватает маны");
-            GameLogic.instance.esh.curHealth -= (GameLogic.instance.esh.curMana);
-            GameLogic.instance.esh.curMana = 0;
+            GameLogic.instance.enemy.health -= (GameLogic.instance.enemy.mana);
+            GameLogic.instance.enemy.mana = 0;
             _buff.TF = false;
         }
         else

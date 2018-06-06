@@ -18,9 +18,8 @@ public class Spell : ScriptableObject
         if (GameLogic.instance.plMana < ManaCost)
         {
             UIManager.instance.Print("Вам не хватает маны");
-            GameLogic.instance.plHealth -= (GameLogic.instance.plMana);
             UIManager.instance.Print("Магическая энергия вырвалась из вашего тела, унеся частичку вашей души");
-            UIManager.instance.Print("Вы потеряли "+GameLogic.instance.plMana+" здоровья");
+            GameLogic.instance.GetPureDamage(GameLogic.instance.plMana);
             GameLogic.instance.plMana = 0;
             UIManager.instance.Print("Ай");
             TF = false;

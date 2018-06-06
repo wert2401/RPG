@@ -12,7 +12,7 @@ public class Scared : Effect
         }
         else
         {
-            GameLogic.instance.esh.damage -= (5 * GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl);
+            GameLogic.instance.enemy.damage -= (5 * GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl);
             UIManager.instance.Print("Ваш противник в ужасе");
         }
     }
@@ -25,14 +25,8 @@ public class Scared : Effect
         }
         else
         {
-            GameLogic.instance.esh.damage += (5 * GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl);
+            GameLogic.instance.enemy.damage += (5 * GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl);
             UIManager.instance.Print("Ваш противник больше не в ужасе");
         }
-    }
-    public override void Tick()
-    {
-        time--;
-        if (time <= 0)
-            End();
     }
 }

@@ -24,21 +24,4 @@ public class Buff : Spell
             GameLogic.instance.BuffUse(this, false);
         GameLogic.instance.React();
     }
-    //public override void BuffUse()
-    //{
-    //    if (BuffTime>0)
-    //    {
-    //        BuffTime -= 1;
-    //        if(BuffTime==0)
-    //        {
-    //            GameLogic.instance.player.airDmg -= airBuff;
-    //            GameLogic.instance.player.earthDmg -= earthBuff;
-    //            GameLogic.instance.player.fireDmg -= fireBuff;
-    //            GameLogic.instance.player.waterDmg -= waterBuff;
-    //            GameLogic.instance.player.lightDmg -= lightBuff;
-    //            GameLogic.instance.player.darkDmg -= darkBuff;
-    //        }
-    //    }
-    //}
-
 }
