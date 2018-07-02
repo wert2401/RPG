@@ -9,6 +9,9 @@ public class GameLogic : MonoBehaviour {
     public Location curLoc;
     public List<Location> Locations;
     public Effect OperatingEffect;
+    public AudioClip MainTheme;
+    public AudioClip BattleStart;
+
     public List<Effect> allEffects;
     [Header("Player")]
     public Player player;
@@ -187,6 +190,8 @@ public class GameLogic : MonoBehaviour {
         if (enemy == null) return;
         UIManager.instance.SetFightUI(enemy, player);
         UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
+        GetComponent<AudioSource>().clip = BattleStart;
+        GetComponent<AudioSource>().Play();
     }
 #region Dealing damage
     public void DealPhysDamage(float damage)
@@ -346,6 +351,8 @@ public class GameLogic : MonoBehaviour {
 
     public void StopFight(bool ran)
     {
+        GetComponent<AudioSource>().clip = MainTheme;
+        GetComponent<AudioSource>().Play();
         foreach (Effect effect in PlayerEffects)
         {
             effect.End();
