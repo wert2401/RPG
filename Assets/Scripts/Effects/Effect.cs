@@ -20,4 +20,20 @@ public class Effect : ScriptableObject
         if (time <= 0)
             End();
     }
+    public virtual void FunctionOnStartAttack(){}
+    public virtual void FunctionOnStartBeingAttacked() {}
+    public virtual void FunctionOnStartUsingSpell() {}
+    public virtual void FunctionOnStartBeingSpelled() {}
+    public virtual void FunctionOnStartDealingDamage() {}
+    public virtual void FunctionOnStartBeingDamaged() {}
+
+    public virtual void FunctionOnEndAttack() { }
+    public virtual void FunctionOnEndBeingAttacked() { }
+    public virtual void FunctionOnEndUsingSpell() { }
+    public virtual void FunctionOnEndBeingSpelled() { }
+    public virtual void FunctionOnEndDealingDamage() { }
+    public virtual void FunctionOnEndBeingDamaged() { }
+
+    public virtual void FunctionOnBattleStarting() { }
+    public virtual void FunctionOnBattleEnding() { }
 }

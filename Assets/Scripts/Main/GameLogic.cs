@@ -72,7 +72,7 @@ public class GameLogic : MonoBehaviour {
         }
         BuffTick();
     }
-
+    #region Effects
     public void AddEffect(bool onPlayer,int id,int time)
     {
         OperatingEffect = Instantiate(allEffects[id]);
@@ -112,8 +112,88 @@ public class GameLogic : MonoBehaviour {
             Debug.Log("Enemy get effect №" + id);
         }
     }
+#region Functions
+    public void UseAllFunctionOnStartAttack(bool PlayerIsTarget)
+    {
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartAttack();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartBeingAttacked();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartBeingAttacked();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartAttack();
+            }
+        }
+    }
+    public void UseAllFunctionOnStartUsingSpell()
+    {
 
-#region Location
+    }
+    public void UseAllFunctionOnStartBeingSpelled()
+    {
+
+    }
+    public void UseAllFunctionOnStartDealingDamage()
+    {
+
+    }
+    public void UseAllFunctionOnStartBeingDamaged()
+    {
+
+    }
+
+    public void UseAllFunctionOnEndAttack()
+    {
+
+    }
+    public void UseAllFunctionOnEndBeingAttacked()
+    {
+
+    }
+    public void UseAllFunctionOnEndUsingSpell()
+    {
+
+    }
+    public void UseAllFunctionOnEndBeingSpelled()
+    {
+
+    }
+    public void UseAllFunctionOnEndDealingDamage()
+    {
+
+    }
+    public void UseAllFunctionOnEndBeingDamaged()
+    {
+
+    }
+
+    public void UseAllFunctionOnBattleStarting()
+    {
+
+    }
+    public void UseAllFunctionOnBattleEnding()
+    {
+
+    }
+#endregion
+
+
+    #endregion
+
+    #region Location
     //private void SetLocationUI(Location loc)
     //{
     //    curLoc = loc;
@@ -564,6 +644,7 @@ public class GameLogic : MonoBehaviour {
 #region Different attacks
     public void PlayerAttack()
     {
+        UseAllFunctionOnStartAttack(false);
 	    float a = Random.value;
 	    if (a > (enemy.evasChance - player.accuracy) / 100) 
 	    {
@@ -586,6 +667,7 @@ public class GameLogic : MonoBehaviour {
 
     public void EnemyAttack()
     {
+        UseAllFunctionOnStartAttack(true);
         Debug.Log("Enemy attack");
 		float a = Random.value;
 		UIManager.instance.Print ("Противник атакует вас");

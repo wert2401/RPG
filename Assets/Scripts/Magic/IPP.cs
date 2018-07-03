@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
-[CreateAssetMenu(fileName = "NIPP", menuName = "RPG/Spell/NIPP")]
-public class IPP : Spell
+[CreateAssetMenu(fileName = "FireBuffSpell", menuName = "RPG/Spell/FireBuffSpell")]
+public class FireBuffSpell : Spell
 {
     public override void SpellUse()
     {
