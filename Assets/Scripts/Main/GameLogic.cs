@@ -163,47 +163,127 @@ public class GameLogic : MonoBehaviour {
             }
         }
     }
-    public void UseAllFunctionOnStartDealingDamage()
+    public void UseAllFunctionOnStartDealingDamage(bool PlayerIsTarget)
     {
-
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartDealingDamage();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartBeingDamaged();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartBeingDamaged();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartDealingDamage();
+            }
+        }
     }
-    public void UseAllFunctionOnStartBeingDamaged()
+    public void UseAllFunctionOnEndAttack(bool PlayerIsTarget)
     {
-
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndAttack();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndBeingAttacked();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndBeingAttacked();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndAttack();
+            }
+        }
     }
-
-    public void UseAllFunctionOnEndAttack()
+    public void UseAllFunctionOnEndUsingSpell(bool PlayerIsTarget)
     {
-
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndUsingSpell();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndBeingSpelled();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndBeingSpelled();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndUsingSpell();
+            }
+        }
     }
-    public void UseAllFunctionOnEndBeingAttacked()
+    public void UseAllFunctionOnEndDealingDamage(bool PlayerIsTarget)
     {
-
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndDealingDamage();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndBeingDamaged();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnEndBeingDamaged();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnEndDealingDamage();
+            }
+        }
     }
-    public void UseAllFunctionOnEndUsingSpell()
-    {
-
-    }
-    public void UseAllFunctionOnEndBeingSpelled()
-    {
-
-    }
-    public void UseAllFunctionOnEndDealingDamage()
-    {
-
-    }
-    public void UseAllFunctionOnEndBeingDamaged()
-    {
-
-    }
-
     public void UseAllFunctionOnBattleStarting()
     {
-
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnBattleStarting();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnBattleStarting();
+            }
     }
     public void UseAllFunctionOnBattleEnding()
     {
-
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnBattleEnding();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnBattleEnding();
+            }
     }
 #endregion
 
