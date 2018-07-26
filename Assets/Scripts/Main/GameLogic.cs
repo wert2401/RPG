@@ -138,13 +138,30 @@ public class GameLogic : MonoBehaviour {
             }
         }
     }
-    public void UseAllFunctionOnStartUsingSpell()
+    public void UseAllFunctionOnStartUsingSpell(bool PlayerIsTarget)
     {
-
-    }
-    public void UseAllFunctionOnStartBeingSpelled()
-    {
-
+        if (!PlayerIsTarget)
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartUsingSpell();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartBeingSpelled();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PlayerEffects.Count; i++)
+            {
+                PlayerEffects[i].FunctionOnStartBeingSpelled();
+            }
+            for (int i = 0; i < EnemyEffects.Count; i++)
+            {
+                EnemyEffects[i].FunctionOnStartUsingSpell();
+            }
+        }
     }
     public void UseAllFunctionOnStartDealingDamage()
     {
