@@ -81,7 +81,9 @@ public class Creature : ScriptableObject
 	virtual public void React3()
 	{
 	}
-
+    virtual public void React()
+    {
+    }
     public virtual void GetDrop()
     {
         int a = Random.Range(0, drop.Count-1);

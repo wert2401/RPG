@@ -7,8 +7,6 @@ public class EnemyBeast: Creature
 {
     public bool eatYou;
     public string reaction;
-    public Buff Roar;
-    public Buff Howl;
 
     public override void SetEnemyUI()
     {
@@ -39,7 +37,7 @@ public class EnemyBeast: Creature
 	{
         UIManager.instance.Print("Мощным ударом зверь пытается разорвать вашу плоть");
         GameLogic.instance.GetPhysDamage((1 + (lvl / 10))* damage);
-        if(((1 + (lvl / 10)) * damage * Mathf.Pow(0.86f, GameLogic.instance.enemy.armor)) >=(GameLogic.instance.plHealth/5))
+        if(((1 + (lvl / 10)) * damage * Mathf.Pow(0.86f, GameLogic.instance.player.armor)) >=(GameLogic.instance.plHealth/5))
         {
             GameLogic.instance.AddEffect(true, 2, 5);
         }

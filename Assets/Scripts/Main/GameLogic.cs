@@ -555,12 +555,10 @@ public class GameLogic : MonoBehaviour {
         }
 
         int expG = enemy.expGain * (enemy.lvl / player.lvl);
+        if (player.lvl - enemy.lvl >= 10)
+            expG = 0;
         if (ran)
-        {  
-			if (enemy.lvl - player.lvl >= 20)
-				expG = 0;
-            expG = expG / 10;
-        }
+			expG = 0;
         player.AddExp(expG);
 
         if (!ran)
@@ -785,13 +783,6 @@ public class GameLogic : MonoBehaviour {
     public void PlayerHit()
     {
         UIManager.instance.Print("Вы атакуете монстра");
-        DealAirDamage(player.airDmg);
-        DealDarkDamage(player.darkDmg);
-        DealEarthDamage(player.earthDmg);
-        DealFireDamage(player.fireDmg);
-        DealLightDamage(player.lightDmg);
-        DealPhysDamage(player.damage);
-        DealWaterDamage(player.waterDmg);
         canRun = true;
         float a = Random.value;
         if (a < player.CH / 500)
@@ -804,6 +795,16 @@ public class GameLogic : MonoBehaviour {
             DealLightDamage(player.lightDmg * player.CD);
             DealPhysDamage(player.damage * player.CD);
             DealWaterDamage(player.waterDmg * player.CD);
+        }
+        else
+        {
+            DealAirDamage(player.airDmg);
+            DealDarkDamage(player.darkDmg);
+            DealEarthDamage(player.earthDmg);
+            DealFireDamage(player.fireDmg);
+            DealLightDamage(player.lightDmg);
+            DealPhysDamage(player.damage);
+            DealWaterDamage(player.waterDmg);
         }
     }
 
@@ -844,41 +845,7 @@ public class GameLogic : MonoBehaviour {
 
 		if (stun == 0) 
 		{
-			float a = Random.value;
-			if (a < 0.4) 
-			{
-				EnemyAttack ();
-		
-			}
-			if (0.4 <= a && a<0.9) 
-			{
-						a = Random.value;
-						if (a<0.33)
-						{
-							enemy.React1();
-						}
-						if (0.33 <= a && a<0.67) 
-						{
-							enemy.React2();
-						}
-						if (0.67<=a && a<0.9)
-						{
-							enemy.React3();
-						}
-			}
-			if (a >= 0.9)
-			{
-				if (enemy.health < enemy.maxHealth * 0.05f) {
-					StopFight (false);
-					UIManager.instance.Print ("Противник сбежал");
-					return;
-				} 
-				else 
-				{
-					EnemyAttack ();
-				}
-			}
-
+            enemy.React();
 		}
 		else 
 		{

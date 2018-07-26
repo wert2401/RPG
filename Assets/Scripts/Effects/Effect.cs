@@ -13,12 +13,12 @@ public class Effect : ScriptableObject
     }
     public virtual void Tick()
     {
-    }
-    public virtual void End()
-    {
         time--;
         if (time <= 0)
             End();
+    }
+    public virtual void End()
+    {
     }
     public virtual void FunctionOnStartAttack(){}
     public virtual void FunctionOnStartBeingAttacked() {}
