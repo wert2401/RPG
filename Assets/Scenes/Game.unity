@@ -803,6 +803,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b2015631a0df764ca56da32d2e64af1, type: 2}
   - {fileID: 11400000, guid: 2a7ec1e8981bc334ea73a696a8b4f98f, type: 2}
   - {fileID: 11400000, guid: ba9e4d1d368250f4c9c551dc4b607ed4, type: 2}
+  - {fileID: 11400000, guid: b077bebc994552f4c87bf2d7c509207e, type: 2}
   player: {fileID: 521289389}
   PlayerEffects: []
   plHealth: 0
