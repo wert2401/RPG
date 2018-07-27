@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: CursedByDark
   m_EditorClassIdentifier: 
   time: 0
+  id: 5
   onPlayer: 0
   stackable: 0
   EffectName: Cursed by dark

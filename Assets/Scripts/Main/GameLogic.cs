@@ -25,7 +25,8 @@ public class GameLogic : MonoBehaviour {
     public Creature ifNPC;
     public float enMana;
     public bool canRun = true;
-	int stun=0;
+	public int stun;
+    public int PlStun;
     [Header("Magic")]
     public InputField spellText;
     public Spell spell;
@@ -82,19 +83,31 @@ public class GameLogic : MonoBehaviour {
         if(onPlayer)
             for (int i = 0; i < PlayerEffects.Count; i++)
             {
-                if (allEffects[id].EffectName == PlayerEffects[i].EffectName)
+                if (allEffects[id].id == PlayerEffects[i].id)
                 {
-                    if(!allEffects[id].stackable)
+                    Debug.Log("Player already have effect named " + PlayerEffects[i].EffectName);
+                    if (!allEffects[id].stackable)
+                    {
                         shouldEnd = true;
+                        Debug.Log("This effect isn't stackable");
+                    }
+                    else
+                        Debug.Log("This effect is stackable");
                 }
             }
         else
             for (int i = 0; i < EnemyEffects.Count; i++)
             {
-                if (allEffects[id].EffectName == EnemyEffects[i].EffectName)
+                if (allEffects[id].id == EnemyEffects[i].id)
                 {
+                    Debug.Log("Enemy already have effect named ");
                     if (!allEffects[id].stackable)
+                    {
                         shouldEnd = true;
+                        Debug.Log("This effect isn't stackable");
+                    }
+                    else
+                        Debug.Log("This effect is stackable");
                 }
             }
         if (shouldEnd)
@@ -287,7 +300,6 @@ public class GameLogic : MonoBehaviour {
     }
 #endregion
 
-
     #endregion
 
     #region Location
@@ -373,9 +385,9 @@ public class GameLogic : MonoBehaviour {
 #region Dealing damage
     public void DealPhysDamage(float damage)
     {
-        enemy.health -= (damage * Mathf.Pow(0.86f, enemy.armor));
-        if(damage * Mathf.Pow(0.86f, enemy.armor) != 0)
-            UIManager.instance.Print("Противник получил "+ damage * Mathf.Pow(0.86f, enemy.armor) + " физического урона");
+        enemy.health -= (damage * Mathf.Pow(0.95f, enemy.armor));
+        if(damage * Mathf.Pow(0.95f, enemy.armor) != 0)
+            UIManager.instance.Print("Противник получил "+ damage * Mathf.Pow(0.95f, enemy.armor) + " физического урона");
     }
 
     public void DealAirDamage(float damage)
@@ -431,9 +443,9 @@ public class GameLogic : MonoBehaviour {
 #region Getting damage
     public void GetPhysDamage(float damage)
     {
-        plHealth -= (damage * Mathf.Pow(0.86f, player.armor));
-        if (damage * Mathf.Pow(0.86f, player.armor) != 0)
-            UIManager.instance.Print("Вы получили " + damage * Mathf.Pow(0.86f, player.armor) + " физического урона");
+        plHealth -= (damage * Mathf.Pow(0.95f, player.armor));
+        if (damage * Mathf.Pow(0.95f, player.armor) != 0)
+            UIManager.instance.Print("Вы получили " + damage * Mathf.Pow(0.95f, player.armor) + " физического урона");
     }
 
     public void GetAirDamage(float damage)
@@ -767,25 +779,17 @@ public class GameLogic : MonoBehaviour {
 		float a = Random.value;
 		UIManager.instance.Print ("Противник атакует вас");
 		if (a > (player.evasChance - enemy.accuracy) / 100) 
-		{
             EnemyHit();
-		}
 		else 
 			UIManager.instance.Print ("Вы увернулись");
         EnemyBuffTick();
     }
-
-    public void Stun()
-    {
-        stun = 3;
-    }
-
     public void PlayerHit()
     {
         UIManager.instance.Print("Вы атакуете монстра");
         canRun = true;
         float a = Random.value;
-        if (a < player.CH / 500)
+        if (a < player.CH / 200)
         {
             UIManager.instance.Print("Крит!");
             DealAirDamage(player.airDmg * player.CD);
@@ -810,16 +814,9 @@ public class GameLogic : MonoBehaviour {
 
     public void EnemyHit()
     {
-        GetAirDamage(enemy.airDmg);
-        GetDarkDamage(enemy.darkDmg);
-        GetEarthDamage(enemy.earthDmg);
-        GetFireDamage(enemy.fireDmg);
-        GetLightDamage(enemy.lightDmg);
-        GetPhysDamage(enemy.damage);
-        GetWaterDamage(enemy.waterDmg);
         canRun = true;
         float a = Random.value;
-        if (a < enemy.CH / 500)
+        if (a < enemy.CH / 200)
         {
             UIManager.instance.Print("Крит!");
             GetAirDamage(enemy.airDmg * enemy.CD);
@@ -830,6 +827,16 @@ public class GameLogic : MonoBehaviour {
             GetPhysDamage(enemy.damage * enemy.CD);
             GetWaterDamage(enemy.waterDmg * enemy.CD);
         }
+        else
+        {
+            GetAirDamage(enemy.airDmg);
+            GetDarkDamage(enemy.darkDmg);
+            GetEarthDamage(enemy.earthDmg);
+            GetFireDamage(enemy.fireDmg);
+            GetLightDamage(enemy.lightDmg);
+            GetPhysDamage(enemy.damage);
+            GetWaterDamage(enemy.waterDmg);
+        }
         UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
     #endregion
@@ -837,6 +844,15 @@ public class GameLogic : MonoBehaviour {
 
 	public void React()
 	{
+        for (int i = 0; i < EnemyEffects.Count; i++)
+        {
+            EnemyEffects[i].Tick();
+            if (EnemyEffects[i].time == 0)
+            {
+                EnemyEffects.Remove(EnemyEffects[i]);
+                i--;
+            }
+        }
         if (plHealth <= 0 || enemy.health <= 0)
         {
             StopFight(false);
@@ -854,6 +870,11 @@ public class GameLogic : MonoBehaviour {
 			///Делает ничего
 			/// Абсолютно
 		}
+        if (PlStun>0)
+        {
+            PlStun--;
+            React();
+        }
         UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
         if (plHealth <= 0 || enemy.health <= 0)
         {

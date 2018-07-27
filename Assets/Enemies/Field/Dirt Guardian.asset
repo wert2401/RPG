@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812b5d15619fab641b352d0f4453829f, type: 3}
+  m_Name: Dirt Guardian
+  m_EditorClassIdentifier: 
+  CrName: "\u0413\u0440\u044F\u0437\u0435\u0432\u043E\u0439 \u0441\u0442\u0440\u0430\u0436"
+  lvl: 6
+  maxHealth: 200
+  health: 0
+  ManaMax: 0
+  mana: 0
+  damage: 10
+  armor: 2
+  accuracy: 5
+  evasChance: 0
+  CH: 5
+  CD: 3
+  isAlive: 1
+  fireDmg: 0
+  waterDmg: 0
+  airDmg: 0
+  lightDmg: 0
+  darkDmg: 0
+  earthDmg: 10
+  fireRes: 0.5
+  waterRes: 2
+  airRes: 0.7
+  lightRes: 1
+  darkRes: 1
+  earthRes: 0
+  expGain: 60
+  minMoneyGain: 15
+  maxMoneyGain: 25
+  drop: []

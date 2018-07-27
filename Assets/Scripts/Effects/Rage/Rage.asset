@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Rage
   m_EditorClassIdentifier: 
   time: 0
+  id: 2
   onPlayer: 0
   stackable: 0
   EffectName: Rage

@@ -28,9 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0f71c043f3ccdc4ca04d9c32ce08e8e, type: 2}
   enemies:
   - {fileID: 11400000, guid: 860af267e0f18a84daf17d8e4536801f, type: 2}
-  - {fileID: 11400000, guid: 3853c683314259841a57d7c34722e000, type: 2}
-  - {fileID: 11400000, guid: bf712d2a518a2d448b07e8cb22f67c95, type: 2}
-  - {fileID: 11400000, guid: c3ea7942dccf5e141b950f892fa9025c, type: 2}
+  - {fileID: 11400000, guid: 4f2d763740ba1e14092789dcde9c67be, type: 2}
+  - {fileID: 11400000, guid: 061078be2e112be4f87375a3d87d21e8, type: 2}
+  - {fileID: 11400000, guid: bee265ac2ad72d544aa8438b46e01fcc, type: 2}
   NPC:
-  - {fileID: 11400000, guid: f936da2fdca309248a0213e6e7651529, type: 2}
   - {fileID: 11400000, guid: f936da2fdca309248a0213e6e7651529, type: 2}

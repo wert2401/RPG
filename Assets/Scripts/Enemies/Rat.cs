@@ -22,4 +22,30 @@ public class Rat : Creature
             GameLogic.instance.AddEffect(true,4,3);
         }
     }
+    public override void SetEnemyUI()
+    {
+        UIManager.instance.AddDynButton("Поговорить", Talk, UIManager.instance.dynButtonsHolder.transform);
+        UIManager.instance.AddDynButton("Покормить", TryFeed, UIManager.instance.dynButtonsHolder.transform);
+    }
+    void TryFeed()
+    {
+        UIManager.instance.Print("Вы кормите крысу");
+        UIManager.instance.Print("Крыса отвлеклась");
+        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
+        UIManager.instance.AddDynButton("Ударить", HitAfterFeeding, UIManager.instance.dynButtonsHolder.transform);
+        UIManager.instance.AddDynButton("Сбежать", Run, UIManager.instance.dynButtonsHolder.transform);
+        
+    }
+    public void HitAfterFeeding()
+    {
+        GameLogic.instance.PlayerHit();
+        UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
+        ResetUI();
+    }
+    void Run()
+    {
+        UIManager.instance.Print("Вы убежали");
+        GameLogic.instance.StopFight(true);
+        ResetUI();
+    }
 }

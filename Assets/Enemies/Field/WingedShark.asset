@@ -8,35 +8,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b15fb1f12099e4aa886f567b634598, type: 3}
-  m_Name: Rat
+  m_Script: {fileID: 11500000, guid: 7de129ac122b33f4e89f6e43340c3bf0, type: 3}
+  m_Name: WingedShark
   m_EditorClassIdentifier: 
-  CrName: "\u041A\u0440\u044B\u0441\u0430"
-  lvl: 1
-  maxHealth: 50
+  CrName: "\u041A\u0440\u044B\u043B\u0430\u0442\u0430\u044F \u0430\u043A\u0443\u043B\u0430"
+  lvl: 9
+  maxHealth: 500
   health: 0
   ManaMax: 0
   mana: 0
-  damage: 5
+  damage: 20
   armor: 0
-  accuracy: 0
+  accuracy: 30
   evasChance: 30
   CH: 20
-  CD: 1.2
+  CD: 2
   isAlive: 1
   fireDmg: 0
-  waterDmg: 0
+  waterDmg: 5
   airDmg: 0
   lightDmg: 0
-  darkDmg: 2
+  darkDmg: 5
   earthDmg: 0
-  fireRes: 1.5
+  fireRes: 1
   waterRes: 0.8
-  airRes: 1
-  lightRes: 1.2
+  airRes: 0.5
+  lightRes: 2
   darkRes: 0.8
-  earthRes: 1
-  expGain: 10
-  minMoneyGain: 5
-  maxMoneyGain: 10
+  earthRes: 2
+  expGain: 1000
+  minMoneyGain: 200
+  maxMoneyGain: 300
   drop: []

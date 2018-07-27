@@ -804,6 +804,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a7ec1e8981bc334ea73a696a8b4f98f, type: 2}
   - {fileID: 11400000, guid: ba9e4d1d368250f4c9c551dc4b607ed4, type: 2}
   - {fileID: 11400000, guid: b077bebc994552f4c87bf2d7c509207e, type: 2}
+  - {fileID: 11400000, guid: d42341dc28538b54a8db368d4b226c65, type: 2}
   player: {fileID: 521289389}
   PlayerEffects: []
   plHealth: 0
@@ -813,6 +814,8 @@ MonoBehaviour:
   ifNPC: {fileID: 0}
   enMana: 0
   canRun: 1
+  stun: 0
+  PlStun: 0
   spellText: {fileID: 554975838}
   spell: {fileID: 0}
   buffs: []

@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821d7aa67c4d762478f890d804fa2f88, type: 3}
-  m_Name: FireBuffed
+  m_Script: {fileID: 11500000, guid: adddcbc0fe0cbea4f92f6219e49b1294, type: 3}
+  m_Name: Stone Skin
   m_EditorClassIdentifier: 
   time: 0
-  id: 4
+  id: 6
   onPlayer: 0
   stackable: 0
-  EffectName: FireBuffed
+  EffectName: Stone skin

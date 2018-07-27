@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Bleed
   m_EditorClassIdentifier: 
   time: 0
+  id: 3
   onPlayer: 0
   stackable: 1
   EffectName: Bleed

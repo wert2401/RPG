@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Scared
   m_EditorClassIdentifier: 
   time: 3
+  id: 1
   onPlayer: 1
   stackable: 0
   EffectName: Scared

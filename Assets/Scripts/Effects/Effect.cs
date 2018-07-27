@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Effect : ScriptableObject
 {
     public int time;
+    public int id;
     public bool onPlayer;
     public bool stackable;
     public string EffectName;
@@ -16,6 +17,7 @@ public class Effect : ScriptableObject
         time--;
         if (time <= 0)
             End();
+        Debug.Log("Эффект тикнул");
     }
     public virtual void End()
     {

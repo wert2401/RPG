@@ -8,35 +8,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b15fb1f12099e4aa886f567b634598, type: 3}
-  m_Name: Rat
+  m_Script: {fileID: 11500000, guid: 9f7475661bae774469d7fcd8127b60b8, type: 3}
+  m_Name: Boar
   m_EditorClassIdentifier: 
-  CrName: "\u041A\u0440\u044B\u0441\u0430"
-  lvl: 1
-  maxHealth: 50
+  CrName: "\u041A\u0430\u0431\u0430\u043D"
+  lvl: 4
+  maxHealth: 100
   health: 0
   ManaMax: 0
   mana: 0
-  damage: 5
-  armor: 0
-  accuracy: 0
-  evasChance: 30
-  CH: 20
-  CD: 1.2
+  damage: 8
+  armor: 1
+  accuracy: 5
+  evasChance: 10
+  CH: 10
+  CD: 1.5
   isAlive: 1
   fireDmg: 0
   waterDmg: 0
   airDmg: 0
   lightDmg: 0
-  darkDmg: 2
-  earthDmg: 0
+  darkDmg: 0
+  earthDmg: 2
   fireRes: 1.5
   waterRes: 0.8
   airRes: 1
-  lightRes: 1.2
-  darkRes: 0.8
-  earthRes: 1
-  expGain: 10
-  minMoneyGain: 5
-  maxMoneyGain: 10
+  lightRes: 1
+  darkRes: 1.2
+  earthRes: 0.9
+  expGain: 30
+  minMoneyGain: 10
+  maxMoneyGain: 15
   drop: []

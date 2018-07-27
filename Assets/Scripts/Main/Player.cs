@@ -100,6 +100,32 @@ public class Player : MonoBehaviour {
         onStatsChanged.Invoke();
     }
 
+    public void UpStrenght(int Count)
+    {
+        strenght += Count;
+        damage += 0.2f*Count;
+        CD += 0.01f*Count;
+        GameLogic.instance.plHealth += startHealth*Count;
+    }
+
+    public void UpAgility(int Count)
+    {
+        agility += Count;
+        evasChance += Count;
+        CH += Count;
+    }
+
+    public void UpIntelligence(int Count)
+    {
+        intelligence += Count;
+    }
+
+    public void UpConcentration(int Count)
+    {
+        concentration += Count;
+        accuracy += Count;
+    }
+
     public void ResetStats()
     {
         damage = pds.damage;
