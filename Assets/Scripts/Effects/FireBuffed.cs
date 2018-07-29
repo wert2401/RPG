@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 [CreateAssetMenu(fileName = "FireBuffed", menuName = "RPG/Effects/FireBuffed")]
 public class FireBuffed : Effect
 {

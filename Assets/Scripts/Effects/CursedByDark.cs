@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 [CreateAssetMenu(fileName = "CursedByDark", menuName = "RPG/Effects/CursedByDark")]
 public class CursedByDark : Effect
 {

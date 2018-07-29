@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 [CreateAssetMenu(fileName = "FireBuffSpell", menuName = "RPG/Spell/FireBuffSpell")]
 public class FireBuffSpell : Spell
 {

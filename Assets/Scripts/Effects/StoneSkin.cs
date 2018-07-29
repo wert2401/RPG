@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 [CreateAssetMenu(fileName = "Stone Skin", menuName = "RPG/Effects/Stone Skin")]
 public class StoneSkin : Effect
 {

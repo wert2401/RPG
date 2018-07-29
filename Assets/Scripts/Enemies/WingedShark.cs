@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 [CreateAssetMenu(fileName = "NewWingedShark", menuName = "RPG/Creatures/WingedShark")]
 public class WingedShark : Creature
 {
