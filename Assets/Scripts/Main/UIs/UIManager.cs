@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour {
 
     public GameObject button;
 
+    public CreatureNew Caster;
+    public Ability Abil;
+
     [Header("Location Screen")]
     public GameObject locationScreen;
     public GameObject locButtonsHolder;
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject SpellScreen;
 	public GameObject StartScreen;
 	public GameObject Died;
+    public GameObject InfoScreen;
     [Header("Enemy")]
     public Text enName;
     public Text enHealth;
@@ -130,9 +134,65 @@ public class UIManager : MonoBehaviour {
 #endregion
 
 #region Fight
+
     public void SetFightScreenOn(bool stage)
     {
         fightScreen.SetActive(stage);
+    }
+
+    public void SetCasterAndContinue(CreatureNew cstr)
+    {
+
+    }
+
+    public void DoNothing()
+    {
+
+    }
+
+    public void SetCaster()
+    {
+        for (int i = 0; i < GameLogic.instance.PlayerCharacters.Count; i++)
+        {
+            AddDiaButton(GameLogic.instance.PlayerCharacters[i].Name, SetCasterAndContinue, dynButtonsHolder.transform, i);
+        }
+        Debug.Log("Caster set");
+    }
+
+    public void SetAbility()
+    {
+        for (int i = 0; i < Caster.Abilities.Count; i++)
+        {
+            AddDiaButton(Caster.Abilities[i].Name, SetAbilityAndContinue, dynButtonsHolder.transform, i);
+        }
+    }
+
+    public void SetTarget()
+    {
+
+        for (int i = 0; i < GameLogic.instance.AllCharacters.Count; i++)
+        {
+            AddDiaButton(GameLogic.instance.AllCharacters[i].Name, SetTargetAndCast, dynButtonsHolder.transform, i);
+        }
+    }
+
+    public void SetCasterAndContinue(int Id)
+    {
+        Caster = GameLogic.instance.PlayerCharacters[Id];
+        SetAbility();
+    }
+
+    public void SetTargetAndCast(int Id)
+    {
+        Abil.Target = GameLogic.instance.AllCharacters[Id];
+        Abil.Caster = Caster;
+        Abil.OnUse();
+    }
+
+    public void SetAbilityAndContinue(int Id)
+    {
+        Abil = Caster.Abilities[Id];
+        SetTarget();
     }
 
     public void SetFightUI(Creature en, Player pl)
@@ -187,6 +247,14 @@ public class UIManager : MonoBehaviour {
     }
 
     public void AddDiaButton(string name, Dia dia, Transform holder,int id)
+    {
+        GameObject go = Instantiate(button, holder.transform);
+        ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
+        btnHelp.SetText(name);
+        btnHelp.btn.onClick.AddListener(() => dia(id));
+    }
+
+    public void AddAbilityButton(string name, Dia dia, Transform holder, int id)
     {
         GameObject go = Instantiate(button, holder.transform);
         ButtonHelper btnHelp = go.GetComponent<ButtonHelper>();
@@ -262,4 +330,9 @@ public class UIManager : MonoBehaviour {
 	{
 		Died.SetActive(false);
 	}
+
+    public void CloseInfoWindow()
+    {
+        InfoScreen.SetActive(false);
+    }
 }

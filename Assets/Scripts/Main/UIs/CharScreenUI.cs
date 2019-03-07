@@ -32,5 +32,4 @@ public class CharScreenUI : MonoBehaviour {
         intelligence.text = player.intelligence.ToString();
         concentration.text = player.concentration.ToString();
     }
-
 }

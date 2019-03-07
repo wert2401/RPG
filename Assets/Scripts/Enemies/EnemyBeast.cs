@@ -36,7 +36,6 @@ public class EnemyBeast: Creature
 	public override void React3()
 	{
         UIManager.instance.Print("Мощным ударом зверь пытается разорвать вашу плоть");
-        GameLogic.instance.GetPhysDamage((1 + (lvl / 10))* damage);
         if(((1 + (lvl / 10)) * damage * Mathf.Pow(0.86f, GameLogic.instance.player.armor)) >=(GameLogic.instance.plHealth/5))
         {
             GameLogic.instance.AddEffect(true, 2, 5);
@@ -46,7 +45,6 @@ public class EnemyBeast: Creature
 
     public void HitAfterFeeding()
     {
-        GameLogic.instance.PlayerHit();
         UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
         ResetUI();
     }

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d582eeffc8d30489d958b496a19c6e, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: e3bd02c251031be4fa61372af46fddec, type: 3}
+  Name: Player
+  Description: "\u042D\u0442\u043E \u043F\u0440\u043E\u0441\u0442\u043E \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436
+    \u0438\u0433\u0440\u043E\u043A\u0430"
+  Health: 150
+  HealthMax: 200
+  Mana: 80
+  ManaMax: 300
+  Energy: 90
+  EnergyMax: 100
+  accuracy: 5
+  evasChance: 5
+  damage: 8
+  armor: 6
+  Abilities:
+  - {fileID: 11400000, guid: cd3f8dff453332d4cb633763b3b0f853, type: 2}
+  Effects: []
+  CH: 5
+  CD: 1
+  fireDmg: 1
+  waterDmg: 2
+  airDmg: 3
+  lightDmg: 4
+  darkDmg: 5
+  earthDmg: 6
+  pureDmg: 7
+  fireRes: 2
+  waterRes: 2
+  airRes: 1
+  lightRes: 4
+  darkRes: 5
+  earthRes: 1
+  lvl: 1
+  strenght: 0
+  agility: 0
+  intelligence: 0
+  concentration: 0

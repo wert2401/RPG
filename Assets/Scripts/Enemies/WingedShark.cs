@@ -32,7 +32,6 @@ public class WingedShark : Creature
         if (A >= 0.9)
         {
             UIManager.instance.Print("Мощным укусом акула пытается разорвать вашу плоть");
-            GameLogic.instance.GetPhysDamage((1 + (lvl / 10)) * damage);
             if (((1 + (lvl / 10)) * damage * Mathf.Pow(0.95f, GameLogic.instance.player.armor)) >= (GameLogic.instance.plHealth / 5))
             {
                 GameLogic.instance.AddEffect(true, 2, 5);

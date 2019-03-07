@@ -6,7 +6,7 @@ using Types;
 public class Creature : ScriptableObject
 {
     public string CrName;
-   
+
     public int lvl;
     public float maxHealth;
     public float health;
@@ -46,19 +46,6 @@ public class Creature : ScriptableObject
         SetDynUI();
         SetEnemyUI();
         UIManager.instance.AddDynButton("Назад",Back, UIManager.instance.dynButtonsHolder.transform);
-    }
-
-    public void EnManaLost(Buff _buff)
-    {
-        if (GameLogic.instance.enemy.mana < _buff.ManaCost)
-        {
-            UIManager.instance.Print("Противнику не хватает маны");
-            GameLogic.instance.enemy.health -= (GameLogic.instance.enemy.mana);
-            GameLogic.instance.enemy.mana = 0;
-            _buff.TF = false;
-        }
-        else
-            _buff.TF = true;
     }
 
     virtual public void Talk()

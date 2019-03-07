@@ -9,19 +9,17 @@ public class CursedByDark : Effect
             UIManager.instance.Print("Кажется, вы были прокляты");
         }
         else
-            UIManager.instance.Print("Кажется, протвник был проклят");
+            UIManager.instance.Print("Кажется, противник был проклят");
     }
     public override void Tick()
     {
         if (onPlayer)
         {
             UIManager.instance.Print("Проклятие проявило себя");
-            GameLogic.instance.GetDarkDamage(GameLogic.instance.enemy.lvl);
         }
         else
         {
             UIManager.instance.Print("Проклятие проявило себя");
-            GameLogic.instance.DealDarkDamage(GameLogic.instance.player.lvl);
         }
         base.Tick();
     }

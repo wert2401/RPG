@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Effect : ScriptableObject
 {
+    public int BaseCooldown;
+    public int Cooldown;
     public int time;
     public int id;
     public bool onPlayer;
     public bool stackable;
     public string EffectName;
     public virtual void Get()
+
     {
     }
+
     public virtual void Tick()
     {
         time--;
@@ -19,23 +23,19 @@ public class Effect : ScriptableObject
             End();
         Debug.Log("Эффект тикнул");
     }
+
     public virtual void End()
     {
     }
-    public virtual void FunctionOnStartAttack(){}
-    public virtual void FunctionOnStartBeingAttacked() {}
-    public virtual void FunctionOnStartUsingSpell() {}
-    public virtual void FunctionOnStartBeingSpelled() {}
-    public virtual void FunctionOnStartDealingDamage() {}
-    public virtual void FunctionOnStartBeingDamaged() {}
 
-    public virtual void FunctionOnEndAttack() { }
-    public virtual void FunctionOnEndBeingAttacked() { }
-    public virtual void FunctionOnEndUsingSpell() { }
-    public virtual void FunctionOnEndBeingSpelled() { }
-    public virtual void FunctionOnEndDealingDamage() { }
-    public virtual void FunctionOnEndBeingDamaged() { }
+    public virtual void WhenTurnStarted() { }
+    public virtual void WhenTurnEnded() { }
 
-    public virtual void FunctionOnBattleStarting() { }
-    public virtual void FunctionOnBattleEnding() { }
+    public virtual void WhenAttacking(CreatureNew Target) { }
+    public virtual void WhenAttacked(CreatureNew Attacker) { }
+    public virtual void WhenDealDamage(CreatureNew Target, int Damage) { }
+    public virtual void WhenGetDamage(CreatureNew Dealer, int Damage) { }
+    public virtual void WhenCasting(CreatureNew Target) { }
+    public virtual void WhenSpelled(CreatureNew Caster) { }
+
 }

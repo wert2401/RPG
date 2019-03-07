@@ -37,57 +37,11 @@ public class FireBuffed : Effect
         if(onPlayer)
         {
             UIManager.instance.Print("Вы, чёрт возьми, горите!");
-            GameLogic.instance.GetFireDamage(GameLogic.instance.player.lvl);
         }
         else
         {
             UIManager.instance.Print("Противник, чёрт возьми, горит!");
-            GameLogic.instance.DealFireDamage(GameLogic.instance.enemy.lvl);
         }
         base.Tick();
-    }
-    public override void FunctionOnStartAttack()
-    {
-        if (onPlayer)
-        {
-            float a = Random.value;
-            if(a<(0.5f+GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl))
-            {
-
-                UIManager.instance.Print("Противник, чёрт возьми, загорелся!");
-                UIManager.instance.Print("Это очень больно, для справочки");
-            }
-        }
-        else
-        {
-            float a = Random.value;
-            if (a < (0.5f + GameLogic.instance.enemy.lvl / GameLogic.instance.player.lvl))
-            {
-
-                UIManager.instance.Print("Вы, чёрт возьми, загорелись!");
-                UIManager.instance.Print("Это очень больно, для справочки");
-            }
-        }
-    }
-    public override void FunctionOnStartBeingAttacked()
-    {
-        if(onPlayer)
-        {
-            float a = Random.value;
-            if (a < (0.5f + GameLogic.instance.player.lvl / GameLogic.instance.enemy.lvl))
-            {
-                GameLogic.instance.DealFireDamage(GameLogic.instance.player.lvl);
-                UIManager.instance.Print("Противник, чёрт возьми, обжёгся об ваше пламя!");
-            }
-        }
-        else
-        {
-            float a = Random.value;
-            if (a < (0.5f + GameLogic.instance.enemy.lvl / GameLogic.instance.player.lvl))
-            {
-                GameLogic.instance.GetFireDamage(GameLogic.instance.enemy.lvl);
-                UIManager.instance.Print("Вы, чёрт возьми, обожглись об пламя противника!");
-            }
-        }
     }
 }

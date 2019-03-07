@@ -17,7 +17,6 @@ public class Rat : Creature
         if (A>=0.8)
         {
             UIManager.instance.Print("Крыса делает незначительный укус");
-            GameLogic.instance.GetPhysDamage(damage * 0.5f);
             GameLogic.instance.AddEffect(true,4,3);
         }
     }
@@ -37,7 +36,6 @@ public class Rat : Creature
     }
     public void HitAfterFeeding()
     {
-        GameLogic.instance.PlayerHit();
         UIManager.instance.RemoveAllButtons(UIManager.instance.dynButtonsHolder.transform);
         ResetUI();
     }

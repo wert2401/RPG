@@ -19,7 +19,6 @@ public class Spell : ScriptableObject
         {
             UIManager.instance.Print("Вам не хватает маны");
             UIManager.instance.Print("Магическая энергия вырвалась из вашего тела, унеся частичку вашей души");
-            GameLogic.instance.GetPureDamage(GameLogic.instance.plMana);
             GameLogic.instance.plMana = 0;
             UIManager.instance.Print("Ай");
             TF = false;

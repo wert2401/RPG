@@ -15,12 +15,10 @@ public class Bleed : Effect
         if (onPlayer)
         {
             UIManager.instance.Print("Вы истекаете кровью!");
-            GameLogic.instance.GetPureDamage(2 * GameLogic.instance.enemy.lvl);
         }
         else
         {
             UIManager.instance.Print("Ваш противник истекает кровью!");
-            GameLogic.instance.DealPureDamage(2 * GameLogic.instance.player.lvl);
         }
         time--;
     }

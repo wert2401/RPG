@@ -7,6 +7,7 @@ public class LocationCleaner : MonoBehaviour
     public static LocationCleaner instance;
     public List<Location> LocList;
     public List<Location> BaseLocList;
+
     public void LocClear()
     {
         for (int i = 0; i < LocList.Count; i++)

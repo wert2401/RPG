@@ -15,7 +15,6 @@ public class DirtGuardian : Creature
             UIManager.instance.Print("Страж метает в вас огромный булыжник");
             if (b > (GameLogic.instance.player.evasChance + 10 - GameLogic.instance.enemy.accuracy) / 100)
             {
-                GameLogic.instance.GetEarthDamage(damage * 2);
             }
             else
                 UIManager.instance.Print("Вы увернулись");

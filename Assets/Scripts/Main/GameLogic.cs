@@ -23,6 +23,9 @@ public class GameLogic : MonoBehaviour {
     public List<Effect> EnemyEffects;
     public Creature enemy;
     public Creature ifNPC;
+    public List<CreatureNew> PlayerCharacters;
+    public List<CreatureNew> EnemyCharacters;
+    public List<CreatureNew> AllCharacters;
     public float enMana;
     public bool canRun = true;
 	public int stun;
@@ -30,10 +33,6 @@ public class GameLogic : MonoBehaviour {
     [Header("Magic")]
     public InputField spellText;
     public Spell spell;
-    public List<Buff> buffs;
-    public List<int> BTs;
-    public List<Buff> EnBuffs;
-    public List<int> EnBTs;
 
     private void Awake()
     {
@@ -65,14 +64,6 @@ public class GameLogic : MonoBehaviour {
         }
     }
 
-    public void ClearAllBuffsOnPlayer()
-    {
-        for (int i = 0; i < BTs.Count; i++)
-        {
-            BTs[i] = 0;
-        }
-        BuffTick();
-    }
     #region Effects
     public void AddEffect(bool onPlayer,int id,int time)
     {
@@ -125,180 +116,6 @@ public class GameLogic : MonoBehaviour {
             Debug.Log("Enemy get effect №" + id);
         }
     }
-#region Functions
-    public void UseAllFunctionOnStartAttack(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartAttack();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartBeingAttacked();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartBeingAttacked();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartAttack();
-            }
-        }
-    }
-    public void UseAllFunctionOnStartUsingSpell(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartUsingSpell();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartBeingSpelled();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartBeingSpelled();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartUsingSpell();
-            }
-        }
-    }
-    public void UseAllFunctionOnStartDealingDamage(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartDealingDamage();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartBeingDamaged();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnStartBeingDamaged();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnStartDealingDamage();
-            }
-        }
-    }
-    public void UseAllFunctionOnEndAttack(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndAttack();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndBeingAttacked();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndBeingAttacked();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndAttack();
-            }
-        }
-    }
-    public void UseAllFunctionOnEndUsingSpell(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndUsingSpell();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndBeingSpelled();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndBeingSpelled();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndUsingSpell();
-            }
-        }
-    }
-    public void UseAllFunctionOnEndDealingDamage(bool PlayerIsTarget)
-    {
-        if (!PlayerIsTarget)
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndDealingDamage();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndBeingDamaged();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnEndBeingDamaged();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnEndDealingDamage();
-            }
-        }
-    }
-    public void UseAllFunctionOnBattleStarting()
-    {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnBattleStarting();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnBattleStarting();
-            }
-    }
-    public void UseAllFunctionOnBattleEnding()
-    {
-            for (int i = 0; i < PlayerEffects.Count; i++)
-            {
-                PlayerEffects[i].FunctionOnBattleEnding();
-            }
-            for (int i = 0; i < EnemyEffects.Count; i++)
-            {
-                EnemyEffects[i].FunctionOnBattleEnding();
-            }
-    }
-#endregion
 
     #endregion
 
@@ -382,161 +199,65 @@ public class GameLogic : MonoBehaviour {
         GetComponent<AudioSource>().clip = BattleStart;
         GetComponent<AudioSource>().Play();
     }
+
 #region Dealing damage
-    public void DealPhysDamage(float damage)
+    public void DealPhysDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * Mathf.Pow(0.95f, enemy.armor));
-        if(damage * Mathf.Pow(0.95f, enemy.armor) != 0)
-            UIManager.instance.Print("Противник получил "+ damage * Mathf.Pow(0.95f, enemy.armor) + " физического урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.armor));
+        if(Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.armor)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.armor)) + " физического урона");
     }
 
-    public void DealAirDamage(float damage)
+    public void DealAirDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.airRes);
-        if (damage * enemy.airRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.airRes + " воздушного урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.airRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.airRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.airRes)) + " воздушного урона");
     }
 
-    public void DealWaterDamage(float damage)
+    public void DealWaterDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.waterRes);
-        if (damage * enemy.waterRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.waterRes + " водного урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.waterRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.waterRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.waterRes)) + " водного урона");
     }
 
-    public void DealDarkDamage(float damage)
+    public void DealDarkDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.darkRes);
-        if (damage * enemy.darkRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.darkRes + " тёмного урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.darkRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.darkRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.darkRes)) + " тёмного урона");
     }
 
-    public void DealLightDamage(float damage)
+    public void DealLightDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.lightRes);
-        if (damage * enemy.lightRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.lightRes + " светлого урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.lightRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.lightRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.lightRes)) + " светлого урона");
     }
 
-    public void DealEarthDamage(float damage)
+    public void DealEarthDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.earthRes);
-        if (damage * enemy.earthRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.earthRes + " земляного урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.earthRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.earthRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.earthRes)) + " земляного урона");
     }
 
-    public void DealFireDamage(float damage)
+    public void DealFireDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= (damage * enemy.fireRes);
-        if (damage * enemy.fireRes != 0)
-            UIManager.instance.Print("Противник получил " + damage * enemy.fireRes + " огненного урона");
+        Target.Health -= Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.fireRes));
+        if (Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.fireRes)) != 0)
+            UIManager.instance.Print(Target.Name + " получил " + Mathf.RoundToInt(damage * Mathf.Pow(0.95f, Target.fireRes)) + " огненного урона");
     }
 
-    public void DealPureDamage(float damage)
+    public void DealPureDamage(int damage, CreatureNew Target)
     {
-        enemy.health -= damage;
+        Target.Health -= damage;
         if (damage != 0)
-            UIManager.instance.Print("Противник получил " + damage + " чистого урона");
+            UIManager.instance.Print(Target.Name + " получил " + damage + " чистого урона");
     }
 
     #endregion
-#region Getting damage
-    public void GetPhysDamage(float damage)
-    {
-        plHealth -= (damage * Mathf.Pow(0.95f, player.armor));
-        if (damage * Mathf.Pow(0.95f, player.armor) != 0)
-            UIManager.instance.Print("Вы получили " + damage * Mathf.Pow(0.95f, player.armor) + " физического урона");
-    }
-
-    public void GetAirDamage(float damage)
-    {
-        plHealth -= (damage * player.airRes);
-        if (damage * player.airRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.airRes + " воздушного урона");
-    }
-
-    public void GetWaterDamage(float damage)
-    {
-        plHealth -= (damage * player.waterRes);
-        if (damage * player.waterRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.waterRes + " водного урона");
-    }
-
-    public void GetDarkDamage(float damage)
-    {
-        plHealth -= (damage * player.darkRes);
-        if (damage * player.darkRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.darkRes + " тёмного урона");
-    }
-
-    public void GetLightDamage(float damage)
-    {
-        plHealth -= (damage * player.lightRes);
-        if (damage * player.lightRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.lightRes + " светлого урона");
-    }
-
-    public void GetEarthDamage(float damage)
-    {
-        plHealth -= (damage * player.earthRes);
-        if (damage * player.earthRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.earthRes + " земляного урона");
-    }
-
-    public void GetFireDamage(float damage)
-    {
-        plHealth -= (damage * player.fireRes);
-        if (damage * player.fireRes != 0)
-            UIManager.instance.Print("Вы получили " + damage * player.fireRes + " огненного урона");
-    }
-
-    public void GetPureDamage(float damage)
-    {
-        plHealth -= damage;
-        if (damage != 0)
-            UIManager.instance.Print("Вы получили " + damage + " чистого урона");
-    }
-    #endregion
-    public void BuffUse(Buff _buff,bool isEnemy)
-    {
-        if (isEnemy)
-            enemy.EnManaLost(_buff);
-        else
-            _buff.ManaLost();
-        if (_buff.TF == false)
-            return;
-        UIManager.instance.Print(_buff.SpellWords);
-        player.airDmg += _buff.airBuff;
-        player.earthDmg += _buff.earthBuff;
-        player.damage += _buff.physBuff;
-        player.fireDmg += _buff.fireBuff;
-        player.waterDmg += _buff.waterBuff;
-        player.lightDmg += _buff.lightBuff;
-        player.darkDmg += _buff.darkBuff;
-        buffs.Add(_buff);
-        BTs.Add(_buff.buffTime);
-    }
-
-    public void EnBuffUse(Buff _buff,bool isEnemy)
-    {
-        if (isEnemy)
-            enemy.EnManaLost(_buff);
-        else
-            _buff.ManaLost();
-        if (_buff.TF == false)
-            return;
-        UIManager.instance.Print(_buff.SpellWords);
-        enemy.mana -= _buff.ManaCost;
-        enemy.airDmg += _buff.airBuff;
-        enemy.damage += _buff.physBuff;
-        enemy.earthDmg += _buff.earthBuff;
-        enemy.fireDmg += _buff.fireBuff;
-        enemy.waterDmg += _buff.waterBuff;
-        enemy.lightDmg += _buff.lightBuff;
-        enemy.darkDmg += _buff.darkBuff;
-        EnBuffs.Add(_buff);
-        EnBTs.Add(_buff.buffTime);
-    }
 
     public void StopFight(bool ran)
     {
@@ -585,58 +306,7 @@ public class GameLogic : MonoBehaviour {
             enemy.GetDrop();
             Debug.Log("Айтем выдан");
         }
-        EnBuffs.Clear();
-        EnBTs.Clear();
-        ClearAllBuffsOnPlayer();
         UIManager.instance.SetLocationUI(curLoc);
-    }
-
-    public void BuffTick()
-    {
-        for (int i = 0; i < buffs.Count; i++)
-        {
-            if (BTs[i] >= 0)
-            {
-                BTs[i] -= 1;
-                if (BTs[i] <= 0)
-                {
-                    player.airDmg -= buffs[i].airBuff;
-                    player.earthDmg -= buffs[i].earthBuff;
-                    player.fireDmg -= buffs[i].fireBuff;
-                    player.waterDmg -= buffs[i].waterBuff;
-                    player.lightDmg -= buffs[i].lightBuff;
-                    player.darkDmg -= buffs[i].darkBuff;
-                    player.damage -= buffs[i].physBuff;
-                    buffs.Remove(buffs[i]);
-                    BTs.Remove(BTs[i]);
-                    i--;
-                }
-            }
-        }
-    }
-
-    public void EnemyBuffTick()
-    {
-        for (int i = 0; i < EnBuffs.Count; i++)
-        {
-            if (EnBTs[i] > 0)
-            {
-                EnBTs[i] -= 1;
-                if (EnBTs[i] == 0)
-                {
-                    enemy.airDmg -= EnBuffs[i].airBuff;
-                    enemy.earthDmg -= EnBuffs[i].earthBuff;
-                    enemy.fireDmg -= EnBuffs[i].fireBuff;
-                    enemy.waterDmg -= EnBuffs[i].waterBuff;
-                    enemy.lightDmg -= EnBuffs[i].lightBuff;
-                    enemy.darkDmg -= EnBuffs[i].darkBuff;
-                    enemy.damage -= EnBuffs[i].physBuff;
-                    EnBuffs.Remove(EnBuffs[i]);
-                    EnBTs.Remove(EnBTs[i]);
-                    i--;
-                }
-            }
-        }
     }
 
     public void Attack()
@@ -751,15 +421,6 @@ public class GameLogic : MonoBehaviour {
 #region Different attacks
     public void PlayerAttack()
     {
-        UseAllFunctionOnStartAttack(false);
-	    float a = Random.value;
-	    if (a > (enemy.evasChance - player.accuracy) / 100) 
-	    {
-            PlayerHit();
-	    }
-	    else
-		    UIManager.instance.Print ("Вы промахнулись");
-        BuffTick();
         for (int i = 0; i < PlayerEffects.Count; i++)
         {
             PlayerEffects[i].Tick();
@@ -774,7 +435,6 @@ public class GameLogic : MonoBehaviour {
 
     public void EnemyAttack()
     {
-        UseAllFunctionOnStartAttack(true);
         Debug.Log("Enemy attack");
 		float a = Random.value;
 		UIManager.instance.Print ("Противник атакует вас");
@@ -782,61 +442,10 @@ public class GameLogic : MonoBehaviour {
             EnemyHit();
 		else 
 			UIManager.instance.Print ("Вы увернулись");
-        EnemyBuffTick();
-    }
-    public void PlayerHit()
-    {
-        UIManager.instance.Print("Вы атакуете монстра");
-        canRun = true;
-        float a = Random.value;
-        if (a < player.CH / 200)
-        {
-            UIManager.instance.Print("Крит!");
-            DealAirDamage(player.airDmg * player.CD);
-            DealDarkDamage(player.darkDmg * player.CD);
-            DealEarthDamage(player.earthDmg * player.CD);
-            DealFireDamage(player.fireDmg * player.CD);
-            DealLightDamage(player.lightDmg * player.CD);
-            DealPhysDamage(player.damage * player.CD);
-            DealWaterDamage(player.waterDmg * player.CD);
-        }
-        else
-        {
-            DealAirDamage(player.airDmg);
-            DealDarkDamage(player.darkDmg);
-            DealEarthDamage(player.earthDmg);
-            DealFireDamage(player.fireDmg);
-            DealLightDamage(player.lightDmg);
-            DealPhysDamage(player.damage);
-            DealWaterDamage(player.waterDmg);
-        }
     }
 
     public void EnemyHit()
     {
-        canRun = true;
-        float a = Random.value;
-        if (a < enemy.CH / 200)
-        {
-            UIManager.instance.Print("Крит!");
-            GetAirDamage(enemy.airDmg * enemy.CD);
-            GetDarkDamage(enemy.darkDmg * enemy.CD);
-            GetEarthDamage(enemy.earthDmg * enemy.CD);
-            GetFireDamage(enemy.fireDmg * enemy.CD);
-            GetLightDamage(enemy.lightDmg * enemy.CD);
-            GetPhysDamage(enemy.damage * enemy.CD);
-            GetWaterDamage(enemy.waterDmg * enemy.CD);
-        }
-        else
-        {
-            GetAirDamage(enemy.airDmg);
-            GetDarkDamage(enemy.darkDmg);
-            GetEarthDamage(enemy.earthDmg);
-            GetFireDamage(enemy.fireDmg);
-            GetLightDamage(enemy.lightDmg);
-            GetPhysDamage(enemy.damage);
-            GetWaterDamage(enemy.waterDmg);
-        }
         UIManager.instance.UpdateHealth(Mathf.Round(enemy.health), Mathf.Round(plHealth));
     }
     #endregion

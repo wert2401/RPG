@@ -46,6 +46,8 @@ public class Player : MonoBehaviour {
     public int intelligence;
     public int concentration;
 
+    public List<Effect> Effects;
+
     public delegate void OnStatsChanged();
     public OnStatsChanged onStatsChanged;
 
