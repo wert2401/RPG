@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35f84f6ce57d9a4685f2b2f62e6bee6, type: 3}
   m_Name: CursedByDark
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: f26ed2146082eef498a42a7eaa63dbf6, type: 3}
+  BaseCooldown: 0
+  Cooldown: 0
   time: 0
   id: 5
   onPlayer: 0

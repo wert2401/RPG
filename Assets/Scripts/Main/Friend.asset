@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d582eeffc8d30489d958b496a19c6e, type: 3}
+  m_Name: Friend
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 5c4b7e1acc7966a4eb1f11aed7940774, type: 3}
+  Name: Friend
+  Description: This guy is just a science rat
+  Health: 200
+  HealthMax: 540
+  Mana: 100
+  ManaMax: 700
+  Energy: 5
+  EnergyMax: 40
+  accuracy: 8
+  evasChance: 2
+  damage: 50
+  armor: 3
+  Abilities: []
+  Effects:
+  - {fileID: 11400000, guid: b077bebc994552f4c87bf2d7c509207e, type: 2}
+  - {fileID: 11400000, guid: ba9e4d1d368250f4c9c551dc4b607ed4, type: 2}
+  - {fileID: 11400000, guid: d42341dc28538b54a8db368d4b226c65, type: 2}
+  CH: 12
+  CD: 4
+  fireDmg: 14
+  waterDmg: 3
+  airDmg: 2
+  lightDmg: 0
+  darkDmg: 0
+  earthDmg: 0
+  pureDmg: 0
+  fireRes: 2
+  waterRes: 0
+  airRes: 0
+  lightRes: 2
+  darkRes: 0
+  earthRes: 8
+  lvl: 7
+  strenght: 2
+  agility: 1
+  intelligence: 3
+  concentration: 5

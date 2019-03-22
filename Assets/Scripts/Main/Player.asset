@@ -27,7 +27,9 @@ MonoBehaviour:
   armor: 6
   Abilities:
   - {fileID: 11400000, guid: cd3f8dff453332d4cb633763b3b0f853, type: 2}
-  Effects: []
+  Effects:
+  - {fileID: 11400000, guid: ba9e4d1d368250f4c9c551dc4b607ed4, type: 2}
+  - {fileID: 11400000, guid: d42341dc28538b54a8db368d4b226c65, type: 2}
   CH: 5
   CD: 1
   fireDmg: 1

@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821d7aa67c4d762478f890d804fa2f88, type: 3}
   m_Name: FireBuffed
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: ecaf060cb7820ca439c49c8d2ecec9a9, type: 3}
+  BaseCooldown: 0
+  Cooldown: 0
   time: 0
   id: 4
   onPlayer: 0

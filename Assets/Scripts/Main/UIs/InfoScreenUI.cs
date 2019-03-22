@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class InfoScreenUI : MonoBehaviour
 {
+    public static InfoScreenUI instance;
     public GameObject ScreenItSelf;
     public Image Image;
     public Text Name;
@@ -31,9 +32,14 @@ public class InfoScreenUI : MonoBehaviour
 
     public Transform TestShit;
 
-    public void WriteEffects()
+    private void Awake()
     {
-        SaveEffects();
+        instance = this;
+    }
+
+    public void WriteEffects(CreatureNew CS)
+    {
+        SaveEffects(CS);
         for (int i = 0; i < 5; i++)
         {
             ETL[i].text = "";
@@ -50,9 +56,9 @@ public class InfoScreenUI : MonoBehaviour
             }
     }
 
-    public void WriteAbilities()
+    public void WriteAbilities(CreatureNew CS)
     {
-        SaveAbilities();
+        SaveAbilities(CS);
         for (int i = 0; i < 5; i++)
         {
             ATL[i].text = "";
@@ -69,21 +75,21 @@ public class InfoScreenUI : MonoBehaviour
             }
     }
 
-    public void SaveEffects()
+    public void SaveEffects(CreatureNew CS)
     {
         EL.Clear();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < CS.Effects.Count; i++)
         {
-            EL.Add("Some shit E" + i.ToString());
+            EL.Add(CS.Effects[i].EffectName);
         }
     }
 
-    public void SaveAbilities()
+    public void SaveAbilities(CreatureNew CS)
     {
         AL.Clear();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < CS.Abilities.Count; i++)
         {
-            AL.Add("Some shit A" + i.ToString());
+            AL.Add(CS.Abilities[i].Name);
         }
     }
 
@@ -147,8 +153,8 @@ public class InfoScreenUI : MonoBehaviour
     {
         AI = 0;
         EI = 0;
-        WriteAbilities();
-        WriteEffects();
+        WriteAbilities(CS);
+        WriteEffects(CS);
         UEBH.SetActive(false);
         UABH.SetActive(false);
         DEBH.SetActive(true);

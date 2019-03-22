@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Effect : ScriptableObject
 {
+    public Sprite Sprite;
     public int BaseCooldown;
     public int Cooldown;
     public int time;
